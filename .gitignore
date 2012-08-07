@@ -1,0 +1,12 @@
+# Eclipse files
+.buildpath
+.project
+.settings
+
+# Documentation files
+*.doc
+*.txt
+
+# Configuration
+config/cond.d/database.ini
+
