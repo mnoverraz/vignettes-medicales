@@ -3,12 +3,12 @@
 class HomeController extends xWebController {
 
     function defaultAction() {
-        $data['welcome-text'] = 'Welcome here!';
-        return xView::load('home/home', $data)->render();
+        return $this->listAction();
     }
     
-    function testAction(){
-    	$data['toto'] = 'toto';
-    	return xView::load('vignette/vignette', $data)->render();
+    function listAction(){
+    	
+    	$data = xModel::load('home')->get();
+    	return xView::load('home/home', $data)->render();
     }
 }

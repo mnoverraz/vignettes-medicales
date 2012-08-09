@@ -1,7 +1,26 @@
-<h1>Home</h1>
+<table>
+	<caption><?php echo _("Liste des vignettes médicales"); ?></caption>
+	<thead>
+		<tr>
+			<th><?php echo _("Module"); ?></th>
+			<th><?php echo _("Titre"); ?></th>
+			<th><?php echo _("Auteur"); ?></th>
+			<th><?php echo _("Faire d'ici le"); ?></th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>3.1 - text</td>
+			<td>titre</td>
+			<td>auteur</td>
+			<td>12.08.2012</td>
+		</tr>
+	</tbody>
+</table>
 
-<p><?php echo $d['welcome-text'] ?></p>
 
-<p>
-  Please read our <a href="<?php echo u('blog') ?>">blog</a>.
-</p>
+
+<?php
+echo '<h1>xContext</h1>';
+xUtil::pre(xContext::dump());
+?>
