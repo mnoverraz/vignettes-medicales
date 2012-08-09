@@ -1,5 +1,4 @@
 <?php
-
 class HomeController extends xWebController {
 
     function defaultAction() {
@@ -7,8 +6,7 @@ class HomeController extends xWebController {
     }
     
     function listAction(){
-    	
-    	$data = xModel::load('home')->get();
-    	return xView::load('home/home', $data)->render();
+    	$this->params = xModel::load('home')->get();
+    	return xView::load('home/home', $this->params)->render();
     }
 }

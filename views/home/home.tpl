@@ -21,6 +21,8 @@
 
 
 <?php
+echo '<h1>$d</h1>';
+xUtil::pre($d);
 echo '<h1>xContext</h1>';
 xUtil::pre(xContext::dump());
 ?>
