@@ -1,0 +1,7 @@
+#: controllers/home.php:10
+msgid "app.name"
+msgstr "Vignette Pédagogiques"
+
+#: views/layout/footer.tpl:3
+msgid "is becoming a suspiscious concept. Please share."
+msgstr "is becoming a suspiscious concept. Please share."

@@ -1,0 +1,162 @@
+/**
+	@author		Stefan Meier
+	@version	20110713
+	
+	UNIL-FBM template
+*/
+
+ * {margin:0; padding:0} 
+
+html,body,h1,div.content table.inline th, div.content table.inline td {
+	vertical-align: top;
+	margin: 0px;
+	font-family: verdana, arial, helvetica;
+	font-size: 11px;
+}
+
+#page {
+	margin-top: 10px;
+	margin-left: auto;
+	margin-right: auto;
+	border: 1px solid #000000;
+	width: 1200px;
+	background: #f5e3c6;
+}
+
+#header {
+	height: 34px;
+	background: #ffffff url('https://wwwfbm.unil.ch/html/img/head_fbm.gif')
+		no-repeat 0px 10px;
+	padding-top: 70px;
+}
+
+#header #login {
+	float: right;
+	text-align: right;
+	margin-top: -40px;
+	margin-right: 6px;
+}
+
+#header #language {
+	color: #fff;
+	float: right;
+	text-align: right;
+	margin-top: 8px;
+	margin-right: 6px;
+}
+
+
+#header #bar, footer {
+	color: #FFFFFF;
+	font-weight: bold;
+	background: #e88c13;
+	padding: 6px;
+	height: 20px;;
+	border-top: 1px solid #000000;
+	border-bottom: 1px solid #000000;
+}
+footer {
+	font-weight: normal;
+	text-align: right;
+	clear: both;
+	height: 40px;
+	border-bottom: none;
+	background: #e88c13 url('https://wwwfbm.unil.ch/html/img/foot_fbm.gif')
+		no-repeat left center;
+}
+
+#content {
+	padding: 6px;
+}
+
+#main {
+	clear: both;
+	float: left;
+	width: 952px;
+	background: #ffffff;
+	margin-right: 6px;
+	vertical-align: top;
+	margin-bottom: 6px;
+
+}
+
+#sidebar {
+	float: left;
+	width: 230px;
+}
+
+.box {
+	background: #ffffff;
+	border: 1px #ccc solid;
+	margin-bottom: 10px;
+}
+
+.box h1 {
+	background-image: url(../img/side_bg.gif);
+	font-weight: bold;
+	padding: 3px;
+	padding-left: 6px;
+	height: 16px;
+}
+
+.box >div {
+	padding: 6px;
+	vertical-align: top;
+	text-align: justify;
+	min-height:50px;
+     height:auto !important;
+     height:50px; 
+}
+
+select {
+	background: #eee;
+    border: 1px solid #999999;
+    padding: 2px;
+    width: 185px;
+}
+
+.language{
+	color: #FFFFFF;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+.language:hover{
+	font-weight: bold;
+	text-shadow: 0px 0px 9px #222;
+}
+/* tableau ---------------------------------------------- */
+div.content table.inline {
+    background-color: #FFFFFF;
+    border: 0px;
+}
+
+div.content table.inline th {
+	border: 1px solid #EC9B33;
+    background-color: #EC9B33;
+    color: #FFFFFF;
+    font-weight: bold;
+    //height: 16px;
+    padding-left: 5px;
+    vertical-align: middle;	
+}
+
+div.content table.inline th.col1, div.content table.inline th.col3, div.content table.inline th.col5 {
+	color: #000000;
+    background-color: #FFFFFF;	
+    border-bottom: 1px solid #EC9B33;
+    border-top: 1px solid #EC9B33;
+    font-weight: bold;
+    //height: 16px;
+    padding-left: 5px;
+    vertical-align: middle;
+}
+
+div.content table.inline td {
+	border: 0px;
+    height: 18px;
+    padding: 0px;
+	padding-left: 5px;
+	border-bottom: 1px dashed #48A8D4;
+	vertical-align: top;
+}
