@@ -1,18 +1,18 @@
 <?php
-class AuthorModel extends xModelMysql {
+class ModuleModel extends xModelMysql {
 
-	public $table = 'Author';
+	public $table = 'Module';
 
 	public $mapping = array(
 			'id' => 'id',
-			'user_id' => 'user_id',
+			'module' => 'module',
 	);
-	
-	public $joins = array(
+
+	/*public $joins = array(
 			'user' => 'JOIN User ON (User.id = Author.user_id)',
 			'questionnary' => 'JOIN Questionnary ON (Questionnary.author_id = Author.id)'
 	);
-	
-	
-	public $join = array('user','questionnary');
+
+
+	public $join = array('user','questionnary');*/
 }

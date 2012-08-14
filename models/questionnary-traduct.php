@@ -5,11 +5,11 @@ class QuestionnaryTraductModel extends xModelMysql {
 
 	public $mapping = array(
 			'id' => 'id',
-			'language_id' => 'language_id',
 			'theme' => 'theme',
 			'title' => 'title',
-			'descr_anamnese' => 'descr_anamnese',
-			'descr_traitement' => 'descr_traitement',
-			'descr_statut_clinique' => 'descr_statut_clinique'
+			'description' => 'description',
+			'conclusion' => 'conclusion',
+			'language_id' => 'language_id',
+			'questionnary_id' => 'questionnary_id'
 	);
 }

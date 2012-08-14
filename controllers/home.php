@@ -6,7 +6,7 @@ class HomeController extends xWebController {
     }
     
     function listAction(){
-    	$this->params = xModel::load('home')->get();
+    	$this->params = xModel::load('module-questionnary')->get();
     	return xView::load('home/home', $this->params)->render();
     }
 }
