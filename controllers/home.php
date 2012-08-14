@@ -1,14 +1,12 @@
 <?php
-
 class HomeController extends xWebController {
 
     function defaultAction() {
-        $data['welcome-text'] = 'Welcome here!';
-        return xView::load('home/home', $data)->render();
+        return $this->listAction();
     }
     
-    function testAction(){
-    	$data['toto'] = 'toto';
-    	return xView::load('vignette/vignette', $data)->render();
+    function listAction(){
+    	$this->params = xModel::load('module-questionnary')->get();
+    	return xView::load('home/home', $this->params)->render();
     }
 }
