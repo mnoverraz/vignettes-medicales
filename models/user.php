@@ -1,5 +1,5 @@
 <?php
-class AuthorModel extends xModelMysql {
+class UserModel extends xModelMysql {
 
 	public $table = 'User';
 

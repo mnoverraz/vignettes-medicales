@@ -1,6 +1,7 @@
 <html>
 <head>
 <title><?php echo _("app.name"); ?></title>
+<meta charset="utf-8" />
 <meta name="keywords" content="" />
 <meta name="description" content="" />
 <meta http-equiv="expires" content="0" />

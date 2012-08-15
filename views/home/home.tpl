@@ -9,11 +9,53 @@
 		</tr>
 	</thead>
 	<tbody>
+		<?php
+			
+				foreach($d as $q){
+					echo '<tr>';
+						printf('<td>%s - %s</td><td>%s</td><td><a href="mailto:%s">%s %s</a></td><td>%s</td>',
+								$q['module'],
+								$q['theme'],
+								$q['title'],
+								$q['email'],
+								$q['firstname'],
+								$q['lastname'],
+								date('d m y',$q['limit_date'])
+						);
+					echo '</tr>';
+				}
+			
+		
+		?>
 		<tr>
-			<td>3.1 - text</td>
-			<td>titre</td>
-			<td>auteur</td>
-			<td>12.08.2012</td>
+			<td>...</td>
+			<td>...</td>
+			<td>...</td>
+			<td>...</td>
+		</tr>
+		<tr>
+			<td>...</td>
+			<td>...</td>
+			<td>...</td>
+			<td>...</td>
+		</tr>
+		<tr>
+			<td>...</td>
+			<td>...</td>
+			<td>...</td>
+			<td>...</td>
+		</tr>
+		<tr>
+			<td>...</td>
+			<td>...</td>
+			<td>...</td>
+			<td>...</td>
+		</tr>
+		<tr>
+			<td>...</td>
+			<td>...</td>
+			<td>...</td>
+			<td>...</td>
 		</tr>
 	</tbody>
 </table>
