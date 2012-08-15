@@ -1,8 +1,9 @@
 <?php
+
 class HomeController extends xWebController {
 
     function defaultAction() {
-    	
+    	//getLTI();
         return $this->listAction();
     }
     
@@ -24,6 +25,6 @@ class HomeController extends xWebController {
     }
     
     function getLTI(){
-    	
+    	return new BLTI();
     }
 }
