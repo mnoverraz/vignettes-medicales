@@ -2,6 +2,7 @@
 class HomeController extends xWebController {
 
     function defaultAction() {
+    	
         return $this->listAction();
     }
     
@@ -9,17 +10,20 @@ class HomeController extends xWebController {
      * @TODO: put quesitonnary_publication to 1 (true)
      */
     function listAction(){
-    	
+    	return xView::load('home/home', $this->get())->render();
+    }
+    
+    function get(){
     	$params = array(
-    					'language_common_abbr' => xContext::$lang,
-    					'questionnary_publication' => '0',
-    					'xreturn' => 'theme, title, creation_date, limit_date, firstname, lastname, email, module'
+    			'language_common_abbr' => xContext::$lang,
+    			'questionnary_publication' => '0',
+    			'xreturn' => 'theme, title, creation_date, limit_date, firstname, lastname, email, module'
     	);
+    	 
+    	return xModel::load('questionnary-traduct', $params)->get();
+    }
+    
+    function getLTI(){
     	
-    	$this->params = xModel::load('questionnary-traduct', $params)->get();
-    	
-    	
-    	
-    	return xView::load('home/home', $this->params)->render();
     }
 }

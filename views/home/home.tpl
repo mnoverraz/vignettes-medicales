@@ -8,6 +8,11 @@
 			<th><?php echo _("Faire d'ici le"); ?></th>
 		</tr>
 	</thead>
+	<tfoot>
+		<tr>
+			<td colspan="4"><?php echo _("Cliquez sur un titre pour effectuer la vignette."); ?></td>
+		</tr>
+	</tfoot>
 	<tbody>
 		<?php
 			
@@ -20,7 +25,7 @@
 								$q['email'],
 								$q['firstname'],
 								$q['lastname'],
-								date('d m y',$q['limit_date'])
+								date('d.m.Y',strtotime($q['limit_date']))
 						);
 					echo '</tr>';
 				}
@@ -60,11 +65,7 @@
 	</tbody>
 </table>
 
-
-
 <?php
-echo '<h1>$d</h1>';
-xUtil::pre($d);
-echo '<h1>xContext</h1>';
 xUtil::pre(xContext::dump());
+
 ?>
