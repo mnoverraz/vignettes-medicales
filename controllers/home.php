@@ -1,9 +1,11 @@
 <?php
+include_once('ims-blti/blti.php');
+include_once('ims-blti/OAuth.php');
+include_once('ims-blti/blti_util.php');
 
 class HomeController extends xWebController {
 
     function defaultAction() {
-    	//getLTI();
         return $this->listAction();
     }
     
@@ -23,8 +25,5 @@ class HomeController extends xWebController {
     	 
     	return xModel::load('questionnary-traduct', $params)->get();
     }
-    
-    function getLTI(){
-    	return new BLTI();
-    }
+  
 }

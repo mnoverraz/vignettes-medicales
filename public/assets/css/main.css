@@ -160,7 +160,7 @@ div.content table.inline td {
 	border-bottom: 1px dashed #48A8D4;
 	vertical-align: top;
 }
-
+/*************************** Tableaux *************************/
 table {
 	margin: 10px 0 10px 0;
 	border: 1px solid #EC9B33;
@@ -207,4 +207,109 @@ th{
 
 td, th{
 	padding: 5px;
+}
+
+/*************************** Tableaux *************************/
+
+/*form {
+    border: medium none;
+    margin: 5px;
+    padding: 0;
+    width: 40em;
+}
+#formTitle, #formFooter {
+    background: none repeat scroll 0 0 #EC9B33;
+    color: white;
+    font: bold 1.1em arial,hevetica,sans-serif;
+    margin: 0;
+    padding: 0.5em;
+}
+#formFooter {
+    text-align: right;
+}
+#formFooter input {
+    font-weight: bold;
+    margin-left: 1em;
+}
+#formBody {
+    background: none repeat scroll 0 0 #f5e3c6;
+    border: 1px solid #EC9B33;
+    color: black;
+    margin: 0;
+    padding: 1em;
+}
+#formBody fieldset {
+    font-style: normal;
+    border-color: #f5e3c6;
+    margin: 0;
+    padding: 0 1em 1em;
+}
+#formBody legend {
+    background: none repeat scroll 0 0 transparent;
+    color: black;
+    font-weight: bold;
+}
+#formBody p {
+    margin: 0 0 0.2em;
+    padding: 0.2em 0;
+}*/
+
+/* ----------- My Form ----------- */
+.myform{
+margin:10px auto;
+width:400px;
+padding:14px;
+}
+
+/* ----------- stylized ----------- */
+#stylized{
+border:solid 2px #EC9B33;
+background:#f5e3c6;
+}
+#stylized h1 {
+font-size:14px;
+font-weight:bold;
+margin-bottom:8px;
+}
+#stylized p{
+font-size:11px;
+color:#666666;
+margin-bottom:20px;
+border-bottom:solid 1px #EC9B33;
+padding-bottom:10px;
+}
+#stylized label{
+display:block;
+font-weight:bold;
+text-align:right;
+width:140px;
+float:left;
+}
+#stylized .small{
+color:#666666;
+display:block;
+font-size:11px;
+font-weight:normal;
+text-align:right;
+width:140px;
+}
+#stylized input{
+float:left;
+font-size:12px;
+padding:4px 2px;
+border:solid 1px #aacfe4;
+width:200px;
+margin:2px 0 20px 10px;
+}
+#stylized button{
+clear:both;
+margin-left:150px;
+width:125px;
+height:31px;
+background:#666666 url(img/button.png) no-repeat;
+text-align:center;
+line-height:31px;
+color:#FFFFFF;
+font-size:11px;
+font-weight:bold;
 }

@@ -1,3 +1,8 @@
+<?php 
+include_once('ims-blti/blti.php');
+include_once('ims-blti/OAuth.php');
+include_once('ims-blti/blti_util.php');
+?>
 <table>
 	<caption><?php echo _("Liste des vignettes médicales"); ?></caption>
 	<thead>
@@ -66,5 +71,12 @@
 </table>
 
 <?php
-xUtil::pre(xContext::dump());
+$lti = new BLTI('moodle', true);
+//if($lti->valid){
+	xWebController::session('lti', $lti);
+	xUtil::pre(xWebController::session('lti'));
+//}
+//xUtil::pre(xContext::dump());
+//xUtil::pre($d);
+
 ?>
