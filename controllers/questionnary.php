@@ -6,6 +6,9 @@ class QuestionnaryController extends xWebController {
 	}
 
 	function indexAction(){
-		return xView::load('create/questionnary')->render();
+		
+		
+		$tata = xModel::load('module')->get();
+		return xView::load('create/questionnary', $tata)->render();
 	}
 }

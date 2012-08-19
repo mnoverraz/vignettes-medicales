@@ -8,7 +8,10 @@ class LayoutLayoutView extends xView {
                 'template' => 'layout.tpl',
             ),
             'js' => array(
-				
+				/*'tiny_mce-lib' => xUtil::url('assets/js/tiny_mce/tiny_mce.js'),
+            	'tiny_mce-init' => xUtil::url('assets/js/init_tiny_mce.js'),*/
+            	'jquery' => xUtil::url('assets/js/jquery/jquery-1.8.0.min.js'),
+            	'questionnary-create' => xUtil::url('assets/js/questionnary-create.js')
             ),
             'css' => array(
                 // Bootstrap.css CSS

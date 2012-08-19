@@ -77,6 +77,6 @@ $lti = new BLTI('moodle', true);
 	xUtil::pre(xWebController::session('lti'));
 //}
 //xUtil::pre(xContext::dump());
-//xUtil::pre($d);
+xUtil::pre($d);
 
 ?>
