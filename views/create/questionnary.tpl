@@ -20,29 +20,53 @@
 </label>
 <div class="test"><textarea id="description" name="description">ds</textarea></div>
 <fieldset>
-<legend>tiotire</legend>
+<legend><?php echo _('Module');?></legend>
 		
-<div id="elt-1" style="margin-bottom:4px;" class="clonedElt">
-<label for="module-1">
-	<?php echo _("Module"); ?>
-	<span class="small">test</span>
-</label><select id="module-1" name="module-1">
-			<?php
-			foreach($d as $module){
-				printf('<option value="%s">%s</option>',
-						$module['id'],
-						$module['module']
-				);
-			}
-			
-			?>
-		</select>
-    </div> 
+<div id="containerModule-1" style="margin-bottom:4px;" class="clonedElt">
+	<label for="moduleFr-1">
+		<?php echo _("Module FR"); ?>
+		<span class="small">test</span>
+	</label>
+	<select id="moduleFr-1" name="moduleFr-1">
+		<?php
+		foreach($d as $module){
+			printf('<option value="%s">%s</option>',
+					$module['id'],
+					$module['module']
+			);
+		}
+		?>
+	</select>
+	<label for="moduleEn-1">
+		<?php echo _("Module EN"); ?>
+		<span class="small">test</span>
+	</label>
+	<select id="moduleEn-1" name="moduleEn-1">
+		<?php
+		foreach($d as $module){
+			printf('<option value="%s">%s</option>',
+					$module['id'],
+					$module['module']
+			);
+		}
+		?>
+	</select>
+</div>
+<div class="addElement">
+	<button class="btnAdd" type="button">Ajouter module</button>
+	<button class="btnDel" type="button">Supprimer module</button>
+</div>
 
- 
+<div id="theme-1" style="margin-bottom:4px;" class="clonedElt">
+	<label for="theme-1">
+		<?php echo _("Thème"); ?>
+		<span class="small">test</span>
+	</label>
+	<input id="theme-1" name="theme-1" type="text"/>
+</div>
     <div>
-        <button id="btnAdd" type="button">Ajouter module</button>
-        <button id="btnDel" type="button">Supprimer module</button>
+        <button class="btnAdd" type="button">Ajouter module</button>
+        <button class="btnDel" type="button">Supprimer module</button>
     </div>
 </fieldset>
 <button type="submit">Créer</button>
