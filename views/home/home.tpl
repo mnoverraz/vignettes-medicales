@@ -1,7 +1,10 @@
 <?php 
+/*
 include_once('ims-blti/blti.php');
 include_once('ims-blti/OAuth.php');
 include_once('ims-blti/blti_util.php');
+$lti = new BLTI("lti", true);
+*/
 ?>
 <table>
 	<caption><?php echo _("Liste des vignettes médicales"); ?></caption>
@@ -21,7 +24,7 @@ include_once('ims-blti/blti_util.php');
 	<tbody>
 		<?php
 			
-				foreach($d as $q){
+				foreach($d['model'] as $q){
 					echo '<tr>';
 						printf('<td>%s - %s</td><td>%s</td><td><a href="mailto:%s">%s %s</a></td><td>%s</td>',
 								$q['module'],
@@ -69,14 +72,7 @@ include_once('ims-blti/blti_util.php');
 		</tr>
 	</tbody>
 </table>
-
 <?php
-$lti = new BLTI('moodle', true);
-//if($lti->valid){
-	xWebController::session('lti', $lti);
-	xUtil::pre(xWebController::session('lti'));
-//}
-//xUtil::pre(xContext::dump());
 xUtil::pre($d);
-
+xUtil::pre($_SESSION);
 ?>

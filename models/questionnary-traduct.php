@@ -18,10 +18,9 @@ class QuestionnaryTraductModel extends xModelMysql {
 		'questionnary' => 'JOIN Questionnary ON (Questionnary.id = Questionnary_traduct.questionnary_id)',
 		'module-questionnary' => 'JOIN Module_questionnary ON (Module_questionnary.questionnary_id = Questionnary.id)',
 		'module' => 'JOIN Module ON (Module.id = Module_questionnary.module_id)',
-		'author' => 'JOIN Author ON (Questionnary.author_id = Author.id)',
-		'user' => 'JOIN User ON (Author.user_id = User.id)'
+		'user' => 'JOIN User ON (Questionnary.author_id = User.id)'
 	);
 	
 	
-	public $join = array('language','questionnary','module-questionnary','module','author','user');
+	public $join = array('language','questionnary','module-questionnary','module','user');
 }
