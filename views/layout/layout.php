@@ -15,6 +15,18 @@ class LayoutLayoutView extends xView {
             ),
             'css' => array(
                 // Bootstrap.css CSS
+            	// Bootstrap.css CSS
+            	xUtil::url('assets/bootstrap.css/bootstrap.css'),
+            	xUtil::url('assets/bootstrap.css/bootstrap-responsive.css'),
+            	// Custom CSS
+            	xUtil::url('assets/css/bootstrap-tweaks.css'),
+            	xUtil::url('assets/css/custom-fonts.css'),
+            	xUtil::url('assets/css/custom.css'),
+            	// Custom project CSS
+            	xUtil::url('assets/css/custom-blog.css'),
+            		
+            		
+            	//FBM
                 xUtil::url('assets/css/main.css')
             )
         ));

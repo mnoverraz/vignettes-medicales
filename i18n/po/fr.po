@@ -10,6 +10,10 @@ msgstr ""
 msgid "Error details could not be sent to our team :("
 msgstr ""
 
+#: controllers/home.php:92
+msgid "exception-moodle-noConnected"
+msgstr "Vous ne vous êtes pas connecté avec Moodle. Veuillez vous identifier dans Moodle et ensuite de sélectionner le cours et de cliquer sur la vignette. Vous pouvez vous connecter à l'aide du lien suivant: <a href=\"http://moodle2.unil.ch\">Moodle UNIL</a>"
+
 #: views/error/display.php:8
 msgid "The data you provided is not correct"
 msgstr ""
@@ -58,4 +62,4 @@ msgstr ""
 #: views/layout/layout.tpl:3
 #: views/layout/layout.tpl:32
 msgid "app.name"
-msgstr "Vignette pédagogiques"
+msgstr ""

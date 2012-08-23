@@ -1,11 +1,3 @@
-<?php 
-/*
-include_once('ims-blti/blti.php');
-include_once('ims-blti/OAuth.php');
-include_once('ims-blti/blti_util.php');
-$lti = new BLTI("lti", true);
-*/
-?>
 <table>
 	<caption><?php echo _("Liste des vignettes médicales"); ?></caption>
 	<thead>
@@ -74,5 +66,6 @@ $lti = new BLTI("lti", true);
 </table>
 <?php
 xUtil::pre($d);
+echo "<h1>SESSION</h1>";
 xUtil::pre($_SESSION);
 ?>

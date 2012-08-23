@@ -10,6 +10,10 @@ msgstr ""
 msgid "Error details could not be sent to our team :("
 msgstr ""
 
+#: controllers/home.php:92
+msgid "exception-moodle-noConnected"
+msgstr ""
+
 #: views/error/display.php:8
 msgid "The data you provided is not correct"
 msgstr ""

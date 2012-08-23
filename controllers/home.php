@@ -3,7 +3,13 @@
 class HomeController extends xWebController {
 
     function defaultAction() {
-    	$this->ltiProcessingAction();
+    	try{
+    		$this->ltiProcessingAction();
+    	}catch (xException $e){
+    		$d['exception'] = $e;
+    		return xView::load('error/display', $d)->render();
+    	}
+    	
         return $this->listAction();
     }
     
@@ -59,26 +65,33 @@ class HomeController extends xWebController {
      */
     function ltiProcessingAction(){
     	$lti = $_SESSION['_basic_lti_context'];
-    	
-    	//insert user with his role in database if not exist
-    	$params = array(
-    		'lms_id' => $lti['user_id']
-    	);
-    	$r['userFound'] = xModel::load('user', $params)->count();
-    	if($r['userFound'] == 0){
-    		$this->put(
-    				$lti['user_id'],
-    				$lti['lis_person_name_given'],
-    				$lti['lis_person_name_family'],
-    				$lti['lis_person_contact_email_primary'],
-    				$lti['roles']
-    		);
-    	}
+    	if(isset($lti)){
+    		$lti = $_SESSION['_basic_lti_context'];
     		 
-    	//set language
-    	xContext::$front->setup_i18n($lti['launch_presentation_locale']);
+    		//insert user with his role in database if not exist
+    		$params = array(
+    				'lms_id' => $lti['user_id']
+    		);
+    		$r['userFound'] = xModel::load('user', $params)->count();
+    		if($r['userFound'] == 0){
+    			$this->put(
+    					$lti['user_id'],
+    					$lti['lis_person_name_given'],
+    					$lti['lis_person_name_family'],
+    					$lti['lis_person_contact_email_primary'],
+    					$lti['roles']
+    			);
+    		}
+    		 
+    		//set language
+    		xContext::$front->setup_i18n($lti['launch_presentation_locale']);
+    		 
+    		return xView::load('debug/debug', $r)->render();
+    	}else{
+    		//appeler une page d'erreur
+    		throw new xException(_("exception-moodle-noConnected"), 401, array('toto','toto2'));
+    	}
     	
-    	return xView::load('debug/debug', $r)->render();
     }
   
 }

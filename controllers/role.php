@@ -9,7 +9,7 @@ class RoleController extends xWebController {
 		
 	}
 	
-	function get(){
+	function toto(){
 		
 	}
 }

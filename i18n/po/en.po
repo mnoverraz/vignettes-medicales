@@ -10,6 +10,10 @@ msgstr ""
 msgid "Error details could not be sent to our team :("
 msgstr ""
 
+#: controllers/home.php:92
+msgid "exception-moodle-noConnected"
+msgstr "You are not logged in with Moodle. Please sign in to Moodle and then select the course and click on the thumbnail. You can log in using the following link: <a href=\"http://moodle2.unil.ch\"> UNIL Moodle </ a>"
+
 #: views/error/display.php:8
 msgid "The data you provided is not correct"
 msgstr ""
@@ -58,4 +62,4 @@ msgstr ""
 #: views/layout/layout.tpl:3
 #: views/layout/layout.tpl:32
 msgid "app.name"
-msgstr "Pedagogical Vignettes"
+msgstr ""
