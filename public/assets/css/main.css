@@ -311,13 +311,24 @@ width:670px;
 margin:2px 0 20px 10px;
 }
 
+#stylized fieldset{
+	border:solid 1px #000;
+}
+
+#stylized fieldset legend{
+	text-align: right;
+	margin: 10px;
+	padding: 0px 10px 0px 10px;
+	font-weight:bold;
+}
+
 #stylized fieldset input, #stylized fieldset textarea, #stylized fieldset select{
 	width: 650px;
 }
 
 .addElement{
 	display: block;
-	margin: 10px 0px 10px 130px;
+	margin: 0px 0px 50px 0px;
 }
 
 #stylized button{
