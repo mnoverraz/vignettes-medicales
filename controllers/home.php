@@ -18,7 +18,7 @@ class HomeController extends xWebController {
      */
     function listAction(){
     	$d['model'] = $this->get();
-    	$d['langMoodle'] = $_SESSION['_basic_lti_context']['launch_presentation_locale'];
+    	$d['langMoodle'] = $_SESSION['_basic_lti_context']['launch_presentation_locale'];//TODELETE
     	return xView::load('home/home', $d)->render();
     }
     
