@@ -1,5 +1,5 @@
 <div id="stylized" class="myform">
-<form id="form" name="form" method="post" action="index.html">
+<form id="questionnary" name="questionnary" method="post" action="index.html">
 <h1>Création du questionnaire</h1>
 <p>Créer votre formulaire</p>
 
@@ -23,25 +23,11 @@
 <legend><?php echo _('Module');?></legend>
 		
 <div id="containerModule-1" style="margin-bottom:4px;" class="clonedElt">
-	<label for="moduleFr-1">
-		<?php echo _("Module FR"); ?>
+	<label for="module-1">
+		<?php echo _("Module"); ?>
 		<span class="small">test</span>
 	</label>
-	<select id="moduleFr-1" name="moduleFr-1">
-		<?php
-		foreach($d as $module){
-			printf('<option value="%s">%s</option>',
-					$module['id'],
-					$module['module']
-			);
-		}
-		?>
-	</select>
-	<label for="moduleEn-1">
-		<?php echo _("Module EN"); ?>
-		<span class="small">test</span>
-	</label>
-	<select id="moduleEn-1" name="moduleEn-1">
+	<select id="module-1" name="module-1">
 		<?php
 		foreach($d as $module){
 			printf('<option value="%s">%s</option>',
@@ -57,17 +43,6 @@
 	<button class="btnDel" type="button">Supprimer module</button>
 </div>
 
-<div id="theme-1" style="margin-bottom:4px;" class="clonedElt">
-	<label for="theme-1">
-		<?php echo _("Thème"); ?>
-		<span class="small">test</span>
-	</label>
-	<input id="theme-1" name="theme-1" type="text"/>
-</div>
-    <div>
-        <button class="btnAdd" type="button">Ajouter module</button>
-        <button class="btnDel" type="button">Supprimer module</button>
-    </div>
 </fieldset>
 <button type="submit">Créer</button>
 <div class="spacer"></div>

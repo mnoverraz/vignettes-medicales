@@ -4,7 +4,7 @@ class HomeController extends xWebController {
 
     function defaultAction() {
     	try{
-    		$this->ltiProcessingAction();
+    		$this->ltiProcessing();
     	}catch (xException $e){
     		$d['exception'] = $e;
     		return xView::load('error/display', $d)->render();
@@ -60,10 +60,9 @@ class HomeController extends xWebController {
     	$t->execute($role_user, 'put');
     	$t->end();
     }
-    /*
-     * @TODO : supprimer l'action qui n'est là que pour les tests
-     */
-    function ltiProcessingAction(){
+
+    
+    function ltiProcessing(){
     	$lti = $_SESSION['_basic_lti_context'];
     	if(isset($lti)){
     		$lti = $_SESSION['_basic_lti_context'];
@@ -85,8 +84,6 @@ class HomeController extends xWebController {
     		 
     		//set language
     		xContext::$front->setup_i18n($lti['launch_presentation_locale']);
-    		 
-    		return xView::load('debug/debug', $r)->render();
     	}else{
     		//appeler une page d'erreur
     		throw new xException(_("exception-moodle-noConnected"), 401, array('toto','toto2'));
