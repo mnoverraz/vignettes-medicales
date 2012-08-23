@@ -16,33 +16,6 @@ function send(url, data, method) {
 }
 
 $(document).ready(function() {
-    /*$('.btnAdd').click(function() {
-        var num     = $('.clonedElt').length;
-        var newNum  = new Number(num + 1);
-
-        //var newElem = $('#elt-' + num).clone().attr('id', 'elt-' + newNum);
-        var newElem = $(this).parent().prev().clone().attr('id', 'elt-' + newNum);
-        
-        
-        //cherche le nom de l'élément
-        eltName = $('.clonedElt:last > :input').attr('name');
-        eltNumber = eltName;
-        
-        regNumber = new RegExp("[0-9]{1,}$","g"); //regex
-        regName = new RegExp("^[a-z]{0,}","g");	//regex
-        eltName = regName.exec(eltName); // nom
-        eltNumber = parseInt(regNumber.exec(eltNumber)); //numéro
-        console.log(eltName+'-'+eltNumber);
-        //-----------------------------
-        
-        newElem.children(':input').attr('id', eltName +'-'+(eltNumber+1)).attr('name', eltName +'-'+(eltNumber+1));
-        newElem.children('label').attr('for', eltName +'-'+(eltNumber+1));
-        $('#elt-' + num).after(newElem);
-        $('#btnDel').attr('disabled','');
-
-        if (newNum == 5)
-            $('#btnAdd').attr('disabled','disabled');
-    });*/
 	
 	$('.btnAdd').click(function() {
 		//rules to searche name or number
@@ -56,6 +29,7 @@ $(document).ready(function() {
 		prevContainerPrefixName = regName.exec(prevContainerCompleteName);
 		prevContainerNumber = parseInt(regNumber.exec(prevContainerCompleteName));
 		prevContainerNextNumber = prevContainerNumber + 1;
+		maxElt = parseInt($(prevContainer).attr('maxElt'));
 		var newElem = prevContainer.clone().attr('id', prevContainerPrefixName + '-' + prevContainerNextNumber);
 		
 		//renomme l'intérieur
@@ -84,53 +58,27 @@ $(document).ready(function() {
 		
 		$(prevContainer).after(newElem);
 		
-		
-		
-		
-		/*
-		console.log('div: ' + prevContainer);
-		console.log('divName: ' +  prevContainerCompleteName);
-		console.log('divPrefixName: ' +  prevContainerPrefixName);
-		console.log('divNumber: ' +  prevContainerNumber);
-		console.log('divNextNumber: ' +  prevContainerNextNumber);
-		console.log();
-		console.log('newElem: ' +  newElem);
-		console.log('nbrChildren: ' +  nbrInputChildren);
-		*/
-		
-		/*
-        var num     = $('.clonedElt').length;
-        var newNum  = new Number(num + 1);
-
-        //var newElem = $('#elt-' + num).clone().attr('id', 'elt-' + newNum);
-        var newElem = $(this).parent().prev().clone().attr('id', 'elt-' + newNum);
-        
-        
-        //cherche le nom de l'élément
-        eltName = $('.clonedElt:last > :input').attr('name');
-        eltNumber = eltName;
-        
-        regNumber = new RegExp("[0-9]{1,}$","g"); //regex
-        regName = new RegExp("^[a-z]{0,}","g");	//regex
-        eltName = regName.exec(eltName); // nom
-        eltNumber = parseInt(regNumber.exec(eltNumber)); //numéro
-        console.log('id: ' + eltName+'-'+eltNumber);
-        //-----------------------------
-        
-        newElem.children(':input').attr('id', eltName +'-'+(eltNumber+1)).attr('name', eltName +'-'+(eltNumber+1));
-        newElem.children('label').attr('for', eltName +'-'+(eltNumber+1));
-        $('#elt-' + num).after(newElem);
-        $('#btnDel').attr('disabled','');
-
-        if (newNum == 5)
-            $('#btnAdd').attr('disabled','disabled');
-          */
+		$(this).next().removeAttr('disabled');
     });
 	
     $('.btnDel').click(function() {
-        $(this).parent().prev().remove();
+		var regNumber = new RegExp("[0-9]{1,}$","g"); //regex
+        var regName = new RegExp("^[a-zA-Z]{0,}","g");	//regex
+        
+    	elt2del = $(this).parent().prev();
+    	num = regNumber.exec($(elt2del).attr('id'));
+    	
+    	if(num > 1)
+    		$(elt2del).remove();
+    		console.log('ok del: num=' + num);
+
+    	if(num > 2){
+    		$(this).removeAttr('disabled');
+    	}else{
+    		$(this).attr('disabled','disabled');
+    	}
     });
 
-    $('#btnDel').attr('disabled','disabled');
+    
     
 });
