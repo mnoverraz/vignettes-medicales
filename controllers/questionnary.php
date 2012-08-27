@@ -6,24 +6,42 @@ class QuestionnaryController extends xWebController {
 	}
 
 	function indexAction(){
-		
-		$data = xUtil::filter_keys($this->params, array('title', 'theme', 'description', 'module-1'));
-		
-		if($data)
-			$d['toSession'] = $this->putSession();
-			//return xView::load('create/question')->render();
-		if(isset($_SESSION['store']['questionnary']))
-			$d['formValues'] = $this->generateFormValues();
-		
-		$d['modules'] = xModel::load('module')->get();
-		$d['params'] = $this->params;
-		
-		return xView::load('create/questionnary', $d)->render();
+		//spécifier quel est l'état courant du quesitonnaire
+		switch('roger'){
+			case 'toto':
+				//---
+			default:
+				return $this->headerAction();
+		}
 	}
 	
-	function post(){
-		return xView::load('home/home')->render();
+	function settingsAction(){
+		$d['availableLanguages'] = xController::load('language')->getLanguages();
+		$d['modules'] = xController::load('module')->getModules();
+		$d['params'] = $this->params;
+		$d['session'] = $_SESSION['store'];
+		return xView::load('create/questionnary-settings', $d)->render();
 	}
+	
+	function headerAction(){
+		$data = xUtil::filter_keys($this->params, array('title', 'theme', 'description', 'module-1'));
+		
+		if(isset($data['title'])){
+			$d['toSession'] = $this->putSession();
+			return xView::load('create/question')->render();
+		}
+		//if(isset($_SESSION['store']['questionnary'])){
+		$d['formValues'] = $this->generateFormValues();
+		//}
+		$d['availableLanguages'] = xController::load('language')->getLanguages();
+		$d['modules'] = xController::load('module')->getModules();
+		$d['params'] = $this->params;
+		$d['session'] = $_SESSION['store'];
+		$d['role_id'] = xController::load('role')->getRoleId('Instructor');
+		
+		return xView::load('create/questionnary-header', $d)->render();
+	}
+
 	
 	/*
 	 * Insert the form content in session

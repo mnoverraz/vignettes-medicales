@@ -18,7 +18,6 @@
 <?php foreach ($m['js'] as $js): ?>
         <script type="text/javascript" src="<?php echo $js ?>"></script>
 <?php endforeach ?>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script>
 </head>
 <body>
 

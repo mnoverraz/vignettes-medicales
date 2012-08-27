@@ -3,29 +3,19 @@
 <h1><?php echo _("Création du questionnaire") ?></h1>
 <p><?php echo _("Créer votre formulaire") ?></p>
 
-
-<label for="title">
-	<?php echo _("Titre"); ?>
-	<span class="small">Titre du formulaire lorsque</span>
-</label><input id="title" name="title" type="text" <?php printf('value="%s"', $d['formValues']['title']) ?> />
-
-<label for="theme">
-	<?php echo _("Thème"); ?>
-	<span class="small">test</span>
-</label><input id="theme" name="theme" type="text" <?php printf('value="%s"', $d['formValues']['theme']) ?> />
-
-<label for="description">
-	<?php echo _("Description du cas"); ?>
-	<span class="small">test</span>
-</label>
-<div class="test"><textarea id="description" name="description"><?php echo $d['formValues']['description'] ?></textarea></div>
+<fieldset>
+<legend><?php echo _('Langues des questionnaires');?></legend>
+<p>Attention: si vous</p>
+<?php
+foreach($d['availableLanguages'] as $l){
+	printf('<label for="lang%s">%s<span class="small"></span></label>',$l['common_abbr'],$l['common_abbr']);
+	printf('<input id="lang%s" name="lang[]" value="%s" type="checkbox" />', $l['common_abbr'], $l['id']);
+}
+?>
+</fieldset>
 <fieldset>
 <legend><?php echo _('Module');?></legend>
-		
-
-
-
-
+<p>Indiquez dans quel module fait partie votre questionnaire</p>
 <?php
 $i=1;
 foreach($d['formValues']['modules'] as $m){
@@ -68,6 +58,23 @@ $i++;
 </div>
 
 </fieldset>
+
+<label for="title">
+	<?php echo _("Titre"); ?>
+	<span class="small">Titre du formulaire lorsque</span>
+</label><input id="title" name="title" type="text" <?php printf('value="%s"', $d['formValues']['title']) ?> />
+
+<label for="theme">
+	<?php echo _("Thème"); ?>
+	<span class="small">test</span>
+</label><input id="theme" name="theme" type="text" <?php printf('value="%s"', $d['formValues']['theme']) ?> />
+
+<label for="description">
+	<?php echo _("Description du cas"); ?>
+	<span class="small">test</span>
+</label>
+<div class="test"><textarea id="description" name="description"><?php echo $d['formValues']['description'] ?></textarea></div>
+
 <button type="submit">Etape 2</button>
 <div class="spacer"></div>
 

@@ -42,11 +42,7 @@ class HomeController extends xWebController {
     	$user = xModel::load('user', $userData);
     	
     	//ROLE USER
-    	$params = array(
-    			'role' => $role,
-    			'xreturn' => 'id'
-    	);
-    	$role_id = xModel::load('role', $params)->get();
+    	$role_id = xController::load('role')->getRoleId($role);
     	$role_userData = array(
     			'role_id' =>  $role_id,
     			'user_id' => $lms_id

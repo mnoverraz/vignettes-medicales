@@ -212,50 +212,8 @@ td, th{
 
 /*************************** Tableaux *************************/
 
-/*form {
-    border: medium none;
-    margin: 5px;
-    padding: 0;
-    width: 40em;
-}
-#formTitle, #formFooter {
-    background: none repeat scroll 0 0 #EC9B33;
-    color: white;
-    font: bold 1.1em arial,hevetica,sans-serif;
-    margin: 0;
-    padding: 0.5em;
-}
-#formFooter {
-    text-align: right;
-}
-#formFooter input {
-    font-weight: bold;
-    margin-left: 1em;
-}
-#formBody {
-    background: none repeat scroll 0 0 #f5e3c6;
-    border: 1px solid #EC9B33;
-    color: black;
-    margin: 0;
-    padding: 1em;
-}
-#formBody fieldset {
-    font-style: normal;
-    border-color: #f5e3c6;
-    margin: 0;
-    padding: 0 1em 1em;
-}
-#formBody legend {
-    background: none repeat scroll 0 0 transparent;
-    color: black;
-    font-weight: bold;
-}
-#formBody p {
-    margin: 0 0 0.2em;
-    padding: 0.2em 0;
-}*/
-
 /* ----------- My Form ----------- */
+
 .myform{
 margin:10px auto;
 width:800px;
@@ -263,6 +221,7 @@ padding:14px;
 }
 
 /* ----------- stylized ----------- */
+
 #stylized{
 border:solid 2px #EC9B33;
 background:#f5e3c6;
@@ -308,12 +267,17 @@ float:left;
 font-size:12px;
 padding:4px 2px;
 border:solid 1px #aacfe4;
-width:670px;
+width:635px;
 margin:2px 0 20px 10px;
 }
 
 #stylized fieldset{
 	border:solid 1px #000;
+	margin-bottom: 10px;
+}
+
+#stylized fieldset p{
+	margin: 0px 10px 10px 10px;
 }
 
 #stylized fieldset legend{
@@ -323,9 +287,9 @@ margin:2px 0 20px 10px;
 	font-weight:bold;
 }
 
-#stylized fieldset input, #stylized fieldset textarea, #stylized fieldset select{
+/* #stylized fieldset input, #stylized fieldset textarea, #stylized fieldset select{
 	width: 650px;
-}
+} */
 
 .addElement{
 	display: block;
