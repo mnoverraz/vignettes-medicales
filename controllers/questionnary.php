@@ -62,28 +62,30 @@ class QuestionnaryController extends xWebController {
 	
 	function headerAction(){
 		
-		
-		$data = xUtil::filter_keys($this->params, array('title', 'theme', 'description', 'module-1'));
-		
-		if(isset($data['title'])){
-			$d['toSession'] = $this->putSession();
-			return xView::load('create/question')->render();
+		if(isset($this->params['header'])){
+			$this->putSessionHeader();
+			//return $this->headerAction();
 		}
-		//if(isset($_SESSION['store']['questionnary'])){
-		$d['formValues'] = $this->generateFormValues();
-		//}
+		
 		$d['chooseLang'] = $_SESSION['store']['settings']['languages'];
 		$d['modules'] = xController::load('module')->getModules();
 		$d['params'] = $this->params;
 		$d['session'] = $_SESSION['store'];
-		$d['role_id'] = xController::load('role')->getRoleId('Instructor');
+		
+		if(isset($_SESSION['store']['header'])){
+			foreach($d['chooseLang'] as $l){
+				$d['formValues'][$l['common_abbr']]['title'] = 'value="'.$_SESSION['store']['header'][$l['common_abbr']]['title'].'"';
+				$d['formValues'][$l['common_abbr']]['theme'] = 'value="'.$_SESSION['store']['header'][$l['common_abbr']]['theme'].'"';
+				$d['formValues'][$l['common_abbr']]['description'] = $_SESSION['store']['header'][$l['common_abbr']]['description'];
+			}
+		}
 		
 		return xView::load('create/questionnary-header', $d)->render();
 	}
 
 	
 	/*
-	 * Insert the form content in session
+	 * Insert the form content of questionnary-settings in session
 	 * 
 	 * @return	Array Array inserted in session
 	 */
@@ -107,20 +109,19 @@ class QuestionnaryController extends xWebController {
 	}
 	
 	/*
-	 * Generate an array with values of form to fill with
-	 * @return	Array Array of values to fill
-	 */
-	private function generateFormValues(){
-		if(isset($_SESSION['store']['questionnary'])){
-			$r = $_SESSION['store']['questionnary'];
-		}else{
-			$r = array(
-					'title' => '',
-					'theme' => '',
-					'description' => '',
-					'modules' => array(1)
-			);
+	 * Insert the form content of questionnary-header in session
+	*
+	* @return	Array Array inserted in session
+	*/
+	function putSessionHeader(){
+	
+		foreach($_SESSION['store']['settings']['languages'] as $l){
+			$r[$l['common_abbr']]['title'] = $this->params[('title'.strtoupper($l['common_abbr']))];
+			$r[$l['common_abbr']]['theme'] = $this->params[('theme'.strtoupper($l['common_abbr']))];
+			$r[$l['common_abbr']]['description'] = $this->params[('description'.strtoupper($l['common_abbr']))];
 		}
+	
+		$_SESSION['store']['header'] = $r;
 		return $r;
 	}
 }

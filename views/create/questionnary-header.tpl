@@ -5,6 +5,7 @@ $('#tabs').tabs();
 </script>
  
 <form id="questionnary" name="questionnary" method="post">
+	<input type="hidden" name="header" />
 	<div id="tabs">
 		<ul>
 			<?php
@@ -33,9 +34,10 @@ $('#tabs').tabs();
 							_("form.title"),
 							_("form.help.title")
 				);
-				printf('<input id="title%s" name="title%s" type="text" />',
+				printf('<input id="title%s" name="title%s" type="text" %s />',
 							strtoupper($l['common_abbr']),
-							strtoupper($l['common_abbr'])
+							strtoupper($l['common_abbr']),
+							$d['formValues'][$l['common_abbr']]['title']
 				);
 				
 				/*
@@ -46,9 +48,10 @@ $('#tabs').tabs();
 							_("form.theme"),
 							_("form.help.theme")
 				);
-				printf('<input id="theme%s" name="theme%s" type="text" />',
+				printf('<input id="theme%s" name="theme%s" type="text" %s />',
 							strtoupper($l['common_abbr']),
-							strtoupper($l['common_abbr'])
+							strtoupper($l['common_abbr']),
+							$d['formValues'][$l['common_abbr']]['theme']
 				);
 				
 				/* 
@@ -60,7 +63,11 @@ $('#tabs').tabs();
 							_("form.help.description")
 				);
 				printf('<div style="clear:both;"></div>');
-				printf('<div class="test"><textarea id="description%s" name="description"></textarea></div>', strtoupper($l['common_abbr']));
+				printf('<div class="test"><textarea id="description%s" name="description%s">%s</textarea></div>',
+							strtoupper($l['common_abbr']),
+							strtoupper($l['common_abbr']),
+							$d['formValues'][$l['common_abbr']]['description']
+				);
 			?>
 					
 				

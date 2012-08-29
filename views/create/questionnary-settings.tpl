@@ -10,7 +10,7 @@
 <?php
 $i=0;
 foreach($d['availableLanguages'] as $l){
-	printf('<label for="lang%s">%s<span class="small"></span></label>',$l['common_abbr'],$l['common_abbr']);
+	printf('<label for="lang%s">%s<span class="small">%s</span></label>',$l['common_abbr'],ucfirst($l['common_abbr']),_('form.help.langue'));
 	printf('<input id="lang%s" name="lang[]" value="%s" type="checkbox" %s />',
 				$l['common_abbr'],
 				$l['id'],
@@ -21,7 +21,7 @@ foreach($d['availableLanguages'] as $l){
 ?>
 </fieldset>
 <fieldset>
-<legend><?php echo _('Module');?></legend>
+<legend><?php echo _('form.module');?></legend>
 <p>Indiquez dans quel module fait partie votre questionnaire</p>
 <?php
 $i=0;
@@ -33,8 +33,10 @@ foreach($nbrModules as $m){
 ?>
 <div id="containerModule-<?php echo $i+1 ?>" style="margin-bottom:4px;" class="clonedElt">
 	<label for="module-<?php echo $i+1 ?>">
-		<?php echo _("Module"); ?>
-		<span class="small">test</span>
+		<?php
+		echo _("form.module"); 
+		printf('<span class="small">%s</span>',_('form.help.module'));
+		?>
 	</label>
 	<select id="module-<?php echo $i+1 ?>" name="module-<?php echo $i+1 ?>">
 		<?php
