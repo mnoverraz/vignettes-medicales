@@ -8,15 +8,19 @@ class LayoutLayoutView extends xView {
                 'template' => 'layout.tpl',
             ),
             'js' => array(
-            	//TINYMCE
-// 				'tiny_mce-lib' => xUtil::url('assets/js/tiny_mce/tiny_mce.js'),
-//             	'tiny_mce-init' => xUtil::url('assets/js/init_tiny_mce.js'),
+            	
+             	
             	//JQUERY
-            	'jquerys' => xUtil::url('test/js/jquery-1.8.0.min.js'),
+            	'jquerys' => xUtil::url('assets/jquery/js/jquery-1.8.0.min.js'),
+            	'jquery' => xUtil::url('assets/jquery/js/jquery-ui-1.8.23.custom.min.js'),
             	
             	//APP
             	'questionnary-create' => xUtil::url('assets/js/questionnary-create.js'),
-            	'jquery' => xUtil::url('test/js/jquery-ui-1.8.23.custom.min.js')
+            	
+            	//TINYMCE
+            	'tiny_mce-lib' => xUtil::url('assets/tiny_mce/tiny_mce.js'),
+            	'tiny_mce-init' => xUtil::url('assets/js/init_tiny_mce.js'),
+            	
             ),
             'css' => array(
                 // Bootstrap.css CSS
@@ -33,7 +37,7 @@ class LayoutLayoutView extends xView {
             		
             	//FBM
                 xUtil::url('assets/css/main.css'),
-            	xUtil::url('test/css/ui-lightness/jquery-ui-1.8.23.custom.css'),
+            	xUtil::url('assets/jquery/css/ui-lightness/jquery-ui-1.8.23.custom.css'),
             	
             	
             )

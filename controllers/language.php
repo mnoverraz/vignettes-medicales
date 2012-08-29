@@ -17,6 +17,13 @@ class LanguageController extends xWebController {
 		return $this->get(null);
 	}
 	
+	function getLangFromId($id){
+		$params = array(
+				'id' => $id
+		);
+		return $this->get($params);
+	}
+	
 	function get($params = null){
 		return xModel::load('language', $params)->get();
 	}

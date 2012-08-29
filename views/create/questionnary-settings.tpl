@@ -1,3 +1,4 @@
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script>
 <div id="stylized" class="myform">
 <form id="questionnary" name="questionnary" method="post">
 <h1><?php echo _("Création du questionnaire") ?></h1>
@@ -7,9 +8,15 @@
 <legend><?php echo _('Langues des questionnaires');?></legend>
 <p>Attention: si vous</p>
 <?php
+$i=0;
 foreach($d['availableLanguages'] as $l){
 	printf('<label for="lang%s">%s<span class="small"></span></label>',$l['common_abbr'],$l['common_abbr']);
-	printf('<input id="lang%s" name="lang[]" value="%s" type="checkbox" />', $l['common_abbr'], $l['id']);
+	printf('<input id="lang%s" name="lang[]" value="%s" type="checkbox" %s />',
+				$l['common_abbr'],
+				$l['id'],
+				$d['formValues']['languages'][$i]
+	);
+	$i++;
 }
 ?>
 </fieldset>
@@ -17,28 +24,28 @@ foreach($d['availableLanguages'] as $l){
 <legend><?php echo _('Module');?></legend>
 <p>Indiquez dans quel module fait partie votre questionnaire</p>
 <?php
-$i=1;
-foreach($d['formValues']['modules'] as $m){
+$i=0;
+if(isset($d['formValues']['modules']))
+	$nbrModules=$d['formValues']['modules'];
+else
+	$nbrModules = array();
+foreach($nbrModules as $m){
 ?>
-<div id="containerModule-<?php echo $i ?>" style="margin-bottom:4px;" class="clonedElt">
-	<label for="module-<?php echo $i ?>">
+<div id="containerModule-<?php echo $i+1 ?>" style="margin-bottom:4px;" class="clonedElt">
+	<label for="module-<?php echo $i+1 ?>">
 		<?php echo _("Module"); ?>
 		<span class="small">test</span>
 	</label>
-	<select id="module-<?php echo $i ?>" name="module-<?php echo $i ?>">
+	<select id="module-<?php echo $i+1 ?>" name="module-<?php echo $i+1 ?>">
 		<?php
+		$j=0;
 		foreach($d['modules'] as $module){
-
-			if($m == $module['id'])
-				$toto = 'selected="'.$module['id'].'"';
-			else
-				$toto = '';
-			
 			printf('<option value="%s" %s>%s</option>',
 					$module['id'],
-					$toto,
+					$d['formValues']['modules'][$i][$j],
 					$module['module']
 			);
+			$j++;
 		}
 		?>
 	</select>

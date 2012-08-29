@@ -16,14 +16,53 @@ class QuestionnaryController extends xWebController {
 	}
 	
 	function settingsAction(){
+		
+		if($this->params['lang']){
+			$this->putSessionSettings();
+			return $this->headerAction();
+		}
+		
 		$d['availableLanguages'] = xController::load('language')->getLanguages();
 		$d['modules'] = xController::load('module')->getModules();
 		$d['params'] = $this->params;
-		$d['session'] = $_SESSION['store'];
+		$d['store'] = $_SESSION['store'];
+		
+		if(isset($_SESSION['store']['settings'])){
+			/*
+			 * Language
+			*/
+			$checked='';
+			foreach($d['availableLanguages'] as $l){
+				foreach($_SESSION['store']['settings']['languages'] as $lang){
+					$haystack[] = $lang['id'];
+				}
+				if(in_array($l['id'], $haystack))
+					$checked='checked="checked"';
+			
+				$d['formValues']['languages'][] = $checked;
+			}
+				
+			/*
+			 * Modules
+			*/
+			foreach($_SESSION['store']['settings']['modules'] as $m){
+				$selected = array();
+				foreach($d['modules'] as $module){
+					if($m == $module['id'])
+						$selected[] ='selected="selected"';
+					else
+						$selected[] ='';
+				}
+				$d['formValues']['modules'][] = $selected;
+			}
+		}
+		
 		return xView::load('create/questionnary-settings', $d)->render();
 	}
 	
 	function headerAction(){
+		
+		
 		$data = xUtil::filter_keys($this->params, array('title', 'theme', 'description', 'module-1'));
 		
 		if(isset($data['title'])){
@@ -33,7 +72,7 @@ class QuestionnaryController extends xWebController {
 		//if(isset($_SESSION['store']['questionnary'])){
 		$d['formValues'] = $this->generateFormValues();
 		//}
-		$d['availableLanguages'] = xController::load('language')->getLanguages();
+		$d['chooseLang'] = $_SESSION['store']['settings']['languages'];
 		$d['modules'] = xController::load('module')->getModules();
 		$d['params'] = $this->params;
 		$d['session'] = $_SESSION['store'];
@@ -48,7 +87,7 @@ class QuestionnaryController extends xWebController {
 	 * 
 	 * @return	Array Array inserted in session
 	 */
-	function putSession(){
+	function putSessionSettings(){
 		//modules
 
 		$i=1;
@@ -59,13 +98,11 @@ class QuestionnaryController extends xWebController {
 		//-----------
 		
 		$r = array(
-				'title' => $this->params['title'],
-				'theme' => $this->params['theme'],
-				'description' => $this->params['description'],
+				'languages' => xController::load('language')->getLangFromId($this->params['lang']),
 				'modules' => $modules
 		);
 		
-		$_SESSION['store']['questionnary'] = $r;
+		$_SESSION['store']['settings'] = $r;
 		return $r;
 	}
 	

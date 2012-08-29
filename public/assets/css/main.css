@@ -239,10 +239,7 @@ border-bottom:solid 1px #EC9B33;
 padding-bottom:10px;
 }
 
-#stylized .test{
-display: block;
-with: 650px;
-}
+
 
 #stylized label, .small{
 	display:block;
@@ -312,3 +309,8 @@ font-weight:bold;
 #stylized button:disabled{
 	display: none;
 }
+
+/*#description_parent{
+float:right;
+	
+}*/
