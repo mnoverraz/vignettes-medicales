@@ -1,7 +1,7 @@
- <script type="text/javascript">
-$(function(){
-$('#tabs').tabs();
-});
+<script type="text/javascript">
+	$(function(){
+		$('#tabs').tabs();
+	});
 </script>
  
 <form id="questionnary" name="questionnary" method="post">
@@ -72,10 +72,11 @@ $('#tabs').tabs();
 					
 				
 		</div>
-		<?php
+		<?php 
 		$i++;
 		}
 		?>
+
 		
 		<button type="submit">Etape 3</button>
 	</div>

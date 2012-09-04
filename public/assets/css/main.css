@@ -72,7 +72,7 @@ footer {
 #main {
 	clear: both;
 	float: left;
-	width: 952px;
+	width: 1000px;
 	background: #ffffff;
 	margin-right: 6px;
 	vertical-align: top;
@@ -216,7 +216,7 @@ td, th{
 
 .myform{
 margin:10px auto;
-width:800px;
+width:820px;
 padding:14px;
 }
 
@@ -310,7 +310,7 @@ font-weight:bold;
 	display: none;
 }
 
-/*#description_parent{
-float:right;
-	
-}*/
+#stylized .petit{
+margin:0px;
+width:100%;
+}

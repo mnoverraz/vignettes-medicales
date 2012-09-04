@@ -28,7 +28,7 @@ $i=0;
 if(isset($d['formValues']['modules']))
 	$nbrModules=$d['formValues']['modules'];
 else
-	$nbrModules = array();
+	$nbrModules = array(1);
 foreach($nbrModules as $m){
 ?>
 <div id="containerModule-<?php echo $i+1 ?>" style="margin-bottom:4px;" class="clonedElt">

@@ -6,13 +6,14 @@ class QuestionnaryController extends xWebController {
 	}
 
 	function indexAction(){
-		//spécifier quel est l'état courant du quesitonnaire
-		switch('roger'){
-			case 'toto':
-				//---
-			default:
-				return $this->headerAction();
-		}
+		if(!isset($_SESSION['store']))
+			return $this->settingsAction();
+		elseif(!isset($_SESSION['store']['settings']))
+			return $this->settingsAction();
+		elseif(!isset($_SESSION['store']['header']))
+			return $this->headerAction();
+		else
+			return $this->questionAction();
 	}
 	
 	function settingsAction(){
@@ -82,6 +83,27 @@ class QuestionnaryController extends xWebController {
 		
 		return xView::load('create/questionnary-header', $d)->render();
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	function questionAction(){
+		$d['chooseLang'] = $_SESSION['store']['settings']['languages'];
+		
+		return xView::load('create/questionnary-question', $d)->render();
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 
 	
 	/*

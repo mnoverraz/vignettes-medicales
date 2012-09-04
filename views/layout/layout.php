@@ -16,6 +16,7 @@ class LayoutLayoutView extends xView {
             	
             	//APP
             	'questionnary-create' => xUtil::url('assets/js/questionnary-create.js'),
+            	'questionnary-helper' => xUtil::url('assets/js/helper.js'),
             	
             	//TINYMCE
             	'tiny_mce-lib' => xUtil::url('assets/tiny_mce/tiny_mce.js'),

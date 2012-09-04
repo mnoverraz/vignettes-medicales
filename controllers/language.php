@@ -24,6 +24,13 @@ class LanguageController extends xWebController {
 		return $this->get($params);
 	}
 	
+	function getLanguageFromAbbr($common_abbr){
+		$params = array(
+				'common_abbr' => $common_abbr
+		);
+		return $this->get($params);
+	}
+	
 	function get($params = null){
 		return xModel::load('language', $params)->get();
 	}
