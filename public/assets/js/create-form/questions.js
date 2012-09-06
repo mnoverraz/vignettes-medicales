@@ -11,7 +11,6 @@ function addParamedicalTestAnswers(){
         $(this).dialog("close");
     },{id : 'cancel'});
 	
-	
 	openDialog('Titre moi','../dialog/paramedicalTest', buttonOpts);
 }
 
