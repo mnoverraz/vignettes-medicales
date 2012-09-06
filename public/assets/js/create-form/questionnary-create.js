@@ -26,10 +26,7 @@ function send(url, data, method) {
 }
 
 $(document).ready(function() {
-	var currentElt;
-	
-	
-	
+
 	$('.btnAdd').click(function() {
 		//rules to searche name or number
 		var regNumber = new RegExp("[0-9]{1,}$","g"); //regex
@@ -90,38 +87,9 @@ $(document).ready(function() {
     	}else{
     		$(this).attr('disabled','disabled');
     	}
-    });
-    
-    $('#addPictureAnswers').click(function() {
-    	currentElt = $(this);
-    	
-    	
-    	/*
-    	buttonOpts = {};
-    	buttonOpts['OK'] = $.extend(function() {
-    		var values = $('#pictureQuestionnary').serialize();
-    	    newAnswer(values);
-            $(this).dialog("close");
-        },{id : 'valid'});
-    	buttonOpts['Cancel'] = $.extend(function() {
-            $(this).dialog("close");
-        },{id : 'cancel'});
-    	
-    	
-    	openDialog('Titre moi','../dialog/picture', buttonOpts);
-    	*/
-    	alert('not implemented');
-    });
-    
-    $('#addTextAnswers').click(function() {
-    	currentElt = $(this);
-    	alert('not implemented');
-    });
-    
+    });    
     
     $('.addAnswerTemplate').click(function() {
-    	console.log($(this).siblings('.type').val());
-    	
     	ret='';
     	
     	switch($(this).siblings('.type').val()){
@@ -129,19 +97,24 @@ $(document).ready(function() {
 		    		ret += printf('<fieldset id="reponse-1"><legend>Réponses</legend>');
 		        	ret += printf('<table id="roger1">');
 		        	ret += printf('<thead><tr><th>Test</th><th>Valeur du test</th><th>Valeur normale</th><th>Effectué</th></tr></thead>');
-		        	ret += printf('<tfoot><tr><td colspan="4"><button type="button" onclick="addParamedicalTestAnswers()">Ajouter des tests</button></td></tr></tfoot>');
+		        	ret += printf('<tfoot><tr><td colspan="4"><button type="button" onclick="addParamedicalTestAnswers()">Ajouter/Supprimer des tests</button></td></tr></tfoot>');
 		        	ret += printf('<tbody>');
-		        	ret += printf('<tr>');
-		        	ret += printf('<td colspan="4">...');
-		        	ret += printf('</td>');
-		        	ret += printf('</tr>');
+		        	ret += printf('<tr><td colspan="4"></td></tr>');
 		        	ret += printf('</tbody>');
 		        	
 		        	$(this).siblings('.type').attr('disabled','disabled');
 		        	addParamedicalTestAnswers();
 		    		break;
 		    	case '2':
-		    		$(this).prev().after('Picture');
+		    		ret += printf('<fieldset id="reponse-1"><legend>Réponses</legend>');
+		        	ret += printf('<table id="roger1">');
+		        	ret += printf('<thead><tr><th>Test</th><th>Valeur du test</th><th>Valeur normale</th><th>Effectué</th></tr></thead>');
+		        	ret += printf('<tfoot><tr><td colspan="4"><button type="button" onclick="addParamedicalTestAnswers()">Ajouter/Supprimer des tests</button></td></tr></tfoot>');
+		        	ret += printf('<tbody>');
+		        	ret += printf('<tr><td colspan="4"></td></tr>');
+		        	ret += printf('</tbody>');
+		    		
+		    		$(this).siblings('.type').attr('disabled','disabled');
 		    		break;
 		    	case '3':
 		    		$(this).prev().after('Text');
@@ -154,78 +127,6 @@ $(document).ready(function() {
     });
     
 });
-
-function addParamedicalTestAnswers(){
-	currentElt = $(this);
-	
-	
-	buttonOpts = {};
-	buttonOpts['OK'] = $.extend(function() {
-		newParamedicalTestAnswer(getIDs());
-        $(this).dialog("close");
-    },{id : 'valid'});
-	buttonOpts['Cancel'] = $.extend(function() {
-        $(this).dialog("close");
-    },{id : 'cancel'});
-	
-	
-	openDialog('Titre moi','../dialog/paramedicalTest', buttonOpts);
-}
-
-
-function newParamedicalTestAnswer(val) {
-	filter = {
-				'id':eval(val),
-				'paramedical-test-traduct_language_id':1
-	};
-	json = getParamedicalTests(filter);
-	console.log(json);
-
-	$('#roger1 > tbody > tr').remove();
-	$.each(toto, function(i, item) {
-		ret = printf('<tr testid="%d">',item['id']);
-		ret += printf('<td>%s</td><td><input type="text" class="petit" /></td><td>%s</td><td><input type="checkbox" class="petit" /></td>',
-				item['paramedical-test-traduct_name'],
-				//item['id'],
-				item['normal_values']
-		);
-	    ret += '</tr>';
-	    $('#roger1 > tbody').append(ret).hide().show('slow');
-	});
-	
-
-	
-}
-
-function getParamedicalTests(filter){
-	return send('../rest/paramedical-test', filter, 'get');
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

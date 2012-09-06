@@ -15,7 +15,8 @@ class LayoutLayoutView extends xView {
             	'jquery' => xUtil::url('assets/jquery/js/jquery-ui-1.8.23.custom.min.js'),
             	
             	//APP
-            	'questionnary-create' => xUtil::url('assets/js/questionnary-create.js'),
+            	'questionnary-create' => xUtil::url('assets/js/create-form/questionnary-create.js'),
+            	'questionnary-questions' => xUtil::url('assets/js/create-form/questions.js'),
             	'questionnary-helper' => xUtil::url('assets/js/helper.js'),
             	
             	//TINYMCE
