@@ -11,7 +11,7 @@ function addParamedicalTestAnswers(){
         $(this).dialog("close");
     },{id : 'cancel'});
 	
-	openDialog('Titre moi','../dialog/paramedicalTest', buttonOpts);
+	openDialog('Titre moi','../../dialog/paramedicalTest', buttonOpts);
 }
 
 
@@ -23,10 +23,6 @@ function newParamedicalTestAnswer(val) {
 	};
 	json = getParamedicalTests(filter);
 	console.log(json);
-	
-
-	
-	
 	
 	$.each(toto, function(i, item) {
 		
@@ -73,5 +69,5 @@ function updateParamedicalTest(){
 }
 
 function getParamedicalTests(filter){
-	return send('../rest/paramedical-test', filter, 'get');
+	return send('../../rest/paramedical-test', filter, 'get');
 }
