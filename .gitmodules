@@ -1,3 +1,6 @@
 [submodule "lib/xfm"]
 	path = lib/xfm
 	url = https://github.com/damiencorpataux/xfm-php
+[submodule "public/assets/fancyBox"]
+	path = public/assets/fancyBox
+	url = https://github.com/fancyapps/fancyBox.git

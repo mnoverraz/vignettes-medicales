@@ -10,3 +10,6 @@
 # Configuration
 config/cond.d/database.ini
 
+# App files
+upload/*
+

@@ -23,4 +23,10 @@ class DialogController extends xWebController {
 		return xView::load('create/dialog/paramedicalTest', $d);
 	}
 	
+	function pictureAction(){
+	
+		$this->meta['layout']['template'] = 'layoutDialog.tpl';
+		return xView::load('create/dialog/picture');
+	}
+	
 }

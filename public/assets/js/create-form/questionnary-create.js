@@ -104,14 +104,15 @@ $(document).ready(function() {
 			break;
 		case '2':
 			ret += printf('<fieldset id="reponse-1"><legend>Réponses</legend>');
+			ret += printf('<label for="title">Test compl.<span class="small">test</span></label><input type="text" />');
 			ret += printf('<table id="roger1">');
-			ret += printf('<thead><tr><th>Test</th><th>Valeur du test</th><th>Valeur normale</th><th>Effectué</th></tr></thead>');
-			ret += printf('<tfoot><tr><td colspan="4"><button type="button" onclick="addParamedicalTestAnswers()">Ajouter/Supprimer des tests</button></td></tr></tfoot>');
+			ret += printf('<tfoot><tr><td colspan="4"><button type="button" onclick="addPictureAnswers()">Ajouter une image</button></td></tr></tfoot>');
 			ret += printf('<tbody>');
 			ret += printf('<tr><td colspan="4"></td></tr>');
 			ret += printf('</tbody>');
 
 			$(this).siblings('.type').attr('disabled', 'disabled');
+			//addPictureAnswers();
 			break;
 		case '3':
 			$(this).prev().after('Text');

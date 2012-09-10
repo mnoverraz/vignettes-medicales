@@ -314,3 +314,17 @@ font-weight:bold;
 margin:0px;
 width:100%;
 }
+
+div.pictureAnswer {
+    width: 100px;
+    text-align: center;
+}
+.eric {
+    max-width: 100px;
+    margin: 0px;
+    padding: 0px;
+}
+div.pictureAnswer img {
+    width: 100px;
+    border: solid 1px #000;
+}

@@ -15,10 +15,20 @@ class LayoutLayoutView extends xView {
             	'jquery' => xUtil::url('assets/jquery/js/jquery-ui-1.8.23.custom.min.js'),
             	
             	//APP
+            	'init' => xUtil::url('assets/js/init.js'),
             	'questionnary-create' => xUtil::url('assets/js/create-form/questionnary-create.js'),
-            	'questionnary-questions' => xUtil::url('assets/js/create-form/questions.js'),
+            	'questionnary-create-paramedicalTest' => xUtil::url('assets/js/create-form/questionnary-create-paramedicalTest.js'),
+            	'questionnary-create-picture' => xUtil::url('assets/js/create-form/questionnary-create-picture.js'),
             	'questionnary-helper' => xUtil::url('assets/js/helper.js'),
+
             	
+
+            	//FancyBox
+            	'fancyBox' => xUtil::url('assets/fancyBox/source/jquery.fancybox.js'),
+            	'fancyBoxPack' => xUtil::url('assets/fancyBox/source/jquery.fancybox.pack.js'),
+
+
+            		
             	//TINYMCE
             	'tiny_mce-lib' => xUtil::url('assets/tiny_mce/tiny_mce.js'),
             	'tiny_mce-init' => xUtil::url('assets/js/init_tiny_mce.js'),
@@ -41,7 +51,8 @@ class LayoutLayoutView extends xView {
                 xUtil::url('assets/css/main.css'),
             	xUtil::url('assets/jquery/css/ui-lightness/jquery-ui-1.8.23.custom.css'),
             	
-            	
+            	//fancyBox
+            	'fancyBox' => xUtil::url('assets/fancyBox/source/jquery.fancybox.css'),
             )
         ));
     }
