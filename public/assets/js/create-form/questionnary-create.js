@@ -106,13 +106,13 @@ $(document).ready(function() {
 			ret += printf('<fieldset id="reponse-1"><legend>Réponses</legend>');
 			ret += printf('<label for="title">Test compl.<span class="small">test</span></label><input type="text" />');
 			ret += printf('<table id="roger1">');
-			ret += printf('<tfoot><tr><td colspan="4"><button type="button" onclick="addPictureAnswers()">Ajouter une image</button></td></tr></tfoot>');
+			ret += printf('<tfoot><tr><td colspan="6"><button type="button" onclick="addPictureAnswers()">Ajouter une image</button></td></tr></tfoot>');
 			ret += printf('<tbody>');
-			ret += printf('<tr><td colspan="4"></td></tr>');
+			ret += printf('<tr></tr>');
 			ret += printf('</tbody>');
 
 			$(this).siblings('.type').attr('disabled', 'disabled');
-			//addPictureAnswers();
+			addPictureAnswers();
 			break;
 		case '3':
 			$(this).prev().after('Text');

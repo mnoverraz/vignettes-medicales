@@ -16,7 +16,7 @@ function addPictureAnswers(){
 }
 
 function newPictureAnswer(json){
-	ret = printf('<td><div class="pictureAnswer"><a class="fancybox" rel="group" href="../../../upload/%s"><img src="../../../upload/%s" alt="%s" width="200" title="%s" /></a><span>%s</span><input type="radio" name="toto" class="eric"></div></td></tr>',
+	ret = printf('<td><div class="pictureAnswer"><a class="fancybox" rel="group" href="../../../upload/%s"><img src="../../../upload/%s" alt="%s" width="200" title="%s" /></a><span>%s</span><input type="radio" name="toto" class="eric" style="margin-left: 0px"></div></td></tr>',
 			json['img']['name'],
 			json['img']['name'],
 			json['comment'],
@@ -24,5 +24,5 @@ function newPictureAnswer(json){
 			json['comment']
 	);
 	
-	$('#roger1 > tbody > tr:last').after(ret).hide().show('slow');
+	$('#roger1 > tbody > tr:last').append(ret).hide().show('slow');
 }
