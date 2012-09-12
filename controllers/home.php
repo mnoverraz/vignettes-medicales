@@ -82,7 +82,7 @@ class HomeController extends xWebController {
     		xContext::$front->setup_i18n($lti['launch_presentation_locale']);
     	}else{
     		//appeler une page d'erreur
-    		throw new xException(_("exception-moodle-noConnected"), 401, array('toto','toto2'));
+    		throw new xException(_("exception-moodle-noConnected"), 401);
     	}
     	
     }

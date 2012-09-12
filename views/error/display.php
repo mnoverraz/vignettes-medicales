@@ -3,6 +3,7 @@
 class ErrorDisplayView extends xView {
 
     function init() {
+    	
         // Messages definition
         $this->msgs = array(
             400 => _('The data you provided is not correct'),
