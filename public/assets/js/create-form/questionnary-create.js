@@ -34,46 +34,56 @@ $(document).ready(function() {
 		// ----------------
 	
 		// DIV
-		prevContainer = $(this).parent().prev();
-		prevContainerCompleteName = $(this).parent().prev().attr('id');
+		prevContainer = $(this).parent().parent().prev();
+		prevContainerCompleteName = $(prevContainer).attr('id');
 		prevContainerPrefixName = regName.exec(prevContainerCompleteName);
 		prevContainerNumber = parseInt(regNumber.exec(prevContainerCompleteName));
 		prevContainerNextNumber = prevContainerNumber + 1;
 		maxElt = parseInt($(prevContainer).attr('maxElt'));
-		var newElem = prevContainer.clone().attr('id',prevContainerPrefixName + '-' + prevContainerNextNumber);
-	
-		// renomme l'intérieur
-		nbrInputChildren = $(newElem).children(':input').length;
-		current = $(newElem).children(':first-child');
-		for ( var i = 0; i < nbrInputChildren; i++) {
-			// LABEL
-			// bug to fix (need to be here)
-			var regNumber = new RegExp("[0-9]{1,}$", "g"); // regex
-			var regName = new RegExp("^[a-zA-Z]{0,}", "g"); // regex
-	
-			inputCompleteName = $(current).next(':input').attr('name');
-			inputPrefixName = regName.exec(inputCompleteName);
-			inputNumber = parseInt(regNumber.exec(inputCompleteName));
-			inputNextNumber = inputNumber + 1;
-	
-			$(current).attr('for',inputPrefixName + '-'	+ inputNextNumber);
-	
-			// INPUT
-			current = $(current).next(':input');
-			$(current).attr('id',inputPrefixName + '-' + inputNextNumber).attr('name',inputPrefixName + '-'	+ inputNextNumber);
-			current = $(current).next(':label');
+		if(prevContainerNumber < maxElt){
+			maxElt = parseInt($(prevContainer).attr('maxElt'));
+			var newElem = prevContainer.clone().attr('id',prevContainerPrefixName + '-' + prevContainerNextNumber);
+		
+			// renomme l'intérieur
+			nbrInputChildren = $(newElem).children(':input').length;
+			current = $(newElem).children(':first-child');
+			for ( var i = 0; i < nbrInputChildren; i++) {
+				// LABEL
+				// bug to fix (need to be here)
+				var regNumber = new RegExp("[0-9]{1,}$", "g"); // regex
+				var regName = new RegExp("^[a-zA-Z]{0,}", "g"); // regex
+		
+				inputCompleteName = $(current).next(':input').attr('name');
+				inputPrefixName = regName.exec(inputCompleteName);
+				inputNumber = parseInt(regNumber.exec(inputCompleteName));
+				inputNextNumber = inputNumber + 1;
+		
+				$(current).attr('for',inputPrefixName + '-'	+ inputNextNumber);
+		
+				// INPUT
+				current = $(current).next(':input');
+				$(current).attr('id',inputPrefixName + '-' + inputNextNumber).attr('name',inputPrefixName + '-'	+ inputNextNumber);
+				current = $(current).next(':label');
+			}
+		
+			$(prevContainer).after(newElem);
+			
+			
+			if(prevContainerNumber == 1){
+				$(this).next().removeAttr('disabled');
+			}
+			if(prevContainerNumber == maxElt-1){
+				$(this).attr('disabled', 'disabled');
+			}
 		}
-	
-		$(prevContainer).after(newElem);
-	
-		$(this).next().removeAttr('disabled');
+
 	});
 
 	$('.btnDel').click(function() {
 		var regNumber = new RegExp("[0-9]{1,}$", "g"); // regex
 		var regName = new RegExp("^[a-zA-Z]{0,}", "g"); // regex
 
-		elt2del = $(this).parent().prev();
+		elt2del = $(this).parent().parent().prev();
 		num = regNumber.exec($(elt2del).attr('id'));
 
 		if (num > 1)
@@ -84,6 +94,7 @@ $(document).ready(function() {
 		} else {
 			$(this).attr('disabled', 'disabled');
 		}
+		$(this).prev().removeAttr('disabled');
 	});
 
 	$('.addAnswerTemplate').click(function() {

@@ -212,15 +212,28 @@ td, th{
 
 /*************************** Tableaux *************************/
 
-/* ----------- My Form ----------- */
+form{
+	padding: 20px 50px;
+	margin: 20px 25px;
+	border: solid 1px #e5e5e5;
+	-webkit-border-radius: 20px;
+	-moz-border-radius: 20px;
+	border-radius: 20px;
+}
 
+form hr{
+	margin: 20px -50px;
+}
+
+input[type=text]{
+	width: 100px
+}
+/* 
 .myform{
 margin:10px auto;
 width:820px;
 padding:14px;
 }
-
-/* ----------- stylized ----------- */
 
 #stylized{
 border:solid 2px #EC9B33;
@@ -284,9 +297,9 @@ margin:2px 0 20px 10px;
 	font-weight:bold;
 }
 
-/* #stylized fieldset input, #stylized fieldset textarea, #stylized fieldset select{
+#stylized fieldset input, #stylized fieldset textarea, #stylized fieldset select{
 	width: 650px;
-} */
+}
 
 .addElement{
 	display: block;
@@ -327,4 +340,4 @@ div.pictureAnswer {
 div.pictureAnswer img {
     width: 100px;
     border: solid 1px #000;
-}
+} */
