@@ -104,7 +104,7 @@ class QuestionnaryController extends xWebController {
 	function feedbackAction(){
 		if(isset($this->params['feedback'])){
 			$d['feedback'] = $this->putSessionFeedback();
-			return $this->feedbackAction();
+			return $this->save();
 		}
 		
 		$d['chooseLang'] = $_SESSION['store']['settings']['languages'];
@@ -267,6 +267,7 @@ class QuestionnaryController extends xWebController {
 		/*
 		 * 
 		 */
+		$i = 0;
 		foreach($questions['complementaryTest'] as $q){
 			/*---------------- Question ----------------- */
 			$question_picture_data['questionnary_id'] = $questionnary_id;
@@ -277,39 +278,44 @@ class QuestionnaryController extends xWebController {
 		
 			$questionPictureTest_id = $t_questionPictureTest['insertid'];
 			
+			$d['question'][$i]['id'] = $questionPictureTest_id;
+			
 			
 			/*---------------- Question_traduct ----------------- */
 			foreach($settings['languages'] as $l){
-				$question_picture_traduct_data['question'] = $q['question'][$l['common_abbr']];
-				$question_picture_traduct_data['remark'] = 'NULL';
-				$question_picture_traduct_data['language_id'] = $l['id'];
-				$question_picture_traduct_data['question_id'] = $questionPictureTest_id;
-				$question_picture_traduct = xModel::load('ans-picture', $question_picture_traduct_data);
-				$t->execute($question_picture_traduct, 'put');
+				$question_picture_traduct_data[$l['common_abbr']]['question'] = $q['question'][$l['common_abbr']];
+				$question_picture_traduct_data[$l['common_abbr']]['remark'] = 'NULL';
+				$question_picture_traduct_data[$l['common_abbr']]['language_id'] = $l['id'];
+				$question_picture_traduct_data[$l['common_abbr']]['question_id'] = $questionPictureTest_id;
+				$question_picture_traduct[$l['common_abbr']] = xModel::load('question-traduct', $question_picture_traduct_data[$l['common_abbr']]);
+				$t->execute($question_picture_traduct[$l['common_abbr']], 'put');
 			}
 			
 			foreach($q['pictureTest'] as $pt){
 				/*---------------- Ans_picture ----------------- */
-				$ans_picture_data['question_id'] = $questionPictureTest_id;
 				if(isset($pt['checked'])) $checked='true'; else $checked='false';
 				$ans_picture_data['checked'] = $checked;
 				$ans_picture_data['image_url'] = $pt['pictureName'];
+				$ans_picture_data['question_id'] = $questionPictureTest_id;
 				$ans_picture_data['group_id'] = 1; //TODO
 				$ans_picture = xModel::load('ans-picture', $ans_picture_data);
 				$t_ansPictureTest = $t->execute($ans_picture, 'put');
 					
 				$ansPictureTest_id = $t_ansPictureTest['insertid'];
 				
+				//$d['question'][$i]['images'][] = $pt;
+				
 				foreach($settings['languages'] as $l){
 					/*---------------- Ans_picture_traduct ----------------- */
-					$ans_picture_traduct_data['testname'] = $q['testName'][$l['common_abbr']];
-					$ans_picture_traduct_data['comment'] = $pt['commentary'][$l['common_abbr']];
-					$ans_picture_traduct_data['ans_picture_id'] = $ansPictureTest_id;
-					$ans_picture_traduct_data['language_id'] = $l['id'];
-					$ans_picture_traduct = xModel::load('ans-picture', $ans_picture_traduct_data);
-					$t->execute($ans_picture_traduct, 'put');
+					$ans_picture_traduct_data[$l['common_abbr']]['testname'] = $q['testName'][$l['common_abbr']];
+					$ans_picture_traduct_data[$l['common_abbr']]['comment'] = $pt['commentary'][$l['common_abbr']];
+					$ans_picture_traduct_data[$l['common_abbr']]['ans_picture_id'] = $ansPictureTest_id;
+					$ans_picture_traduct_data[$l['common_abbr']]['language_id'] = $l['id'];
+					$ans_picture_traduct[$l['common_abbr']] = xModel::load('ans-picture-traduct', $ans_picture_traduct_data[$l['common_abbr']]);
+					$t->execute($ans_picture_traduct[$l['common_abbr']], 'put');
 				}
 			}
+		$i++;
 		}
 		
 		$t->end();
