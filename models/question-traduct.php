@@ -1,13 +1,14 @@
 <?php
-class QuestionModel extends xModelMysql {
+class QuestionTraductModel extends xModelMysql {
 
-	public $table = 'Question';
+	public $table = 'Question_traduct';
 
 	public $mapping = array(
 			'id' => 'id',
-			'is_multiple_choice' => 'is_multiple_choice',
-			'question_type' => 'question_type',
-			'questionnary_id' => 'questionnary_id'
+			'question' => 'question',
+			'remark' => 'remark',
+			'language_id' => 'language_id',
+			'question_id' => 'question_id'
 	);
 
 	/*public $joins = array(

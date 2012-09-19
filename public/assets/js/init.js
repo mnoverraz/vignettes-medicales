@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	/*$(".fancybox").fancybox({
+	$(".fancybox").fancybox({
 		'openEffect'	:	'elastic',
 		'closeEffect'	:	'elastic',
 		'transitionIn'	:	'elastic',
@@ -7,5 +7,5 @@ $(document).ready(function() {
 		'speedIn'		:	600, 
 		'speedOut'		:	200, 
 		'overlayShow'	:	false
-	});*/
+	});
 });

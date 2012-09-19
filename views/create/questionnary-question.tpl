@@ -1,70 +1,170 @@
-<script type="text/javascript">
-	$(function(){
-		$('#tabs').tabs();
-	});
+<script language="javascript">
+<?php
+	if(isset($d['chooseLang'])){
+		printf('var chooseLang = %s', json_encode($d['chooseLang']));
+	}
+?>
 </script>
 
 <div id="dialog"></div>
  
-<form id="questionnary" name="questionnary" method="post">
-	<input type="hidden" name="question" />
-	<div id="tabs">
-		<ul>
-			<?php
-			$i=1;
-			foreach($d['chooseLang'] as $l){
-				printf('<li><a href="#tabs-%d">%s</a></li>',$i,strtoupper($l['common_abbr']));
-				$i++;
-			}
-			?>
-		</ul>
-		
-		
-		<div id="stylized" class="myform">
-			<?php
-			$i=1;
-			foreach($d['chooseLang'] as $l){
-				printf('<div id="tabs-%d">',$i);
-					printf('<h1>%s</h1>',_("Création du questionnaire"));
-					printf('<p>%s</p>',_("Créer votre formulaire"));
-			?>
-			<fieldset><legend>Question 1</legend>
-				<label for="question-1">Question 1<span class="small">Question 1</span></label>
-				<input id="question-1" name="question-1" type="text" value="Quel est le bilan initial que vous désirez effectuer ?" />
-				
-				<label for="remark-1">Remarque<span class="small">Remarque</span></label>
-				<input id="remark-1" name="remark-1" type="text" value="Vous devez pouvoir motiver chaque examen que vous demandez ! A l'étape suivante vous aurez tous les résultats pertinents y.c. ceux que vous n'avez pas demandés, si jugés importants par le tuteur." />
-				
-				<label for="type-1">Type<span class="small">Type</span></label>
-				<select id="type-1" name="type-1" class="type">
-					<option value="1">Test paramédical</option>
-					<option value="2">Image</option>
-					<option value="3">Texte</option>
-				</select>
-				
-				<label for="mode-1">Mode<span class="small">Mode</span></label>
-				<select id="mode-1" name="mode-1" class="mode">
-					<option value="1">QCM</option>
-					<option value="2">Single</option>
-				</select>
-				<button class="addAnswerTemplate" type="button">addAnswer</button>
-				
-				
-			</fieldset>
+<form id="questionnary" name="questionnary" method="post" class="form-horizontal">
+	<input type="hidden" name="question" value="posted" />
+	<legend><?php echo _('Création des questions')?></legend>
+	
+		<div id="question-paramedical-container" class="questionContainer">
+			<legend><?php echo _('Question test paramedical')?></legend>
+			<div class="control-group">
+				<label for="paramedicalTest[question][<?php echo $d['chooseLang'][0]['common_abbr']?>]" class="control-label">Question</label>
+				<div class="controls">
+					<?php
+					foreach($d['chooseLang'] as $l){
+						printf('<input id="paramedicalTest[question][%s]" name="paramedicalTest[question][%s]" type="text" placeholder="Question %s" />',
+							$l['common_abbr'],
+							$l['common_abbr'],
+							$l['common_abbr']
+						);
+					}
+					?>
+				</div>
+			</div>
 			
+			<div class="control-group">
+				<label for="paramedicalTest[remark][<?php echo $d['chooseLang'][0]['common_abbr']?>]" class="control-label"><?php echo _('Remarque')?></label>
+				<div class="controls">
+					<?php
+					foreach($d['chooseLang'] as $l){
+						printf('<input id="paramedicalTest[remark][%s]" name="paramedicalTest[remark][%s]" type="text" placeholder="Remark %s" />',
+							$l['common_abbr'],
+							$l['common_abbr'],
+							$l['common_abbr']
+						);
+					}
+					?>
+				</div>
+			</div>
+			
+			<div class="control-group">
+				<label for="paramedicalTest[mode]" class="control-label"><?php echo _('Mode')?></label>
+				<div class="controls">
+					<select id="paramedicalTest[mode]" name="paramedicalTest[mode]" class="type">
+						<option value="1">QCM</option>
+						<option value="2">Single</option>
+					</select>
+				</div>
+			</div>
+			
+			<div class="control-group">
+				<div class="controls">
+					<button class="btn btn-success" type="button" onclick="addParamedicalTest(this)"><?php echo _('Ajouter une réponse')?></button>
+				</div>
+			</div>
 		</div>
 		
-		<?php
-		$i++;
-		}
-		?>
+		<div id="questions-picture-container" class="questionContainer">
+			<legend><?php echo _('Question complémentaire picture')?></legend>
+			<div id="complementaryTestContainer-1" class="questionContainer">
+				<legend class="complementary-test"><?php echo _('Question complémentaire picture')?></legend>
+				<div class="control-group">
+					<label for="complementaryTest[complementaryTestContainer-1][testName][<?php echo $d['chooseLang'][0]['common_abbr']?>]" class="control-label"><?php echo _('Nom du test')?></label>
+					<div class="controls">
+						<?php
+						foreach($d['chooseLang'] as $l){
+							printf('<input id="complementaryTest[complementaryTestContainer-1][testName][%s]" name="complementaryTest[complementaryTestContainer-1][testName][%s]" type="text" />',
+								$l['common_abbr'],
+								$l['common_abbr']
+							);
+						}
+						?>
+					</div>
+				</div>
+				<div class="control-group">
+					<label for="complementaryTest[complementaryTestContainer-1][question][<?php echo $d['chooseLang'][0]['common_abbr']?>]" class="control-label">Question</label>
+					<div class="controls">
+						<?php
+						foreach($d['chooseLang'] as $l){
+							printf('<input id="complementaryTest[complementaryTestContainer-1][question][%s]" name="complementaryTest[complementaryTestContainer-1][question][%s]" type="text" />',
+								$l['common_abbr'],
+								$l['common_abbr']
+							);
+						}
+						?>
+						
+					</div>
+				</div>
+				<div class="control-group">
+					<label for="complementaryTest[complementaryTestContainer-1][mode]" class="control-label"><?php echo _('Mode')?></label>
+					<div class="controls">
+						<select id="complementaryTest[complementaryTestContainer-1][mode]" name="complementaryTest[complementaryTestContainer-1][mode]" class="type">
+							<option value="1">QCM</option>
+							<option value="2">Single</option>
+						</select>
+					</div>
+				</div>
+				<div class="control-group">
+					<div class="controls">
+						<button class="btn btn-success" type="button" onclick="addPictureTest(this)">addAnswer</button>
+					</div>
+				</div>
+			</div>
+			
+			<div id="complementaryTestContainer-2" class="questionContainer">
+				<legend class="complementary-test"><?php echo _('Question complémentaire picture')?></legend>
+				<div class="control-group">
+					<label for="complementaryTest[complementaryTestContainer-1][testName][<?php echo $d['chooseLang'][0]['common_abbr']?>]" class="control-label"><?php echo _('Nom du test')?></label>
+					<div class="controls">
+						<?php
+						foreach($d['chooseLang'] as $l){
+							printf('<input id="complementaryTest[complementaryTestContainer-2][testName][%s]" name="complementaryTest[complementaryTestContainer-2][testName][%s]" type="text" />',
+								$l['common_abbr'],
+								$l['common_abbr']
+							);
+						}
+						?>
+					</div>
+				</div>
+				<div class="control-group">
+					<label for="complementaryTest[complementaryTestContainer-2][question][<?php echo $d['chooseLang'][0]['common_abbr']?>]" class="control-label">Question</label>
+					<div class="controls">
+						<?php
+						foreach($d['chooseLang'] as $l){
+							printf('<input id="complementaryTest[complementaryTestContainer-2][question][%s]" name="complementaryTest[complementaryTestContainer-2][question][%s]" type="text" />',
+								$l['common_abbr'],
+								$l['common_abbr']
+							);
+						}
+						?>
+						
+					</div>
+				</div>
+				<div class="control-group">
+					<label for="complementaryTest[complementaryTestContainer-2][mode]" class="control-label"><?php echo _('Mode')?></label>
+					<div class="controls">
+						<select id="complementaryTest[complementaryTestContainer-2][mode]" name="complementaryTest[complementaryTestContainer-2][mode]" class="type">
+							<option value="1">QCM</option>
+							<option value="2">Single</option>
+						</select>
+					</div>
+				</div>
+				<div class="control-group">
+					<div class="controls">
+						<button class="btn btn-success" type="button" onclick="addPictureTest(this)">addAnswer</button>
+					</div>
+				</div>
+			</div>
+		</div>
 		
-		
-		<button type="submit">Etape 3</button>
-	</div>
+	<hr />
+	<button type="submit" class="btn btn-primary">Etape 3</button>
+	
 </form>
 
 <h1>$d</h1>
 <?php
 xUtil::pre($d);
+?>
+
+<h1>$d</h1>
+<?php
+xUtil::pre($_SESSION['store']);
 ?>

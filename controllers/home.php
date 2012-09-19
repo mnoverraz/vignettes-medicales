@@ -55,11 +55,76 @@ class HomeController extends xWebController {
     	$t->execute($user, 'put');
     	$t->execute($role_user, 'put');
     	$t->end();
+    	
+    	return $t;
     }
 
     
     function ltiProcessing(){
+    	
     	$lti = $_SESSION['_basic_lti_context'];
+    	if(isset($lti)){
+    		
+    		//if(empty(xAuth::info('moodle_id'))){
+    			
+    			//check if the user is in DB
+    			$params = array(
+    					'lms_id' => $lti['user_id']
+    			);
+    			$user = xModel::load('user', $params)->get();
+    			
+    			if(count($user) == 0){
+    				$d['put'] = $this->put(
+    						$lti['user_id'],
+    						$lti['lis_person_name_given'],
+    						$lti['lis_person_name_family'],
+    						$lti['lis_person_contact_email_primary'],
+    						$lti['roles']
+    				);
+    				if($d['put']['results'][0]['result']['xsuccess'] == 1){
+    					$id = $d['put']['results'][0]['result']['insertid'];
+    					$firstName = $lti['lis_person_name_given'];
+    					$lastName = $lti['lis_person_name_family'];
+    					$email = $lti['lis_person_contact_email_primary'];
+    					$moodle_id = $lti['user_id'];
+    					$moodle_language = $lti['launch_presentation_locale'];
+    				}else{
+    					throw new xException(_("exception-lti-cannotInsertInDB"), 401);
+    				}
+    				
+    			}else{
+    				$id = $user[0]['id'];
+    				$firstName = $user[0]['firstname'];
+    				$lastName = $user[0]['lastname'];
+    				$email = $user[0]['email'];
+    				$moodle_id = $user[0]['lms_id'];
+    				$moodle_language = $lti['launch_presentation_locale'];
+    			}
+    			
+    			xAuth::set($email,$lti['roles'],array(
+    					'id' => $id,
+    					'firstName' => $firstName,
+    					'lastName' => $lastName,
+    					'email' => $email,
+    					'moodle_id' => $moodle_id,
+    					'moodle_language' => $moodle_language
+    				)
+    			);
+    			//set language
+    			xContext::$front->setup_i18n($moodle_language);
+    		//}
+    		return xView::load('home/home')->render();
+    		
+    	}else{
+    		//appeler une page d'erreur
+    		throw new xException(_("exception-moodle-noConnected"), 401);
+    	}
+    	
+    	
+    	
+    	
+    	
+    	/*$lti = $_SESSION['_basic_lti_context'];
     	if(isset($lti)){
     		$lti = $_SESSION['_basic_lti_context'];
     		 
@@ -67,23 +132,41 @@ class HomeController extends xWebController {
     		$params = array(
     				'lms_id' => $lti['user_id']
     		);
-    		$r['userFound'] = xModel::load('user', $params)->count();
-    		if($r['userFound'] == 0){
-    			$this->put(
+    		$user = xModel::load('user', $params)->get();
+    		
+    		
+    		if(count($user) == 0){
+    			$d['put'] = $this->put(
     					$lti['user_id'],
     					$lti['lis_person_name_given'],
     					$lti['lis_person_name_family'],
     					$lti['lis_person_contact_email_primary'],
     					$lti['roles']
     			);
+    			
+    			
+    			$result = $d['put']['results'][0]['result'];
+    			if($result['xsuccess'] == 1)
+    				xAuth::set($lti['lis_person_contact_email_primary'],$lti['roles'],array('id' => $result['insertid']));
+    			else
+    				throw new xException(_("exception-lti-cannotInsertUser"), 401);
+    			
+    		}else{
+    			xAuth::set($lti['lis_person_contact_email_primary'],$lti['roles'],array('id' => $user[0]['id']));
     		}
-    		 
+    		
     		//set language
     		xContext::$front->setup_i18n($lti['launch_presentation_locale']);
+    		
+    		
+    		$d['user'] = $user;
+    		$d['countuser'] = count($user);
+    		$d['xauth'] = xAuth::info();
+    		return xView::load('home/home', $d)->render();
     	}else{
     		//appeler une page d'erreur
     		throw new xException(_("exception-moodle-noConnected"), 401);
-    	}
+    	}*/
     	
     }
   

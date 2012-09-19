@@ -1,5 +1,6 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script>
 <form id="questionnary" name="questionnary" method="post" class="form-horizontal">
+<input type="hidden" name="settings" />
 <legend><?php echo _('Paramètres du questionnaire');?></legend>
 <?php
 
@@ -63,7 +64,7 @@ $i++;
 ?>
 <div class="addElement control-group">
 	<div class="controls">
-		<button class="btnAdd btn btn-success" type="button">Ajouter module</button>
+		<button id="toto" class="btnAdd btn btn-success" type="button">Ajouter module</button>
 		<button class="btnDel btn btn-danger" type="button" disabled="disabled">Supprimer module</button>
 	</div>
 </div>

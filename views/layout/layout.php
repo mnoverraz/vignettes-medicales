@@ -32,23 +32,21 @@ class LayoutLayoutView extends xView {
             	//TINYMCE
             	'tiny_mce-lib' => xUtil::url('assets/tiny_mce/tiny_mce.js'),
             	'tiny_mce-init' => xUtil::url('assets/js/init_tiny_mce.js'),
+            		
+            	//Bootstrap.css
+            	//'bootstrap' => xUtil::url('assets/bootstrap/js/bootstrap.min.js')
             	
             ),
             'css' => array(
-                // Bootstrap.css CSS
-            	
-             	xUtil::url('assets/bootstrap.css/bootstrap-responsive.css'),
-            	// Custom CSS
-            	xUtil::url('assets/css/bootstrap-tweaks.css'),
-            	// Custom project CSS
-            	xUtil::url('assets/css/custom-blog.css'),
-            
-            		
-            	
+                //Bootstrap.css CSS
+            	//xUtil::url('assets/bootstrap/css/bootstrap.min.css'),
+            	//xUtil::url('assets/bootstrap/css/bootstrap-responsive.min.css'),
             	xUtil::url('assets/bootstrap.css/bootstrap.css'),
             		
             	//FBM
                 xUtil::url('assets/css/main.css'),
+            		
+            	//Jquery UI
             	xUtil::url('assets/jquery/css/ui-lightness/jquery-ui-1.8.23.custom.css'),
             	
             	//fancyBox

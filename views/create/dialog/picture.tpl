@@ -1,10 +1,10 @@
 <script>
 var currentImg = '';
 
-function submitForm(){
+function submitForm(tableToFill){
 
-	json = {'img':currentImg, 'comment': $('#comment').val()};
-	newPictureAnswer(json);
+	json = {'img':currentImg};
+	newPictureAnswer(json, tableToFill);
 }
 
 (function () {
@@ -60,15 +60,12 @@ function submitForm(){
 
 
 </script>
-
-
-<form name="form1" method="post" enctype="multipart/form-data"  action="<?php echo 'toto'//xUtil::url('picture/test')?>">
-	<div id="stylized" class="myform">
-		<label for="title">Image<span class="small">test</span></label><input type="file" name="images" id="images" multiple />
-		<label for="comment">Commentaire<span class="small">test</span></label><input id="comment" type="text" />
-		
-		
-		<div style="clear:both"></div>
+<form id="questionnary" name="questionnary" method="post" class="form-horizontal" enctype="multipart/form-data">
+	<legend><?php echo _('Chargez une image')?></legend>
+	<div class="control-group">
+		<label for="images" class="control-label"><?php echo _('Image')?></label>
+		<div class="controls">
+			<input type="file" name="images" id="images" />
+		</div>
 	</div>
-
 </form>

@@ -226,8 +226,58 @@ form hr{
 }
 
 input[type=text]{
-	width: 100px
+	width: 628px;
+	height: 30px;
 }
+
+.petit{
+margin:0px;
+max-width:100px;
+}
+
+.moyen{
+margin:0px;
+max-width:400px;
+}
+
+table.paramedicalTest{
+	width: 500px;
+	margin: auto;
+}
+
+table.paramedicalTest > td{
+	width: 100px;
+	margin: auto;
+}
+
+div.pictureAnswer {
+    width: 100px;
+    text-align: center;
+}
+.eric {
+    max-width: 100px;
+    margin: 0px;
+    padding: 0px;
+}
+img {
+    max-width: 100px;
+    max-height: 100px;
+    border: solid 1px #000;
+    margin: auto;
+}
+
+.questionContainer{
+	border-left: solid 10px #a1a1a1;
+	padding-left: 10px;
+	margin-bottom: 40px;
+}
+
+
+legend.complementary-test{
+	margin-left: 50px;
+	margin-right: 200px;
+}
+
 /* 
 .myform{
 margin:10px auto;
@@ -251,8 +301,6 @@ margin-bottom:20px;
 border-bottom:solid 1px #EC9B33;
 padding-bottom:10px;
 }
-
-
 
 #stylized label, .small{
 	display:block;

@@ -12,8 +12,12 @@ class QuestionnaryController extends xWebController {
 			return $this->settingsAction();
 		elseif(!isset($_SESSION['store']['header']))
 			return $this->headerAction();
-		else
+		elseif(!isset($_SESSION['store']['question']))
 			return $this->questionAction();
+		elseif(!isset($_SESSION['store']['feedback']))
+			return $this->feedbackAction();
+		else
+			return $this->save();
 	}
 	
 	function settingsAction(){
@@ -65,7 +69,7 @@ class QuestionnaryController extends xWebController {
 		
 		if(isset($this->params['header'])){
 			$this->putSessionHeader();
-			//return $this->headerAction();
+			return $this->questionAction();
 		}
 		
 		$d['chooseLang'] = $_SESSION['store']['settings']['languages'];
@@ -84,22 +88,29 @@ class QuestionnaryController extends xWebController {
 		return xView::load('create/questionnary-header', $d)->render();
 	}
 	
-	
-	
-	
-	
-	
-	
-	
 	function questionAction(){
+		
+		
+		if(isset($this->params['question'])){
+			$d['question'] = $this->putSessionQuestion();
+			return $this->feedbackAction();
+		}
+		
 		$d['chooseLang'] = $_SESSION['store']['settings']['languages'];
 		
 		return xView::load('create/questionnary-question', $d)->render();
 	}
 	
-	
-	
-	
+	function feedbackAction(){
+		if(isset($this->params['feedback'])){
+			$d['feedback'] = $this->putSessionFeedback();
+			return $this->feedbackAction();
+		}
+		
+		$d['chooseLang'] = $_SESSION['store']['settings']['languages'];
+		
+		return xView::load('create/questionnary-feedback', $d)->render();
+	}
 	
 	
 	
@@ -146,4 +157,176 @@ class QuestionnaryController extends xWebController {
 		$_SESSION['store']['header'] = $r;
 		return $r;
 	}
+	
+	
+	
+	function putSessionQuestion(){
+		$r['paramedicalTest'] = $this->params['paramedicalTest'];
+		$r['complementaryTest'] = $this->params['complementaryTest'];
+		
+		$_SESSION['store']['question'] = $r;
+		return $r;
+	}
+	
+	
+	function putSessionFeedback(){
+		
+		$r = $this->params['feedback'];
+		
+		$_SESSION['store']['feedback'] = $r;
+		return $r;
+	}
+	
+	function save(){
+		$s = $_SESSION;
+		$settings = $_SESSION['store']['settings'];
+		$header = $_SESSION['store']['header'];
+		$questions = $_SESSION['store']['question'];
+		$feedback = $_SESSION['store']['feedback'];
+		
+		
+		$t = new xTransaction();
+		$t->start();
+		
+		
+		/*
+		 * QUESTIONNARY
+		 */
+		
+		$questionnary_data['author_id'] = xAuth::info('id');
+		$questionnary_data['creation_date'] = date('Y-m-d H:i:s');
+		$questionnary_data['limit_date'] = null;
+		$questionnary_data['publication'] = 'false';
+		$questionnary = xModel::load('questionnary', $questionnary_data);
+		$t_questionnary = $t->execute($questionnary, 'put');
+		
+		$questionnary_id = $t_questionnary['insertid'];
+		
+		/*
+		 * QUESTIONNARY TRADUCT
+		 */
+		foreach($settings['languages'] as $l){
+			$questionnary_traduct_data[$l['common_abbr']]['language_id'] = $l['id'];
+			$questionnary_traduct_data[$l['common_abbr']]['theme'] = $header[$l['common_abbr']]['theme'];
+			$questionnary_traduct_data[$l['common_abbr']]['title'] = $header[$l['common_abbr']]['title'];
+			$questionnary_traduct_data[$l['common_abbr']]['description'] = $header[$l['common_abbr']]['description'];
+			$questionnary_traduct_data[$l['common_abbr']]['questionnary_id'] = $questionnary_id;
+			$questionnary_traduct_data[$l['common_abbr']]['conclusion'] = $feedback[ucfirst($l['common_abbr'])];
+			$questionnary_traduct[$l['common_abbr']] = xModel::load('questionnary-traduct', $questionnary_traduct_data[$l['common_abbr']]);
+			$t->execute($questionnary_traduct[$l['common_abbr']], 'put');
+		}
+		
+		/*
+		 * MODULE_QUESTIONNARY
+		*/
+		foreach($settings['modules'] as $id){
+			$module_questionnary_data['module_id'] = $id;
+			$module_questionnary_data['questionnary_id'] = $questionnary_id;
+			$module = xModel::load('module-questionnary', $module_questionnary_data);
+			$t->execute($module, 'put');
+		}
+		
+		
+		/*
+		 * QUESTION (paramedicalTest)
+		 */
+		$question_paramedical_data['questionnary_id'] = $questionnary_id;
+		$question_paramedical_data['is_multiple_choice']  = $questions['paramedicalTest']['mode'];
+		$question_paramedical_data['question_type'] = 1;
+		$question_paramedical = xModel::load('question', $question_paramedical_data);
+		$t_questionParamedicalTest = $t->execute($question_paramedical, 'put');
+		
+		$questionParamedicalTest_id = $t_questionParamedicalTest['insertid'];
+		
+		/*
+		 * QUESTION_TRADUCT (paramedicalTest)
+		 */
+		foreach($settings['languages'] as $l){
+			$question_paramedical_traduct_data[$l['common_abbr']]['question'] = $questions['paramedicalTest']['question'][$l['common_abbr']];
+			$question_paramedical_traduct_data[$l['common_abbr']]['remark'] = $questions['paramedicalTest']['remark'][$l['common_abbr']];
+			$question_paramedical_traduct_data[$l['common_abbr']]['language_id'] = $l['id'];
+			$question_paramedical_traduct_data[$l['common_abbr']]['question_id'] = $questionParamedicalTest_id;
+			$question_paramedical_traduct = xModel::load('question-traduct', $question_paramedical_traduct_data[$l['common_abbr']]);
+			$t->execute($question_paramedical_traduct, 'put');
+		}
+		
+		/*
+		 * ANS_PARAMEDICAL_TEST
+		 */
+		foreach($questions['paramedicalTest']['paramedicalTests'] as $test_id => $v){
+			$ans_paramedical_test_data['patient_values'] = $v['testValue'];
+			if(isset($v['effectuated'])) $checked='true'; else $checked='false';
+			$ans_paramedical_test_data['checked'] = $checked;
+			$ans_paramedical_test_data['paramedical_test_id'] = $test_id;
+			$ans_paramedical_test_data['question_id'] = $questionParamedicalTest_id;
+			$ans_paramedical_test_data['group_id'] = 1; //TODO
+			$ans_paramedical_test = xModel::load('ans-paramedical-test', $ans_paramedical_test_data);
+			$t->execute($ans_paramedical_test, 'put');
+		}
+		
+		/*
+		 * 
+		 */
+		foreach($questions['complementaryTest'] as $q){
+			/*---------------- Question ----------------- */
+			$question_picture_data['questionnary_id'] = $questionnary_id;
+			$question_picture_data['is_multiple_choice'] = $q['mode'];
+			$question_picture_data['question_type'] = 2;
+			$question_picture = xModel::load('question', $question_picture_data);
+			$t_questionPictureTest = $t->execute($question_picture, 'put');
+		
+			$questionPictureTest_id = $t_questionPictureTest['insertid'];
+			
+			
+			/*---------------- Question_traduct ----------------- */
+			foreach($settings['languages'] as $l){
+				$question_picture_traduct_data['question'] = $q['question'][$l['common_abbr']];
+				$question_picture_traduct_data['remark'] = 'NULL';
+				$question_picture_traduct_data['language_id'] = $l['id'];
+				$question_picture_traduct_data['question_id'] = $questionPictureTest_id;
+				$question_picture_traduct = xModel::load('ans-picture', $question_picture_traduct_data);
+				$t->execute($question_picture_traduct, 'put');
+			}
+			
+			foreach($q['pictureTest'] as $pt){
+				/*---------------- Ans_picture ----------------- */
+				$ans_picture_data['question_id'] = $questionPictureTest_id;
+				if(isset($pt['checked'])) $checked='true'; else $checked='false';
+				$ans_picture_data['checked'] = $checked;
+				$ans_picture_data['image_url'] = $pt['pictureName'];
+				$ans_picture_data['group_id'] = 1; //TODO
+				$ans_picture = xModel::load('ans-picture', $ans_picture_data);
+				$t_ansPictureTest = $t->execute($ans_picture, 'put');
+					
+				$ansPictureTest_id = $t_ansPictureTest['insertid'];
+				
+				foreach($settings['languages'] as $l){
+					/*---------------- Ans_picture_traduct ----------------- */
+					$ans_picture_traduct_data['testname'] = $q['testName'][$l['common_abbr']];
+					$ans_picture_traduct_data['comment'] = $pt['commentary'][$l['common_abbr']];
+					$ans_picture_traduct_data['ans_picture_id'] = $ansPictureTest_id;
+					$ans_picture_traduct_data['language_id'] = $l['id'];
+					$ans_picture_traduct = xModel::load('ans-picture', $ans_picture_traduct_data);
+					$t->execute($ans_picture_traduct, 'put');
+				}
+			}
+		}
+		
+		$t->end();
+		
+		$d['Transaction'] = $t;
+		
+		return xView::load('create/questionnary-validated-form', $d)->render();
+		
+	}
+	
+	function sessionAction(){
+		return xView::load('create/session')->render();
+	}
+	
+	function clearQuestionnarySessionAction(){
+		unset($_SESSION['store']);
+		return xView::load('create/questionnary-settings')->render();
+	}
+	
 }

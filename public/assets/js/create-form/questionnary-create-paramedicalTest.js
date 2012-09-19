@@ -38,13 +38,14 @@ function newParamedicalTestAnswer(val) {
 				
 				if(!alreadyInList){
 					ret = printf('<tr testid="%d">',item['id']);
-					ret += printf('<td>%s</td><td><input type="text" class="petit" /></td><td>%s</td><td><input type="checkbox" class="petit" /></td>',
+					ret += printf('<td>%s</td><td><input name="paramedicalTest[paramedicalTests][%s][testValue]" type="text" class="petit" /></td><td>%s</td><td><input type="checkbox" name="paramedicalTest[paramedicalTests][%s][effectuated]" class="petit" /></td>',
 							item['paramedical-test-traduct_name'],
-							//item['id'],
-							item['normal_values']
+							item['id'],
+							item['normal_values'],
+							item['id']
 					);
 				    ret += '</tr>';
-				    $('#roger1 > tbody > tr:last').after(ret).hide().show('slow');
+				    $('#question-paramedical-table > tbody > tr:last').after(ret).hide().show('slow');
 				}	
 	});
 	updateParamedicalTest();
@@ -70,4 +71,18 @@ function updateParamedicalTest(){
 
 function getParamedicalTests(filter){
 	return send('../../rest/paramedical-test', filter, 'get');
+}
+
+
+function addParamedicalTest(me){
+	ret = printf('<table id="question-paramedical-table" class="paramedicalTest">');
+	ret += printf('<thead><tr><th class="test">Test</th><th class="valTest">Valeur du test</th><th class="normalVal">Valeur normale</th><th class="effectuated">Effectué</th></tr></thead>');
+	ret += printf('<tfoot><tr><td colspan="4"><button type="button" class="btn btn-success" onclick="addParamedicalTestAnswers()">Ajouter/Supprimer des tests</button></td></tr></tfoot>');
+	ret += printf('<tbody>');
+	ret += printf('<tr><td colspan="4"></td></tr>');
+	ret += printf('</tbody>');
+	
+	$(me).parent().parent().before(ret);
+	$(me).parent().parent().remove();
+	addParamedicalTestAnswers();
 }

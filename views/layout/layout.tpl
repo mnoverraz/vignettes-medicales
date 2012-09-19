@@ -27,7 +27,9 @@
 		<div id="header">
 			<!--img id="login" src="https://wwwfbm.unil.ch/html/img/login.gif"
 				alt="login" /-->
-			<div id="language"><a href="home?lang=fr" class="language">Français</a> | <a href="home?lang=en" class="language">English</a> | <a href="config?lang=ja"  class="language">日本語</a></div>
+			<!--div id="language"><a href="?xlang=fr" class="language">Français</a> | <a href="?xlang=en" class="language">English</a> | <a href="config?lang=ja"  class="language">日本語</a></div-->
+			
+			
 			<div id="bar"><?php echo _("app.name"); ?></div>
 		</div>
 		

@@ -4,7 +4,7 @@
 	});
 </script>
  
-<form id="questionnary" name="questionnary" method="post">
+<form id="questionnary" name="questionnary" method="post" class="form-horizontal">
 	<input type="hidden" name="header" />
 	<div id="tabs">
 		<ul>
@@ -16,39 +16,32 @@
 			}
 			?>
 		</ul>
-		
-		
-		<div id="stylized" class="myform">
 			<?php
 			$i=1;
 			foreach($d['chooseLang'] as $l){
 				printf('<div id="tabs-%d">',$i);
-					printf('<h1>%s</h1>',_("Création du questionnaire"));
-					printf('<p>%s</p>',_("Créer votre formulaire"));
+					printf('<legend>%s</legend>',_("Création du questionnaire"));
 				
 				/*
 				 * TITLE
 				 */
-				printf('<label for="title%s">%s<span class="small">%s</span></label>',
+				printf('<div class="control-group"><label for="title%s" class="control-label">%s</label>',
 							strtoupper($l['common_abbr']),
-							_("form.title"),
-							_("form.help.title")
+							_("form.title")
 				);
-				printf('<input id="title%s" name="title%s" type="text" %s />',
+				printf('<div class="controls"><input id="title%s" name="title%s" placeholder="Titre" type="text" %s /></div></div>',
 							strtoupper($l['common_abbr']),
 							strtoupper($l['common_abbr']),
 							$d['formValues'][$l['common_abbr']]['title']
 				);
-				
 				/*
 				 * THEME
 				 */
-				printf('<label for="theme%s">%s<span class="small">%s</span></label>',
+				printf('<div class="control-group"><label for="theme%s" class="control-label">%s</label>',
 							strtoupper($l['common_abbr']),
-							_("form.theme"),
-							_("form.help.theme")
+							_("form.theme")
 				);
-				printf('<input id="theme%s" name="theme%s" type="text" %s />',
+				printf('<div class="controls"><input id="theme%s" name="theme%s" placeholder="Thème" type="text" %s /></div></div>',
 							strtoupper($l['common_abbr']),
 							strtoupper($l['common_abbr']),
 							$d['formValues'][$l['common_abbr']]['theme']
@@ -57,13 +50,11 @@
 				/* 
 				 * DESCRIPTION
 				 */
-				printf('<label for="description%s">%s<span class="small">%s</span></label>',
+				printf('<div class="control-group"><label for="description%s" class="control-label">%s</label>',
 							strtoupper($l['common_abbr']),
-							_("form.description"),
-							_("form.help.description")
+							_("form.description")
 				);
-				printf('<div style="clear:both;"></div>');
-				printf('<div class="test"><textarea id="description%s" name="description%s">%s</textarea></div>',
+				printf('<div class="controls"><textarea id="description%s" name="description%s">%s</textarea></div></div>',
 							strtoupper($l['common_abbr']),
 							strtoupper($l['common_abbr']),
 							$d['formValues'][$l['common_abbr']]['description']
@@ -78,8 +69,9 @@
 		?>
 
 		
-		<button type="submit">Etape 3</button>
 	</div>
+	<hr />
+	<button type="submit" class="btn btn-primary">Etape 3</button>
 </form>
 
 <h1>$d</h1>
