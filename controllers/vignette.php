@@ -73,9 +73,15 @@ class VignetteController extends xWebController {
 	}
 	
 	function feedbackAction(){
-		$d = $_SESSION['questionnary']['questionnary'];
+		$d = $_SESSION['questionnary'];
 	
 		return xView::load('vignette/feedback', $d)->render();
+	}
+	
+	function feedbackHTMLAction(){
+		$d = $_SESSION['questionnary'];
+	
+		return xView::load('vignette/feedbackHTML', $d)->render();
 	}
 	
 	

@@ -7,24 +7,30 @@ class QuestionnaryController extends xWebController {
 
 	function indexAction(){
 		if(!isset($_SESSION['store']))
-			return $this->settingsAction();
+			xUtil::redirect('/vignette/public/questionnary/settings/');
+			//return $this->settingsAction();
 		elseif(!isset($_SESSION['store']['settings']))
-			return $this->settingsAction();
+			xUtil::redirect('/vignette/public/questionnary/settings/');
+			//return $this->settingsAction();
 		elseif(!isset($_SESSION['store']['header']))
-			return $this->headerAction();
+			xUtil::redirect('/vignette/public/questionnary/header/');
+			//return $this->headerAction();
 		elseif(!isset($_SESSION['store']['question']))
-			return $this->questionAction();
+			xUtil::redirect('/vignette/public/questionnary/question/');
+			//return $this->questionAction();
 		elseif(!isset($_SESSION['store']['feedback']))
-			return $this->feedbackAction();
+			xUtil::redirect('/vignette/public/questionnary/feedback/');
+			//return $this->feedbackAction();
 		else
-			return $this->save();
+			$this->save();
+			return xView::load('create/questionnary-validated-form')->render();;
 	}
 	
 	function settingsAction(){
 		
 		if($this->params['lang']){
 			$this->putSessionSettings();
-			return $this->headerAction();
+			xUtil::redirect('/vignette/public/questionnary/header/');
 		}
 		
 		$d['availableLanguages'] = xController::load('language')->getLanguages();
@@ -69,7 +75,7 @@ class QuestionnaryController extends xWebController {
 		
 		if(isset($this->params['header'])){
 			$this->putSessionHeader();
-			return $this->questionAction();
+			xUtil::redirect('/vignette/public/questionnary/question/');
 		}
 		
 		$d['chooseLang'] = $_SESSION['store']['settings']['languages'];
@@ -93,7 +99,7 @@ class QuestionnaryController extends xWebController {
 		
 		if(isset($this->params['question'])){
 			$d['question'] = $this->putSessionQuestion();
-			return $this->feedbackAction();
+			xUtil::redirect('/vignette/public/questionnary/feedback/');
 		}
 		
 		$d['chooseLang'] = $_SESSION['store']['settings']['languages'];

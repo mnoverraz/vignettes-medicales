@@ -14,7 +14,7 @@ function addPictureAnswers(tableToFill){
 }
 
 function newPictureAnswer(json,tableToFill){
-	ret = printf('<tr><td><input type="hidden" name="complementaryTest[%s][pictureTest][%s][pictureName]" value="%s" /><a class="fancybox" rel="group" href="../../../upload/%s"><img src="../../../upload/%s" alt="%s" width="200" title="%s" /></a></td>',
+	ret = printf('<tr><td><input type="hidden" name="complementaryTest[%s][pictureTest][%s][pictureName]" value="%s" /><a class="fancybox reduce" rel="group" href="../../../upload/%s"><img src="../../../upload/%s" alt="%s" width="200" title="%s" /></a></td>',
 			tableToFill,
 			json['img']['name'],
 			json['img']['name'],

@@ -9,7 +9,7 @@ printf('<p>%s - %s</p>',
 );
 printf('<p>%s</p>', $questionnary['questionnary-traduct_conclusion']);
 
-printf('<button type="button" class="btn btn-primary">%s</button>',
+printf('<button type="button" onclick="document.location.href=\'feedbackHTML\'" class="btn btn-primary">%s</button>',
 _("Passer à l'étape suivante")
 );
 

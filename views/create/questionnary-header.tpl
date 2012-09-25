@@ -5,7 +5,7 @@
 </script>
  
 <form id="questionnary" name="questionnary" method="post" class="form-horizontal">
-	<input type="hidden" name="header" />
+	<input type="hidden" name="header" value="header" />
 	<div id="tabs">
 		<ul>
 			<?php
