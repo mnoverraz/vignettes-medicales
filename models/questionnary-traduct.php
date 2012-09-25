@@ -13,6 +13,12 @@ class QuestionnaryTraductModel extends xModelMysql {
 			'questionnary_id' => 'questionnary_id'
 	);
 	
+	public $allow_html = array(
+			'theme' => '<p><b><br/>',
+			'description' => '<p><b><br/><h2><h3><h4>',
+			'conclusion' => '<p><b><br/><h2><h3><h4>'
+	);
+	
 	public $joins = array(
 		'language' => 'JOIN Language ON (Language.id = Questionnary_traduct.language_id)',
 		'questionnary' => 'JOIN Questionnary ON (Questionnary.id = Questionnary_traduct.questionnary_id)',

@@ -178,7 +178,5 @@ class VignetteController extends xWebController {
 		}catch (xException $e) {
 			throw new xException(_("exception-db-transactionProblem"), 401);
 		}
-	}
-	
-	
+	}	
 }

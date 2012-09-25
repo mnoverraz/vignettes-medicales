@@ -5,14 +5,12 @@ $answers = $d['answers'];
 
 printf('<h1>%s</h1>', $questionnary['questionnary-traduct_title']);
 printf('<p>%s</p>', $questionnary['questionnary-traduct_description']);
-printf('<h1>%s</h1>', _("Bilan initial"));
+printf('<h2>%s</h2>', _("Bilan initial"));
 
 $group_paramedical = $questions['questionParamedicalTest'][0]['test'];
 $question_picture = $questions['questionPictureTest'];
 $modulo = 5;
 ?>
-<form id="BilanQuestionnary" name="BilanQuestionnary" method="post">
-	<input type="hidden" name="bilan" value="bilan" />
 	<table>
 		<thead>
 			<tr class="noFormat"><th>Examen</th><th>Patient</th><th>Valeurs normales</th><th>Votre demande</th></tr>
@@ -52,12 +50,12 @@ $modulo = 5;
 					printf('<td colspan="2">');
 					printf('<p id="pictureTestQuestion">%s</p>', $question['question']['question-traduct_question']);
 					foreach($test as $t){
-						printf('<a class="fancybox" rel="group" href="../../upload/%s"><img src="../../upload/%s" alt="%s" title="%s" /></a>',
+						/*printf('<a class="fancybox" rel="group" href="../../upload/%s"><img src="../../upload/%s" alt="%s" title="%s" /></a>',
 							$t['image_url'],
 							$t['image_url'],
 							$t['ans-picture-traduct_comment'],
 							$t['ans-picture-traduct_comment']
-						);
+						);*/
 						printf('<p>%s</p><hr />', $t['ans-picture-traduct_comment']);
 						
 						$checked = '';
@@ -77,11 +75,9 @@ $modulo = 5;
 		?>
 	</table>
 	<?php
-	printf('<h1>%s</h1>', _('Evolution clinique'));
+	printf('<h2>%s</h2>', _('Evolution clinique'));
 	printf('<p>%s</p>', $questionnary['questionnary-traduct_conclusion']);
+	printf('<button type="button" onclick="document.location.href=\'/vignette/public/pdf/printFeedback\'" class="btn btn-primary">%s</button>',
+	_("Passer à l'étape suivante")
+	);
 	?>
-</form>
-<h1>$d</h1>
-<?php
-xUtil::pre($d);
-?>

@@ -36,41 +36,11 @@
 			
 		
 		?>
-		<tr>
-			<td>...</td>
-			<td>...</td>
-			<td>...</td>
-			<td>...</td>
-		</tr>
-		<tr>
-			<td>...</td>
-			<td>...</td>
-			<td>...</td>
-			<td>...</td>
-		</tr>
-		<tr>
-			<td>...</td>
-			<td>...</td>
-			<td>...</td>
-			<td>...</td>
-		</tr>
-		<tr>
-			<td>...</td>
-			<td>...</td>
-			<td>...</td>
-			<td>...</td>
-		</tr>
-		<tr>
-			<td>...</td>
-			<td>...</td>
-			<td>...</td>
-			<td>...</td>
-		</tr>
 	</tbody>
 </table>
 <?php
-echo '<h1>$d</h1>';
+/*echo '<h1>$d</h1>';
 xUtil::pre($d);
 echo '<h1>SESSION</h1>';
-xUtil::pre($_SESSION);
+xUtil::pre($_SESSION);*/
 ?>

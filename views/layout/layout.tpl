@@ -1,9 +1,10 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
 <html>
 <head>
 <title><?php echo _("app.name"); ?></title>
 <meta charset="utf-8" />
-<meta name="keywords" content="" />
-<meta name="description" content="" />
+<meta name="keywords" content="keyword" />
+<meta name="description" content="descr" />
 <meta http-equiv="expires" content="0" />
 <meta http-equiv="pragma" content="no-cache" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />

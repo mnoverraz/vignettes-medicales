@@ -1,5 +1,5 @@
 <?php
-$questionnary = $d['questionnary'];
+$questionnary = $d['questionnary']['questionnary'];
 
 
 echo xView::load('vignette/identical/header', $questionnary);
