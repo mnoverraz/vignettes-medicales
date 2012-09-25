@@ -26,7 +26,7 @@ class HomeController extends xWebController {
     	$params = array(
     			'language_common_abbr' => xContext::$lang,
     			'questionnary_publication' => '0',
-    			'xreturn' => 'theme, title, creation_date, limit_date, firstname, lastname, email, module'
+    			'xreturn' => 'theme, title, creation_date, limit_date, firstname, lastname, email, module, questionnary_id'
     	);
     	return xModel::load('questionnary-traduct', $params)->get();
     }
@@ -111,7 +111,8 @@ class HomeController extends xWebController {
     				)
     			);
     			//set language
-    			xContext::$front->setup_i18n($moodle_language);
+    			xController::load('utils')->changeLanguage($moodle_language);
+    			//xContext::$front->setup_i18n($moodle_language);
     		//}
     		return xView::load('home/home')->render();
     		
@@ -119,54 +120,7 @@ class HomeController extends xWebController {
     		//appeler une page d'erreur
     		throw new xException(_("exception-moodle-noConnected"), 401);
     	}
-    	
-    	
-    	
-    	
-    	
-    	/*$lti = $_SESSION['_basic_lti_context'];
-    	if(isset($lti)){
-    		$lti = $_SESSION['_basic_lti_context'];
-    		 
-    		//insert user with his role in database if not exist
-    		$params = array(
-    				'lms_id' => $lti['user_id']
-    		);
-    		$user = xModel::load('user', $params)->get();
-    		
-    		
-    		if(count($user) == 0){
-    			$d['put'] = $this->put(
-    					$lti['user_id'],
-    					$lti['lis_person_name_given'],
-    					$lti['lis_person_name_family'],
-    					$lti['lis_person_contact_email_primary'],
-    					$lti['roles']
-    			);
-    			
-    			
-    			$result = $d['put']['results'][0]['result'];
-    			if($result['xsuccess'] == 1)
-    				xAuth::set($lti['lis_person_contact_email_primary'],$lti['roles'],array('id' => $result['insertid']));
-    			else
-    				throw new xException(_("exception-lti-cannotInsertUser"), 401);
-    			
-    		}else{
-    			xAuth::set($lti['lis_person_contact_email_primary'],$lti['roles'],array('id' => $user[0]['id']));
-    		}
-    		
-    		//set language
-    		xContext::$front->setup_i18n($lti['launch_presentation_locale']);
-    		
-    		
-    		$d['user'] = $user;
-    		$d['countuser'] = count($user);
-    		$d['xauth'] = xAuth::info();
-    		return xView::load('home/home', $d)->render();
-    	}else{
-    		//appeler une page d'erreur
-    		throw new xException(_("exception-moodle-noConnected"), 401);
-    	}*/
+    
     	
     }
   

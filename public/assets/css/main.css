@@ -190,6 +190,10 @@ caption:after {
    height:15px;
    margin-left:20px;
 }
+tr{
+	text-align: left;
+	vertical-align:top;
+}
 
 table tr:nth-child(2n+1)
 {
@@ -201,9 +205,14 @@ table tr:nth-child(2n+2)
 }
 
 th{
-	font-size: 13px;
+	font-size: 11px;
 	color: #fff;
 	background-color: #EC9B33;
+}
+
+tr.noFormat > th{
+	background-color: #fff;
+	color: #000;
 }
 
 td, th{
@@ -251,8 +260,11 @@ table.paramedicalTest > td{
 }
 
 div.pictureAnswer {
-    width: 100px;
-    text-align: center;
+	float: left;
+	margin: 0 10px;
+	max-height: 200px;
+	max-width: 100px;
+	text-align: center;
 }
 .eric {
     max-width: 100px;
@@ -278,6 +290,9 @@ legend.complementary-test{
 	margin-right: 200px;
 }
 
+#pictureTestQuestion{
+	font-weight:bold;
+}
 /* 
 .myform{
 margin:10px auto;

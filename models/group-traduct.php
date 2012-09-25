@@ -1,10 +1,13 @@
 <?php
-class GroupModel extends xModelMysql {
+class GroupTraductModel extends xModelMysql {
 
-	public $table = 'Group';
+	public $table = 'Group_traduct';
 
 	public $mapping = array(
-			'id' => 'id'
+			'id' => 'id',
+			'name' => 'name',
+			'group_id' => 'group_id',
+			'language_id' => 'language_id'
 	);
 
 	/*public $joins = array(

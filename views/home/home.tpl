@@ -21,9 +21,10 @@
 						$q['limit_date'] = _("noLimitDate");
 					}
 					echo '<tr>';
-						printf('<td>%s - %s</td><td>%s</td><td><a href="mailto:%s">%s %s</a></td><td>%s</td>',
+						printf('<td>%s - %s</td><td><a href="%s">%s</a></td><td><a href="mailto:%s">%s %s</a></td><td>%s</td>',
 								$q['module'],
 								$q['theme'],
+								xUtil::url('vignette/loading/'.$q['questionnary_id']),
 								$q['title'],
 								$q['email'],
 								$q['firstname'],

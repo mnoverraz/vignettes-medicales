@@ -104,7 +104,9 @@ class QuestionnaryController extends xWebController {
 	function feedbackAction(){
 		if(isset($this->params['feedback'])){
 			$d['feedback'] = $this->putSessionFeedback();
-			return $this->save();
+			$d['xTransaction'] = $this->save();
+			unset($_SESSION['store']);
+			return xView::load('create/questionnary-validated-form', $d)->render();
 		}
 		
 		$d['chooseLang'] = $_SESSION['store']['settings']['languages'];
@@ -320,10 +322,8 @@ class QuestionnaryController extends xWebController {
 		
 		$t->end();
 		
-		$d['Transaction'] = $t;
 		
-		return xView::load('create/questionnary-validated-form', $d)->render();
-		
+		return $t;
 	}
 	
 	function sessionAction(){
@@ -333,6 +333,18 @@ class QuestionnaryController extends xWebController {
 	function clearQuestionnarySessionAction(){
 		unset($_SESSION['store']);
 		return xView::load('create/questionnary-settings')->render();
+	}
+	
+	function getQuestionnary($id){
+		$params = array(
+				'id' => $id,
+				'questionnary-traduct_language_id' => 1 //TODO
+		);
+		return $this->get($params);
+	}
+	
+	function get($params = null){
+		return xModel::load('questionnary', $params)->get();
 	}
 	
 }

@@ -11,11 +11,11 @@ class QuestionnaryModel extends xModelMysql {
 			'publication' => 'publication',
 	);
 	
-	/*public $joins = array(
-			'author' => 'JOIN Author ON (Questionnary.author_id = Author.id)',
-			'questionnary-traduct' => 'JOIN Questionnary_traduct ON (Questionnary.questionnary_traduct_id = Questionnary_traduct.id)'
+	public $joins = array(
+			'user' => 'JOIN User ON (Questionnary.author_id = User.id)',
+			'questionnary-traduct' => 'JOIN Questionnary_traduct ON (Questionnary.id = Questionnary_traduct.questionnary_id)'
 	);
 	
 
-	public $join = array('author','questionnary-traduct');*/
+	public $join = array('user','questionnary-traduct');
 }

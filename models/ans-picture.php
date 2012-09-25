@@ -11,14 +11,12 @@ class AnsPictureModel extends xModelMysql {
 			'group_id' => 'group_id'
 	);
 
-	/*public $joins = array(
-			'paramedical-test' => 'JOIN Paramedical_test ON (Ans_paramedical_test.paramedical_test_id = Paramedical_test.id)',
-			'paramedical-test-traduct' => 'JOIN Paramedical_test_traduct ON (Paramedical_test_traduct.paramedical_test_id = Paramedical_test.id)',
-			'group' => 'JOIN Group ON (Groupe.id = Ans_paramedical_test.group_id)',
-			//'question' => 'JOIN Question ON (Ans_paramedical_test.question_id = Question.id)'
+	public $joins = array(
+			'ans-picture-traduct' => 'JOIN Ans_picture_traduct ON (Ans_picture_traduct.ans_picture_id = Ans_picture.id)',
+			'group' => 'JOIN `Group` ON (`Group`.id = Ans_picture.group_id)',
+			'group-traduct' => 'JOIN Group_traduct ON (Group_traduct.group_id = `Group`.id)'
 	);
 
 
-	public $join = array('paramedical-test','paramedical-test-traduct', 'group', 'question');
-	*/
+	public $join = array('ans-picture-traduct');
 }

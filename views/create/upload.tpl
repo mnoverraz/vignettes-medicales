@@ -1,1 +1,0 @@
-<?php echo xUtil::pre($d)?>

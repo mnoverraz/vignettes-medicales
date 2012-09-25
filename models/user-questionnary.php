@@ -1,10 +1,11 @@
 <?php
-class GroupModel extends xModelMysql {
+class UserQuestionnaryModel extends xModelMysql {
 
-	public $table = 'Group';
+	public $table = 'User_questionnary';
 
 	public $mapping = array(
-			'id' => 'id'
+			'user_id' => 'user_id',
+			'questionnary_id' => 'questionnary_id',
 	);
 
 	/*public $joins = array(

@@ -10,12 +10,11 @@ class QuestionModel extends xModelMysql {
 			'questionnary_id' => 'questionnary_id'
 	);
 
-	/*public $joins = array(
-			'user' => 'JOIN User ON (User.id = Author.user_id)',
-			'questionnary' => 'JOIN Questionnary ON (Questionnary.author_id = Author.id)'
+	public $joins = array(
+			'question-traduct' => 'JOIN Question_traduct ON (Question.id = Question_traduct.question_id)'
 	);
 
 
-	public $join = array('user','questionnary');
-	*/
+	public $join = array('question-traduct');
+	
 }
