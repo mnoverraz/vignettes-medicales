@@ -15,8 +15,8 @@ class QuestionnaryTraductModel extends xModelMysql {
 	
 	public $allow_html = array(
 			'theme' => '<p><b><br/>',
-			'description' => '<p><b><br/><h2><h3><h4>',
-			'conclusion' => '<p><b><br/><h2><h3><h4>'
+			'description' => '<p><b><strong><em><span><ul><ol><li><sup><sub><br/><h2><h3><h4>',
+			'conclusion' => '<p><b><strong><em><span><ul><ol><li><sup><sub><br/><h2><h3><h4>'
 	);
 	
 	public $joins = array(

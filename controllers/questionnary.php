@@ -7,20 +7,15 @@ class QuestionnaryController extends xWebController {
 
 	function indexAction(){
 		if(!isset($_SESSION['store']))
-			xUtil::redirect('/vignette/public/questionnary/settings/');
-			//return $this->settingsAction();
+			xUtil::redirect(xUtil::url('questionnary/settings/'));
 		elseif(!isset($_SESSION['store']['settings']))
-			xUtil::redirect('/vignette/public/questionnary/settings/');
-			//return $this->settingsAction();
+			xUtil::redirect(xUtil::url('questionnary/settings/'));
 		elseif(!isset($_SESSION['store']['header']))
-			xUtil::redirect('/vignette/public/questionnary/header/');
-			//return $this->headerAction();
+			xUtil::redirect(xUtil::url('questionnary/header/'));
 		elseif(!isset($_SESSION['store']['question']))
-			xUtil::redirect('/vignette/public/questionnary/question/');
-			//return $this->questionAction();
+			xUtil::redirect(xUtil::url('questionnary/question/'));
 		elseif(!isset($_SESSION['store']['feedback']))
-			xUtil::redirect('/vignette/public/questionnary/feedback/');
-			//return $this->feedbackAction();
+			xUtil::redirect(xUtil::url('questionnary/feedback/'));
 		else
 			$this->save();
 			return xView::load('create/questionnary-validated-form')->render();;
@@ -30,7 +25,7 @@ class QuestionnaryController extends xWebController {
 		
 		if($this->params['lang']){
 			$this->putSessionSettings();
-			xUtil::redirect('/vignette/public/questionnary/header/');
+			xUtil::redirect(xUtil::url('questionnary/header/'));
 		}
 		
 		$d['availableLanguages'] = xController::load('language')->getLanguages();
@@ -75,7 +70,7 @@ class QuestionnaryController extends xWebController {
 		
 		if(isset($this->params['header'])){
 			$this->putSessionHeader();
-			xUtil::redirect('/vignette/public/questionnary/question/');
+			xUtil::redirect(xUtil::url('questionnary/question/'));
 		}
 		
 		$d['chooseLang'] = $_SESSION['store']['settings']['languages'];
@@ -99,7 +94,7 @@ class QuestionnaryController extends xWebController {
 		
 		if(isset($this->params['question'])){
 			$d['question'] = $this->putSessionQuestion();
-			xUtil::redirect('/vignette/public/questionnary/feedback/');
+			xUtil::redirect(xUtil::url('questionnary/feedback/'));
 		}
 		
 		$d['chooseLang'] = $_SESSION['store']['settings']['languages'];
