@@ -9,6 +9,10 @@ class RoleController extends xWebController {
 		
 	}
 	
+	function isAdmin($role){
+		return $role;
+	}
+	
 	function getRoleId($roleName){
 		$params = array(
 				'role' => $roleName,

@@ -69,7 +69,7 @@ $i++;
 	</div>
 </div>
 <hr />
-<button class="btn btn-primary" type="submit">Etape 2</button>
+<button class="btn btn-success" type="submit"><?php echo _("btn.valider") ?></button>
 
 </form>
 <h1>$d</h1>

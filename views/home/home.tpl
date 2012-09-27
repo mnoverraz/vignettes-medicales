@@ -1,3 +1,14 @@
+<?php
+if(xContext::$auth->is_role('Instructor') || xContext::$auth->is_role('Administrator')){
+	$granted = true;
+	$tableCols = 5;
+}else{
+	$granted = false;
+	$tableCols = 4;
+}
+?>
+
+
 <table>
 	<caption><?php echo _("Liste des vignettes médicales"); ?></caption>
 	<thead>
@@ -6,6 +17,9 @@
 			<th><?php echo _("Titre"); ?></th>
 			<th><?php echo _("Auteur"); ?></th>
 			<th><?php echo _("Faire d'ici le"); ?></th>
+			<?php
+				if($granted) echo '<th>Option</th>';
+			?>
 		</tr>
 	</thead>
 	<tfoot>
@@ -31,6 +45,16 @@
 								$q['lastname'],
 								/*date('d.m.Y',strtotime(*/$q['limit_date']//))
 						);
+						
+						
+						if($granted){
+							printf('<td><button type="submit" class="btn btn-primary" onclick="document.location.href=\'%s\'">%s</button> <button type="submit" class="btn btn-danger" onclick="document.location.href=\'%s\'">%s</button></td>',
+								xUtil::url('stats/loading/'.$q['questionnary_id']),
+								_("Statistiques"),
+								xUtil::url('vignette/delete/'.$q['questionnary_id']),
+								_("Supprimer")
+							);
+						}
 					echo '</tr>';
 				}
 			

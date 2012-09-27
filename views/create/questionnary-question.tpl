@@ -155,7 +155,8 @@
 		</div>
 		
 	<hr />
-	<button type="submit" class="btn btn-primary">Etape 3</button>
+	<?php printf('<button class="btn btn-inverse" type="button" onclick="document.location.href=\'%s\'">%s</button>', xUtil::url('questionnary/header/'), _("btn.retour"));?>
+	<button type="submit" class="btn btn-primary"><?php echo _("btn.valider") ?></button>
 	
 </form>
 

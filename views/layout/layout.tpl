@@ -37,6 +37,7 @@
 		<!-- END HEADER -->
 		<!-- BEGIN CONTENT -->
 		<div id="content">
+		
 			<!-- BEGIN MAIN -->
 			<div id="main">
 				<!-- BEGIN CALENDAR -->
@@ -46,6 +47,34 @@
 				<!-- END CALENDAR -->
 			</div>
 			<!-- END MAIN -->
+				
+				
+				
+				
+				
+				
+				<div id="sidebar">
+				<div id="menu">
+					<!-- BEGIN INFORMATION -->
+					<div class="box">
+						<?php echo xView::load('menu/menu') ?>
+					</div>
+				</div>
+				<!-- END ROOM-VIEW -->
+				<!-- BEGIN CONTROL-VIEW -->
+				<div id="control"></div>
+				<!-- END CONTROL-VIEW -->
+			</div>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 		</div>
 		<!-- END CONTENT -->
 		

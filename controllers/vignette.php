@@ -19,7 +19,7 @@ class VignetteController extends xWebController {
 				$this->loading($questionnary_id);
 			}
 			
-			xUtil::redirect('vignette/anamnese');
+			xUtil::redirect(xUtil::url('vignette/anamnese/'));
 			
 		/*	
 		}elseif(!isset($_SESSION['vignette'])){
@@ -41,7 +41,7 @@ class VignetteController extends xWebController {
 		if(isset($this->params['paramedicalTests']) || isset($this->params['pictureTests'])){			
 			$_SESSION['questionnary']['answers']['paramedicalTests'] = $this->params['paramedicalTests'];
 			$_SESSION['questionnary']['answers']['pictureTests'] = $this->params['pictureTests'];
-			xUtil::redirect('/vignette/public/vignette/bilan');
+			xUtil::redirect(xUtil::url('vignette/bilan/'));
 		}
 		
 		$d = $_SESSION['questionnary'];
@@ -50,7 +50,7 @@ class VignetteController extends xWebController {
 		if(isset($this->params['paramedicalTests']) || isset($this->params['pictureTests'])){
 			$_SESSION['questionnary']['answers']['paramedicalTests'] = $this->params['paramedicalTests'];
 			$_SESSION['questionnary']['answers']['pictureTests'] = $this->params['pictureTests'];
-			xUtil::redirect('/vignette/public/vignette/bilan');
+			xUtil::redirect(xUtil::url('vignette/bilan'));
 		}
 		
 		return xView::load('vignette/questionnary', $d)->render();
@@ -65,7 +65,7 @@ class VignetteController extends xWebController {
 			if($alredyFill == 0){
 				$this->saveAnswers($_SESSION['questionnary']['answers']);
 			}
-			xUtil::redirect('/vignette/public/vignette/feedback');
+			xUtil::redirect(xUtil::url('vignette/feedback'));
 		}
 		
 		$d = $_SESSION['questionnary'];
@@ -87,7 +87,7 @@ class VignetteController extends xWebController {
 	
 	function loadingAction(){
 		$this->loading($this->params['id']);
-		xUtil::redirect('/vignette/public/vignette/anamnese');
+		xUtil::redirect(xUtil::url('vignette/anamnese'));
 	}
 	
 	function loading($questionnary_id){
@@ -178,5 +178,24 @@ class VignetteController extends xWebController {
 		}catch (xException $e) {
 			throw new xException(_("exception-db-transactionProblem"), 401);
 		}
-	}	
+	}
+	
+	
+	function deleteAction(){
+		if(xContext::$auth->is_role('Instructor')){
+			$questionnary_id = $this->params['id'];
+			if(isset($questionnary_id)){
+				$t = new xTransaction();
+				$t->start();
+					$t->execute(xModel::load('questionnary', array('id' => $questionnary_id)), 'delete');
+				$t->end();
+				$d=$t;
+				xUtil::redirect(xUtil::url('home'));
+			}else{
+				throw new xException(_('delete.vignette.noId'));
+			}
+		}else{
+			throw new xException(_('delete.vignette.authorization'));
+		}
+	}
 }
