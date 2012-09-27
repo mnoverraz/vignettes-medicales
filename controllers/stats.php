@@ -69,7 +69,7 @@ class StatsController extends xWebController {
 				'question_type' => $question_type,
 				'answer_type_id' => $answer_type_id,
 		);
-		return count(xModel::load('Answer', $params)->get());
+		return count(xModel::load('answer', $params)->get());
 	}
 	
 }
