@@ -1,6 +1,6 @@
 <?php
-$questionnary = $d['questionnary']['questionnary'];
-$questions = $d['questions'];
+$questionnary = $d['questionnary']['questionnary']['questionnary'];
+$questions = $d['questionnary']['questions'];
 $answers = $d['answers'];
 
 printf('<h1>%s</h1>', $questionnary['questionnary-traduct_title']);
@@ -23,17 +23,14 @@ $modulo = 5;
 			
 			foreach($test as $t){
 				echo '<tr>';
-				//if($t['ans-paramedical-test_checked']) $checked='checked="x'; else $checked='';
-	
-				$checked = '';
-				foreach($answers['paramedicalTests'] as $index => $val){
-					if($val == $t['id']) $checked='x';
-				}
-				printf('<td>%s</td><td>%s</td><td>%s</td><td>%s</td>',
+				if($d['infoStats']['nbrUser'] == 0) $percent=0; else $percent=($t['statsNbrChecked']/$d['infoStats']['nbrUser'])*100;
+				printf('<td>%s</td><td>%s</td><td>%s</td><td>%d%% - (%s/%s)</td>',
 					$t['paramedical-test-traduct_name'],
 					$t['ans-paramedical-test_patient_values'],
 					$t['normal_values'],
-					$checked
+					$percent,
+					$t['statsNbrChecked'],
+					$d['infoStats']['nbrUser']
 				);
 				echo '</tr>';
 				$j++;
@@ -57,13 +54,14 @@ $modulo = 5;
 							$t['ans-picture-traduct_comment']
 						);*/
 						printf('<p>%s</p><hr />', $t['ans-picture-traduct_comment']);
-						
-						$checked = '';
-						foreach($answers['pictureTests'] as $index => $val){
-							if($val == $t['question_id']) $checked='x';
-						}
 					}
-					printf('<td>%s</td>', $checked);
+					
+					if($d['infoStats']['nbrUser'] == 0) $percent=0; else $percent=($t['statsNbrChecked']/$d['infoStats']['nbrUser'])*100;
+					printf('<td>%d%% - (%s/%s)</td>',
+							$percent,
+							$t['statsNbrChecked'],
+							$d['infoStats']['nbrUser']
+					);
 					printf('</td>');
 					printf('</tr>');
 					
@@ -77,9 +75,6 @@ $modulo = 5;
 	<?php
 	printf('<h2>%s</h2>', _('Evolution clinique'));
 	printf('<p>%s</p>', $questionnary['questionnary-traduct_conclusion']);
-	printf('<button type="button" onclick="document.location.href=\'/vignette/public/pdf/printFeedback\'" class="btn btn-primary">%s</button>',
-	_("Passer à l'étape suivante")
-	);
 	?>
 
 <?php
