@@ -30,9 +30,8 @@ class StatsController extends xWebController {
 			}
 		}
 		
-		
-		$questionPictureTests = &$d['questionnary']['questions']['questionPictureTest'];
 		//PICTURE TESTS
+		$questionPictureTests = &$d['questionnary']['questions']['questionPictureTest'];
 		foreach($questionPictureTests as &$question){
 			foreach($question['test'] as &$group){
 				
@@ -45,9 +44,6 @@ class StatsController extends xWebController {
 				}
 			}
 		}
-		
-		
-		
 		
 		$d['infoStats']['nbrUser'] = count($nbrUserModel);
 		

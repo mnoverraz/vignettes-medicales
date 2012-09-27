@@ -10,14 +10,19 @@ class PdfController extends xWebController {
 	function indexAction() {
 		
 	}
+	
+	protected function printStatsAction() {
+		xController::load('vignette')->loading($_SESSION['questionnary']['questionnary']['questionnary']['id']);
+		$html = xController::load('stats')->statsAction();
+		return $this->_print($html);
+	}
+	
 	protected function printFeedbackAction() {
 		$d = $_SESSION['questionnary'];
 		$html = xView::load('vignette/feedbackHTML', $d)->render();
 		return $this->_print($html);
 	}
-	
-	
-	
+
 	function _print($html) {
 		// PDF formatting parameters
 		$orientation = @$this->params['xorientation'];

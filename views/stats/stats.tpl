@@ -75,6 +75,10 @@ $modulo = 5;
 	<?php
 	printf('<h2>%s</h2>', _('Evolution clinique'));
 	printf('<p>%s</p>', $questionnary['questionnary-traduct_conclusion']);
+	printf('<button type="button" onclick="document.location.href=\'%s\'" class="btn btn-primary">%s</button>',
+	xUtil::url('pdf/printStats'),
+	_("Exporter en PDF")
+	);
 	?>
 
 <?php
