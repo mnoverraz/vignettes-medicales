@@ -14,14 +14,21 @@ function addPictureAnswers(tableToFill){
 }
 
 function newPictureAnswer(json,tableToFill){
-	ret = printf('<tr><td><input type="hidden" name="complementaryTest[%s][pictureTest][%s][pictureName]" value="%s" /><a class="fancybox reduce" rel="group" href="../../../upload/%s"><img src="../../../upload/%s" alt="%s" width="200" title="%s" /></a></td>',
+	ret = printf('<tr><td><input type="hidden" name="complementaryTest[%s][pictureTest][%s][pictureName]" value="%s" /><a class="fancybox reduce" rel="group" href="%s"><img src="%s" alt="%s" width="200" title="%s" /></a></td>',
 			tableToFill,
-			json['img']['name'],
-			json['img']['name'],
-			json['img']['name'],
-			json['img']['name'],
+			json['img']['name'],//name
+			json['img']['name'],//---
+			json['img']['web_location'],//weblocation
+			json['img']['web_location'],//weblocation
 			json['img']['name']
 	);
+	
+	/*ret = printf('<tr><td>name: %s<hr />web_location: %s<hr />server_location: %s<hr /></td>',
+			json['img']['name'],//name
+			json['img']['web_location'],//---
+			json['img']['server_location']//weblocation
+	);*/
+	
 	ret += '<td>';
 	jQuery.each(chooseLang, function() {
 		ret += printf('<input type="text" class="moyen" name="complementaryTest[%s][pictureTest][%s][commentary][%s]" placeholder="Commentaire %s" /><br />',

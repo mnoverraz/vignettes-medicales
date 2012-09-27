@@ -61,10 +61,12 @@ class PictureController extends xWebController {
 					$image['name'] = $img['name'][$key];
 					$image['type'] = $img['type'][$key];
 					$image['size'] = $img['size'][$key];
-					$image['location'] = "/Applications/MAMP/htdocs/vignette/upload/" . $_FILES['images']['name'][$key];
+					$image['server_location'] = xContext::$basepath.'/upload/pictureTests/'.session_id().'-'.$_FILES['images']['name'][$key];
+					
+					$image['web_location'] = '../../../upload/pictureTests/'.session_id().'-'.$_FILES['images']['name'][$key];
 					
 					
-					move_uploaded_file( $img["tmp_name"][$key], "/Applications/MAMP/htdocs/vignette/upload/" . $_FILES['images']['name'][$key]);
+					move_uploaded_file( $img["tmp_name"][$key], xContext::$basepath.'/upload/pictureTests/'.session_id().'-'.$_FILES['images']['name'][$key]);
 				}
 				
 			}
