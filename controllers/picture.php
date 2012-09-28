@@ -5,7 +5,7 @@ class PictureController extends xWebController {
 		return $this->uploadFileAction();
 	}
 	
-	function uploadFileAction(){
+	/*function uploadFileAction(){
 		$allowedExts = array("jpg", "jpeg", "gif", "png");
 		$extension = end(explode(".", (string) $_FILES["images"]["name"]));
 		$d = Array();
@@ -47,26 +47,27 @@ class PictureController extends xWebController {
 			$d['return'] = "Invalid file";
 		}
 		return xView::load('create/upload', $d);
-	}
+	}*/
 	
 	function test(){
 		$allowedExts = array('jpg', 'jpeg', 'gif', 'png');
 		$allowedType = array('image/jpg', 'image/pjpg', 'image/gif', 'image/png');
 		
 		$img = $_FILES['images'];
+		$basePath = xContext::$basepath;
+		$afterpath = 'assets/upload/pictureTests/';
 		foreach ($img['error'] as $key => $error) {
 			if ($error == UPLOAD_ERR_OK) {
 				$extension = end(explode(".", $img['name'][$key]));
 				if(in_array($extension, $allowedExts) && in_array($img['type'][$key], $allowedType)){
-					$image['name'] = $img['name'][$key];
+					$image['name'] = md5(session_id().time()).'.'.$extension;
 					$image['type'] = $img['type'][$key];
 					$image['size'] = $img['size'][$key];
-					$image['server_location'] = xContext::$basepath.'/upload/pictureTests/'.session_id().'-'.$_FILES['images']['name'][$key];
+					$image['server_location'] = $basePath.'/public/'.$afterpath.$image['name'];
+					$image['web_location'] = xUtil::url($afterpath.$image['name']);
 					
-					$image['web_location'] = '../../../upload/pictureTests/'.session_id().'-'.$_FILES['images']['name'][$key];
 					
-					
-					move_uploaded_file( $img["tmp_name"][$key], xContext::$basepath.'/upload/pictureTests/'.session_id().'-'.$_FILES['images']['name'][$key]);
+					move_uploaded_file( $img["tmp_name"][$key], $basePath.'/public/assets/upload/pictureTests/'.$image['name']);
 				}
 				
 			}

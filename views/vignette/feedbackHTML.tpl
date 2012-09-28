@@ -50,13 +50,13 @@ $modulo = 5;
 					printf('<td colspan="2">');
 					printf('<p id="pictureTestQuestion">%s</p>', $question['question']['question-traduct_question']);
 					foreach($test as $t){
-						/*printf('<a class="fancybox" rel="group" href="../../upload/%s"><img src="../../upload/%s" alt="%s" title="%s" /></a>',
-							$t['image_url'],
-							$t['image_url'],
+						printf('<a class="fancybox" rel="group" href="%s"><img src="%s" alt="%s" title="%s" /></a>',
+							xUtil::url('assets/upload/pictureTests/'.$t['image_url']),
+							xUtil::url('assets/upload/pictureTests/'.$t['image_url']),
 							$t['ans-picture-traduct_comment'],
 							$t['ans-picture-traduct_comment']
-						);*/
-						printf('<p>%s</p><hr />', $t['ans-picture-traduct_comment']);
+						);
+						//printf('<p>%s</p><hr />', $t['ans-picture-traduct_comment']);
 						
 						$checked = '';
 						foreach($answers['pictureTests'] as $index => $val){

@@ -1,4 +1,13 @@
 <?php
+// Returns a file:// url from a http(s):// url
+function pdfurl($url) {
+	$is_pdf = !isset($_REQUEST['html']);
+	if (!$is_pdf) return $url;
+	$file = preg_replace('/.*a(.+)/', 'file://'.xContext::$basepath.'/public/a$1', $url);
+	return $file;
+}
+
+
 $questionnary = $d['questionnary']['questionnary']['questionnary'];
 $questions = $d['questionnary']['questions'];
 $answers = $d['answers'];
@@ -47,9 +56,9 @@ $modulo = 5;
 					printf('<td colspan="2">');
 					printf('<p id="pictureTestQuestion">%s</p>', $question['question']['question-traduct_question']);
 					foreach($test as $t){
-						printf('<a class="fancybox" rel="group" href="../../upload/%s"><img class="reduce" src="../../upload/%s" alt="%s" title="%s" /></a>',
-							$t['image_url'],
-							$t['image_url'],
+						printf('<a class="fancybox" rel="group" href="%s"><img class="reduce" src="%s" alt="%s" title="%s" /></a><hr />',
+							pdfurl(xUtil::url('assets/upload/pictureTests/'.$t['image_url'])),
+							xUtil::url('assets/upload/pictureTests/'.$t['image_url']),
 							$t['ans-picture-traduct_comment'],
 							$t['ans-picture-traduct_comment']
 						);
