@@ -1,65 +1,80 @@
-#: controllers/error.php:42
 msgid "Report error"
-msgstr ""
+msgstr "Rapport d'erreur"
 
-#: controllers/error.php:49
 msgid "Error details have been sent to our team"
 msgstr ""
 
-#: controllers/error.php:50
 msgid "Error details could not be sent to our team :("
 msgstr ""
 
-#: controllers/home.php:92
-msgid "exception-moodle-noConnected"
-msgstr "Vous ne vous êtes pas connecté avec Moodle. Veuillez vous identifier dans Moodle et ensuite de sélectionner le cours et de cliquer sur la vignette. Vous pouvez vous connecter à l'aide du lien suivant: <a href=\"http://moodle2.unil.ch\">Moodle UNIL</a>"
+msgid "exception-lti-cannotInsertInDB"
+msgstr "Un problème de login avec Moodle s'est passé."
 
-#: views/error/display.php:8
+msgid "exception-moodle-noConnected"
+msgstr "Vous ne vous êtes pas connecter depuis Moodle. Veuillez vous connecter depuis Moodle. <a href=\"moodle2.unil.ch\">Moodle2</a>"
+
+msgid "exception-vignette-QuestionTypedoesntExist"
+msgstr "Le type de question n'existe pas"
+
+msgid "exception-vignette-doesntExist"
+msgstr "La vignette n'existe pas"
+
+msgid "exception-db-transactionProblem"
+msgstr "Il y a eu un problème pour soumettre vos données à la base."
+
+msgid "delete.vignette.noId"
+msgstr "La vignette n'existe pas où n'est pas correcte"
+
+msgid "delete.vignette.authorization"
+msgstr "Vous n'avez pas le droit d'effacer la vignette. Vous n'êtes pas le propriétaire"
+
+msgid "Chargez une image"
+msgstr "Chergez une image"
+
+msgid "Image"
+msgstr "Image"
+
 msgid "The data you provided is not correct"
 msgstr ""
 
-#: views/error/display.php:9
-#: views/error/display.php:10
 msgid "You are not allowed to access this resource"
-msgstr ""
+msgstr "Vous n'êtes pas autorisé à accéder à cette resource"
 
-#: views/error/display.php:11
 msgid "The page you requested was not found"
-msgstr ""
+msgstr "La page n'a pas été trouvée."
 
-#: views/error/display.php:12
 msgid "An unexpected error happened"
-msgstr ""
+msgstr "Une erreur inattendue s'est passé"
 
-#: views/error/display.php:13
 msgid "An unknown error happened"
 msgstr ""
 
-#: views/error/display.php:17
 msgid "Page not found"
 msgstr ""
 
-#: views/error/display.php:18
 msgid "Error"
-msgstr ""
+msgstr "Erreur"
 
-#: views/error/display.tpl:12
 msgid "Go back"
-msgstr ""
+msgstr "Retour"
 
-#: views/error/display.tpl:14
 msgid "return to the homepage"
-msgstr ""
+msgstr "Retour à la page d'accueil"
 
-#: views/error/display.tpl:15
 msgid "or"
-msgstr ""
+msgstr "ou"
 
-#: views/error/display.tpl:17
 msgid "report this error"
-msgstr ""
+msgstr "signaler cette erreur"
 
-#: views/layout/layout.tpl:3
-#: views/layout/layout.tpl:32
 msgid "app.name"
-msgstr ""
+msgstr "Vignette pédagogique"
+
+msgid "Choix du bilan initial"
+msgstr "Choix du bilan initial"
+
+msgid "Auteur"
+msgstr "Auteur"
+
+msgid "Date"
+msgstr "Date"

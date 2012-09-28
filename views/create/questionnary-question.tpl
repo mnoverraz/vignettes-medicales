@@ -15,7 +15,7 @@
 		<div id="question-paramedical-container" class="questionContainer">
 			<legend><?php echo _('Question test paramedical')?></legend>
 			<div class="control-group">
-				<label for="paramedicalTest[question][<?php echo $d['chooseLang'][0]['common_abbr']?>]" class="control-label">Question</label>
+				<label for="paramedicalTest[question][<?php echo $d['chooseLang'][0]['common_abbr']?>]" class="control-label"><?php echo _("Question"); ?></label>
 				<div class="controls">
 					<?php
 					foreach($d['chooseLang'] as $l){
@@ -148,7 +148,7 @@
 				</div>
 				<div class="control-group">
 					<div class="controls">
-						<button class="btn btn-success" type="button" onclick="addPictureTest(this)">addAnswer</button>
+						<button class="btn btn-success" type="button" onclick="addPictureTest(this)"><?php echo _("Ajouter une réponse"); ?></button>
 					</div>
 				</div>
 			</div>
@@ -159,13 +159,3 @@
 	<button type="submit" class="btn btn-primary"><?php echo _("btn.valider") ?></button>
 	
 </form>
-
-<h1>$d</h1>
-<?php
-xUtil::pre($d);
-?>
-
-<h1>$d</h1>
-<?php
-xUtil::pre($_SESSION['store']);
-?>

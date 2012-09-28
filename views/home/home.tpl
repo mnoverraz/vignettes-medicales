@@ -18,7 +18,7 @@ if(xContext::$auth->is_role('Instructor') || xContext::$auth->is_role('Administr
 			<th><?php echo _("Auteur"); ?></th>
 			<th><?php echo _("Faire d'ici le"); ?></th>
 			<?php
-				if($granted) echo '<th>Option</th>';
+				if($granted) echo '<th>'._("Option").'</th>';
 			?>
 		</tr>
 	</thead>

@@ -11,55 +11,101 @@ msgid "Error details could not be sent to our team :("
 msgstr ""
 
 #: controllers/home.php:92
+msgid "exception-lti-cannotInsertInDB"
+msgstr ""
+
+#: controllers/home.php:121
 msgid "exception-moodle-noConnected"
 msgstr ""
 
-#: views/error/display.php:8
-msgid "The data you provided is not correct"
+#: controllers/vignette.php:110
+#: controllers/vignette.php:127
+msgid "exception-vignette-QuestionTypedoesntExist"
+msgstr ""
+
+#: controllers/vignette.php:136
+msgid "exception-vignette-doesntExist"
+msgstr ""
+
+#: controllers/vignette.php:179
+msgid "exception-db-transactionProblem"
+msgstr ""
+
+#: controllers/vignette.php:195
+msgid "delete.vignette.noId"
+msgstr ""
+
+#: controllers/vignette.php:198
+msgid "delete.vignette.authorization"
+msgstr ""
+
+#: views/create/dialog/picture.tpl:64
+msgid "Chargez une image"
+msgstr ""
+
+#: views/create/dialog/picture.tpl:66
+msgid "Image"
 msgstr ""
 
 #: views/error/display.php:9
+msgid "The data you provided is not correct"
+msgstr ""
+
 #: views/error/display.php:10
+#: views/error/display.php:11
 msgid "You are not allowed to access this resource"
 msgstr ""
 
-#: views/error/display.php:11
+#: views/error/display.php:12
 msgid "The page you requested was not found"
 msgstr ""
 
-#: views/error/display.php:12
+#: views/error/display.php:13
 msgid "An unexpected error happened"
 msgstr ""
 
-#: views/error/display.php:13
+#: views/error/display.php:14
 msgid "An unknown error happened"
 msgstr ""
 
-#: views/error/display.php:17
+#: views/error/display.php:18
 msgid "Page not found"
 msgstr ""
 
-#: views/error/display.php:18
+#: views/error/display.php:19
 msgid "Error"
 msgstr ""
 
-#: views/error/display.tpl:12
+#: views/error/display.tpl:13
 msgid "Go back"
 msgstr ""
 
-#: views/error/display.tpl:14
+#: views/error/display.tpl:15
 msgid "return to the homepage"
 msgstr ""
 
-#: views/error/display.tpl:15
+#: views/error/display.tpl:16
 msgid "or"
 msgstr ""
 
-#: views/error/display.tpl:17
+#: views/error/display.tpl:18
 msgid "report this error"
 msgstr ""
 
-#: views/layout/layout.tpl:3
-#: views/layout/layout.tpl:32
+#: views/layout/layout.tpl:4
+#: views/layout/layout.tpl:34
+#: views/layout/print.tpl:13
 msgid "app.name"
+msgstr ""
+
+#: views/vignette/anamnese.tpl:11
+msgid "Choix du bilan initial"
+msgstr ""
+
+#: views/vignette/identical/header.tpl:4
+msgid "Auteur"
+msgstr ""
+
+#: views/vignette/identical/header.tpl:7
+msgid "Date"
 msgstr ""
