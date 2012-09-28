@@ -47,13 +47,13 @@ $modulo = 5;
 					printf('<td colspan="2">');
 					printf('<p id="pictureTestQuestion">%s</p>', $question['question']['question-traduct_question']);
 					foreach($test as $t){
-						/*printf('<a class="fancybox" rel="group" href="../../upload/%s"><img src="../../upload/%s" alt="%s" title="%s" /></a>',
+						printf('<a class="fancybox" rel="group" href="../../upload/%s"><img class="reduce" src="../../upload/%s" alt="%s" title="%s" /></a>',
 							$t['image_url'],
 							$t['image_url'],
 							$t['ans-picture-traduct_comment'],
 							$t['ans-picture-traduct_comment']
-						);*/
-						printf('<p>%s</p><hr />', $t['ans-picture-traduct_comment']);
+						);
+						//printf('<p>%s</p><hr />', $t['ans-picture-traduct_comment']);
 					}
 					
 					if($d['infoStats']['nbrUser'] == 0) $percent=0; else $percent=($t['statsNbrChecked']/$d['infoStats']['nbrUser'])*100;

@@ -37,7 +37,7 @@ class PdfController extends xWebController {
 		// Returns HTML if required
 		if (isset($this->params['html'])) die($html);
 		// Creates PDF file
-		require_once(xContext::$basepath.'/lib/dompdf-0.5.1/dompdf_config.inc.php');
+		require_once(xContext::$basepath.'/lib/dompdf/dompdf_config.inc.php');
 		$dompdf = new DOMPDF();
 		$dompdf->set_paper($paper, $orientation);
 		$dompdf->set_base_path(xContext::$baseurl);
