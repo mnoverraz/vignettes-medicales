@@ -65,7 +65,7 @@ $modulo = 5;
 					printf('<td colspan="2">');
 					printf('<p id="pictureTestQuestion">%s</p>', $question['question']['question-traduct_question']);
 					foreach($test as $t){
-						printf('<a class="fancybox" rel="group" href="%s"><img class="reduce" src="%s" alt="%s" title="%s" width="400" /></a><hr />',
+						printf('<a class="fancybox" rel="group" href="%s"><img class="reduce" src="%s" alt="%s" title="%s" width="300" /></a><hr />',
 						//FONCTIONNE PDF
 							//'file:///Applications/MAMP/htdocs/vignette/public/assets/upload/pictureTests/44ce328fb438f79606cc910c85671219.png',
 							//'file:///Applications/MAMP/htdocs/vignette/public/assets/upload/pictureTests/44ce328fb438f79606cc910c85671219.png',

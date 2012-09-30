@@ -72,7 +72,7 @@ $modulo = 5;
 					printf('<td colspan="2">');
 					printf('<p id="pictureTestQuestion">%s</p>', $question['question']['question-traduct_question']);
 					foreach($test as $t){
-						printf('<a class="fancybox" rel="group" href="%s"><img class="reduce" src="%s" alt="%s" title="%s" width="400" /></a>',
+						printf('<a class="fancybox" rel="group" href="%s"><img class="reduce" src="%s" alt="%s" title="%s" width="300" /></a>',
 							pdfurl(xUtil::url('assets/upload/pictureTests/'.$t['image_url'])),
 							pdfurl(xUtil::url('assets/upload/pictureTests/'.$t['image_url'])),
 							$t['ans-picture-traduct_comment'],
