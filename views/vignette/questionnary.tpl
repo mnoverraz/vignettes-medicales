@@ -15,8 +15,8 @@ printf('<h1>%s - %s</h1>',
 	$questionnary['questionnary-traduct_title'],
 	_('Bilan initial')
 );
-printf('<p id="question">%s</p>', $questions['questionParamedicalTest'][0]['question']['question-traduct_question']);
-printf('<p id="remark">%s: %s</p>',
+printf('<p class="question">%s</p>', $questions['questionParamedicalTest'][0]['question']['question-traduct_question']);
+printf('<p class="remark">%s: %s</p>',
 	_('Remarque'),
 	$questions['questionParamedicalTest'][0]['question']['question-traduct_remark']
 );
@@ -72,13 +72,11 @@ $modulo = 5;
 		?>
 	</table>
 	<?php
-	printf('<button type="submit" class="btn btn-primary">%s</button>',
+	printf('<button type="submit" class="btn btn-primary nextStage">%s</button>',
 		_("Valider et passer à l'étape suivante")
 	);
 	?>
 </form>
 <?php
-printf('<div id="anamneseRepeate">%s</div>', $questionnary['questionnary-traduct_description']);
-printf('<h1>$d</h1>');
-xUtil::pre($d);
+printf('<div class="anamneseRepeate">%s</div>', $questionnary['questionnary-traduct_description']);
 ?>

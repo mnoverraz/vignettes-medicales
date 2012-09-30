@@ -1,5 +1,5 @@
 <?php
-	printf('<p id="vignetteHeader">%s - %s : %s %s / %s : %s</p>',
+	printf('<p class="vignetteHeader">%s - %s : %s %s / %s : %s</p>',
 		$d['questionnary-traduct_theme'],
 		_('Auteur'),
 		$d['user_firstname'],

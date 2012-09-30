@@ -20,8 +20,9 @@ $questionnary = $d['questionnary']['questionnary']['questionnary'];
 $questions = $d['questionnary']['questions'];
 $answers = $d['answers'];
 
-printf('<h1>%s</h1>', $questionnary['questionnary-traduct_title']);
-printf('<p>%s</p>', $questionnary['questionnary-traduct_description']);
+printf('<h1>%s - %s</h1>', $questionnary['questionnary-traduct_title'], _("Statistiques"));
+printf('<h2>%s</h2>', _("Anamnèse"));
+printf('<div>%s</div>', $questionnary['questionnary-traduct_description']);
 printf('<h2>%s</h2>', _("Bilan initial"));
 
 $group_paramedical = $questions['questionParamedicalTest'][0]['test'];
@@ -64,7 +65,7 @@ $modulo = 5;
 					printf('<td colspan="2">');
 					printf('<p id="pictureTestQuestion">%s</p>', $question['question']['question-traduct_question']);
 					foreach($test as $t){
-						printf('<a class="fancybox" rel="group" href="%s"><img class="reduce" src="%s" alt="%s" title="%s" width="500" /></a><hr />',
+						printf('<a class="fancybox" rel="group" href="%s"><img class="reduce" src="%s" alt="%s" title="%s" width="400" /></a><hr />',
 						//FONCTIONNE PDF
 							//'file:///Applications/MAMP/htdocs/vignette/public/assets/upload/pictureTests/44ce328fb438f79606cc910c85671219.png',
 							//'file:///Applications/MAMP/htdocs/vignette/public/assets/upload/pictureTests/44ce328fb438f79606cc910c85671219.png',
@@ -113,7 +114,3 @@ $modulo = 5;
 	_("Exporter en PDF")
 	);
 	?>
-
-<?php
-xUtil::pre($d);
-?>

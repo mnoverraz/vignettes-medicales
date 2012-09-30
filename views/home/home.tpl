@@ -8,9 +8,8 @@ if(xContext::$auth->is_role('Instructor') || xContext::$auth->is_role('Administr
 }
 ?>
 
-
+<h1><?php echo _("Liste des vignettes médicales"); ?></h1>
 <table>
-	<caption><?php echo _("Liste des vignettes médicales"); ?></caption>
 	<thead>
 		<tr>
 			<th><?php echo _("Module"); ?></th>

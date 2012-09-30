@@ -24,8 +24,9 @@ $questionnary = $d['questionnary']['questionnary'];
 $questions = $d['questions'];
 $answers = $d['answers'];
 
-printf('<h1>%s</h1>', $questionnary['questionnary-traduct_title']);
-printf('<p>%s</p>', $questionnary['questionnary-traduct_description']);
+printf('<h1>%s - %s</h1>', $questionnary['questionnary-traduct_title'], _("Récapitulatif"));
+printf('<h2>%s</h2>', _("Anamnèse"));
+printf('<div>%s</div>', $questionnary['questionnary-traduct_description']);
 printf('<h2>%s</h2>', _("Bilan initial"));
 
 $group_paramedical = $questions['questionParamedicalTest'][0]['test'];
@@ -98,7 +99,7 @@ $modulo = 5;
 	<?php
 	printf('<h2>%s</h2>', _('Evolution clinique'));
 	printf('<p>%s</p>', $questionnary['questionnary-traduct_conclusion']);
-	printf('<button type="button" onclick="document.location.href=\'%s\'" class="btn btn-primary">%s</button>',
+	printf('<button type="button" onclick="document.location.href=\'%s\'" class="btn btn-primary nextStage">%s</button>',
 		xUtil::url('pdf/printFeedback'),
 		_("Exporter en PDF")
 	);

@@ -72,12 +72,13 @@ footer {
 #main {
 	clear: both;
 	float: left;
-	width: 1000px;
+	width: 960px;
 	background: #ffffff;
 	margin-right: 6px;
 	vertical-align: top;
 	margin-bottom: 6px;
 	border: 1px #ccc solid;
+	padding: 5px 20px;
 
 }
 
@@ -107,6 +108,27 @@ footer {
 	min-height:50px;
      height:auto !important;
      height:50px; 
+}
+
+h1 {
+    font-size: 16px;
+}
+
+h2 {
+    font-size: 14px;
+}
+
+p.question{
+	font-weight: bold;
+}
+
+p.remark{
+	font-style: italic;
+}
+
+p.vignetteHeader, div.anamneseRepeate{
+	font-style: italic;
+	color: #aaa;
 }
 
 select {
@@ -164,7 +186,7 @@ div.content table.inline td {
 }
 /*************************** Tableaux *************************/
 table {
-	margin: 20px;
+	margin: 20px 0;
 	border: 1px solid #EC9B33;
 	font-size: 11px;
 	width: 800px;
@@ -298,6 +320,10 @@ legend.complementary-test{
 
 #pictureTestQuestion{
 	font-weight:bold;
+}
+
+button.nextStage{
+	margin: 20px 0;
 }
 /* 
 .myform{

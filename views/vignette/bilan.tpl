@@ -4,7 +4,7 @@ $questions = $d['questions'];
 $answers = $d['answers'];
 
 echo xView::load('vignette/identical/header', $questionnary);
-printf('<p>%s - %s</p>',
+printf('<h1>%s - %s</h1>',
 	$questionnary['questionnary-traduct_title'],
 	_("Résultats du bilan initial")
 );
@@ -81,12 +81,11 @@ $modulo = 5;
 		?>
 	</table>
 	<?php
-	printf('<button type="submit" class="btn btn-primary">%s</button>',
+	printf('<button type="submit" class="btn btn-primary nextStage">%s</button>',
 		_("Valider votre questionnaire et passer à l'étape suivante")
 	);
 	?>
 </form>
-<h1>$d</h1>
 <?php
-xUtil::pre($d);
+printf('<div class="anamneseRepeate">%s</div>', $questionnary['questionnary-traduct_description']);
 ?>
