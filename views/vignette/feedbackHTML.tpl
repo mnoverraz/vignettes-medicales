@@ -1,4 +1,25 @@
 <?php
+/*
+function pdfurl($url) {
+	$is_pdf = !isset($_REQUEST['html']);
+	if (!$is_pdf) return $url;
+	$file = preg_replace('/.*a(.+)/', 'file://'.xContext::$basepath.'/public/a$1', $url);
+	return $file;
+}
+
+*/
+
+function pdfurl($url) {
+	$is_pdf = isset($d['links']);
+	if (xContext::$router->fragments[0] != 'pdf') return $url;
+	
+	$file = 'file:///Applications/MAMP/htdocs'.$url;
+
+	return $file;
+}
+
+
+
 $questionnary = $d['questionnary']['questionnary'];
 $questions = $d['questions'];
 $answers = $d['answers'];
@@ -50,14 +71,14 @@ $modulo = 5;
 					printf('<td colspan="2">');
 					printf('<p id="pictureTestQuestion">%s</p>', $question['question']['question-traduct_question']);
 					foreach($test as $t){
-						printf('<a class="fancybox" rel="group" href="%s"><img src="%s" alt="%s" title="%s" /></a>',
-							xUtil::url('assets/upload/pictureTests/'.$t['image_url']),
-							xUtil::url('assets/upload/pictureTests/'.$t['image_url']),
+						printf('<a class="fancybox" rel="group" href="%s"><img class="reduce" src="%s" alt="%s" title="%s" width="400" /></a>',
+							pdfurl(xUtil::url('assets/upload/pictureTests/'.$t['image_url'])),
+							pdfurl(xUtil::url('assets/upload/pictureTests/'.$t['image_url'])),
 							$t['ans-picture-traduct_comment'],
 							$t['ans-picture-traduct_comment']
 						);
-						//printf('<p>%s</p><hr />', $t['ans-picture-traduct_comment']);
-						
+						//printf('<p>%s</p><hr />', xContext::$basepath.xUtil::url('assets/upload/pictureTests/'.$t['image_url']));					
+
 						$checked = '';
 						foreach($answers['pictureTests'] as $index => $val){
 							if($val == $t['question_id']) $checked='x';

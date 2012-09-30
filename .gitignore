@@ -11,5 +11,5 @@
 config/cond.d/database.ini
 
 # App files
-upload/*
+public/assets/upload/pictureTests/*
 

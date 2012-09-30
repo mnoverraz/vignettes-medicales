@@ -50,11 +50,15 @@ class HomeController extends xWebController {
     	$role_user = xModel::load('role-user', $role_userData);
     	
     	//SEND TO DB
-    	$t = new xTransaction();
-    	$t->start();
-    	$t->execute($user, 'put');
-    	$t->execute($role_user, 'put');
-    	$t->end();
+    	try{
+	    	$t = new xTransaction();
+	    	$t->start();
+	    	$t->execute($user, 'put');
+	    	$t->execute($role_user, 'put');
+	    	$t->end();
+    	}catch(xException $e){
+    		throw new xException($e->getMessage());
+    	}
     	
     	return $t;
     }

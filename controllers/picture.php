@@ -51,7 +51,7 @@ class PictureController extends xWebController {
 	
 	function test(){
 		$allowedExts = array('jpg', 'jpeg', 'gif', 'png');
-		$allowedType = array('image/jpg', 'image/pjpg', 'image/gif', 'image/png');
+		$allowedType = array('image/jpg', 'image/pjpg', 'image/gif', 'image/png', 'image/jpeg');
 		
 		$img = $_FILES['images'];
 		$basePath = xContext::$basepath;

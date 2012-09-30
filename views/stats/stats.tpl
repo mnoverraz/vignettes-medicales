@@ -1,9 +1,17 @@
 <?php
 // Returns a file:// url from a http(s):// url
-function pdfurl($url) {
+/*function pdfurl($url) {
 	$is_pdf = !isset($_REQUEST['html']);
 	if (!$is_pdf) return $url;
 	$file = preg_replace('/.*a(.+)/', 'file://'.xContext::$basepath.'/public/a$1', $url);
+	return $file;
+}*/
+
+function pdfurl($url) {
+	$is_pdf = isset($d['links']);
+	if (xContext::$router->fragments[0] == 'stats') return $url;
+	$file = 'file:///Applications/MAMP/htdocs'.$url;
+
 	return $file;
 }
 
@@ -56,9 +64,25 @@ $modulo = 5;
 					printf('<td colspan="2">');
 					printf('<p id="pictureTestQuestion">%s</p>', $question['question']['question-traduct_question']);
 					foreach($test as $t){
-						printf('<a class="fancybox" rel="group" href="%s"><img class="reduce" src="%s" alt="%s" title="%s" /></a><hr />',
+						printf('<a class="fancybox" rel="group" href="%s"><img class="reduce" src="%s" alt="%s" title="%s" width="500" /></a><hr />',
+						//FONCTIONNE PDF
+							//'file:///Applications/MAMP/htdocs/vignette/public/assets/upload/pictureTests/44ce328fb438f79606cc910c85671219.png',
+							//'file:///Applications/MAMP/htdocs/vignette/public/assets/upload/pictureTests/44ce328fb438f79606cc910c85671219.png',
+								//DONNE file:///Applications/MAMP/htdocs/vignette/public/assets/upload/pictureTests/44ce328fb438f79606cc910c85671219.png
+						//FONCTIONNE HTML
+							//xUtil::url('assets/upload/pictureTests/'.$t['image_url']),
+							//xUtil::url('assets/upload/pictureTests/'.$t['image_url']),
+								//DONNE /vignette/public/assets/upload/pictureTests/44ce328fb438f79606cc910c85671219.png
+						
 							pdfurl(xUtil::url('assets/upload/pictureTests/'.$t['image_url'])),
-							xUtil::url('assets/upload/pictureTests/'.$t['image_url']),
+							pdfurl(xUtil::url('assets/upload/pictureTests/'.$t['image_url'])),
+							//'file:///Applications/MAMP/htdocs/vignette/public/assets/upload/pictureTests/44ce328fb438f79606cc910c85671219.png',
+							
+							//xUtil::url('assets/upload/pictureTests/'.$t['image_url']),
+							//'file:///Applications/MAMP/htdocs/vignette/public/assets/upload/pictureTests/'.$t['image_url'],
+							//'file://'.xContext::$basepath.'/public/assets/upload/paramedicalTests/'.$t['image_url'],
+							//pdfurl(xUtil::url('assets/upload/pictureTests/'.$t['image_url'])),
+							//pdfurl(xUtil::url('assets/upload/pictureTests/'.$t['image_url'])),
 							$t['ans-picture-traduct_comment'],
 							$t['ans-picture-traduct_comment']
 						);
