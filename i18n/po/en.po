@@ -16,7 +16,7 @@ msgstr ""
 
 #: controllers/home.php:121
 msgid "exception-moodle-noConnected"
-msgstr ""
+msgstr "You're not connected with Moodle. <a href=\"http://moodle.unil.ch\"> Moodle UNIL</a>"
 
 #: controllers/vignette.php:110
 #: controllers/vignette.php:127

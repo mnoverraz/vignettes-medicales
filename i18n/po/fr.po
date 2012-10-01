@@ -11,7 +11,7 @@ msgid "exception-lti-cannotInsertInDB"
 msgstr "Un problème de login avec Moodle s'est passé."
 
 msgid "exception-moodle-noConnected"
-msgstr "Vous ne vous êtes pas connecter depuis Moodle. Veuillez vous connecter depuis Moodle. <a href=\"moodle2.unil.ch\">Moodle2</a>"
+msgstr "Vous ne vous êtes pas connecter depuis Moodle. Veuillez vous connecter depuis Moodle. <a href=\"http://moodle2.unil.ch\">Moodle2</a>"
 
 msgid "exception-vignette-QuestionTypedoesntExist"
 msgstr "Le type de question n'existe pas"
