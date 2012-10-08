@@ -8,12 +8,12 @@ class RoleModel extends xModelMysql {
 			'role' => 'role'
 	);
 
-	/*public $joins = array(
-	 'user' => 'JOIN User ON (User.id = Author.user_id)',
-			'questionnary' => 'JOIN Questionnary ON (Questionnary.author_id = Author.id)'
+	public $joins = array(
+			'role-user' => 'JOIN Role_user ON (Role.id = Role_user.role_id)',
+			'user' => 'JOIN User ON (Role_user.user_id = User.id)',
 	);
 
 
-	public $join = array('user','questionnary');
-	*/
+	public $join = array();
+	
 }

@@ -13,6 +13,17 @@ class RoleController extends xWebController {
 		return $role;
 	}
 	
+	function getRolesFromUser($userId){
+		$params = array(
+				'user_id' => $userId,
+				'xjoin' => 'role-user, user',
+				'xreturn' => 'role'
+		);
+		$roles = xModel::load('role', $params)->get();
+		
+		return $roles;
+	}
+	
 	function getRoleId($roleName){
 		$params = array(
 				'role' => $roleName,

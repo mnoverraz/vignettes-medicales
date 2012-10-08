@@ -11,12 +11,13 @@ class UserModel extends xModelMysql {
 			'email' => 'email'
 	);
 
-	/*public $joins = array(
-			'user' => 'JOIN User ON (User.id = Author.user_id)',
-			'questionnary' => 'JOIN Questionnary ON (Questionnary.author_id = Author.id)'
+	public $joins = array(
+			'role-user' => 'JOIN Role_user ON (Role_user.user_id = User.id)',
+			'role' => 'JOIN Role ON (Role_user.role_id = Role.id)',
+			'questionnary' => 'JOIN Questionnary ON (Questionnary.author_id = User.id)'
+			
 	);
 
 
-	public $join = array('user','questionnary');
-	*/
+	public $join = array('questionnary');
 }

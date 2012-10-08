@@ -45,8 +45,9 @@ if(xContext::$auth->is_role('Instructor') || xContext::$auth->is_role('Administr
 								/*date('d.m.Y',strtotime(*/$q['limit_date']//))
 						);
 						
-						
-						if($granted){
+						$isOwner = xController::load('vignette')->isOwner($q['questionnary_id'], xContext::$auth->info('id'));
+						$isAdmin = xContext::$auth->is_role('Administrator');
+						if($isAdmin || $isOwner){
 							printf('<td><button type="submit" class="btn btn-primary" onclick="document.location.href=\'%s\'">%s</button> <button type="submit" class="btn btn-danger" onclick="document.location.href=\'%s\'">%s</button></td>',
 								xUtil::url('stats/loading/'.$q['questionnary_id']),
 								_("Statistiques"),
@@ -62,8 +63,10 @@ if(xContext::$auth->is_role('Instructor') || xContext::$auth->is_role('Administr
 	</tbody>
 </table>
 <?php
-/*echo '<h1>$d</h1>';
+echo '<h1>$d</h1>';
 xUtil::pre($d);
+echo '<h1>xAuth</h1>';
+xUtil::pre(xContext::$auth->is_role('Instructor,sdfdsf'));
 echo '<h1>SESSION</h1>';
-xUtil::pre($_SESSION);*/
+xUtil::pre($_SESSION);
 ?>

@@ -198,4 +198,14 @@ class VignetteController extends xWebController {
 			throw new xException(_('delete.vignette.authorization'));
 		}
 	}
+	
+	function isOwner($questionnary_id, $user_id){
+		$params = array(
+				'id' => $questionnary_id,
+				'xreturn' => 'author_id'
+		);
+		$author_id = xModel::load('questionnary', $params)->get();
+		
+		return in_array($user_id, $author_id[0]);
+	}
 }

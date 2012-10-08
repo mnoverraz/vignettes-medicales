@@ -32,32 +32,35 @@ class HomeController extends xWebController {
     }
     
     public function put($lms_id, $firstname, $lastname, $email, $role){
-    	//USER
-    	$userData = array(
-    			'lms_id' =>  $lms_id,
-    			'firstname' => $firstname,
-    			'lastname' => $lastname,
-    			'email' => $email
-    	);
-    	$user = xModel::load('user', $userData);
-    	
-    	//ROLE USER
-    	$role_id = xController::load('role')->getRoleId($role);
-    	$role_userData = array(
-    			'role_id' =>  $role_id,
-    			'user_id' => $lms_id
-    	);
-    	$role_user = xModel::load('role-user', $role_userData);
-    	
-    	//SEND TO DB
     	try{
 	    	$t = new xTransaction();
 	    	$t->start();
+	    	
+	    	//USER
+	    	$userData = array(
+	    			'lms_id' =>  $lms_id,
+	    			'firstname' => $firstname,
+	    			'lastname' => $lastname,
+	    			'email' => $email
+	    	);
+	    	$user = xModel::load('user', $userData);
 	    	$t->execute($user, 'put');
+	    	$user_id = $t->insertid();
+	    	
+	    	//ROLE USER
+	    	$role_id = xController::load('role')->getRoleId($role);
+	    	
+	    	$role_userData = array(
+	    			'role_id' =>  $role_id,
+	    			'User_id' => $user_id
+	    	);
+	    	$role_user = xModel::load('role-user', $role_userData);
 	    	$t->execute($role_user, 'put');
+    		
 	    	$t->end();
+	    	
     	}catch(xException $e){
-    		throw new xException($e->getMessage());
+    		throw new xException($e);
     	}
     	
     	return $t;
@@ -78,13 +81,17 @@ class HomeController extends xWebController {
     			$user = xModel::load('user', $params)->get();
     			
     			if(count($user) == 0){
-    				$d['put'] = $this->put(
-    						$lti['user_id'],
-    						$lti['lis_person_name_given'],
-    						$lti['lis_person_name_family'],
-    						$lti['lis_person_contact_email_primary'],
-    						$lti['roles']
-    				);
+    				try{
+	    				$d['put'] = $this->put(
+	    						$lti['user_id'],
+	    						$lti['lis_person_name_given'],
+	    						$lti['lis_person_name_family'],
+	    						$lti['lis_person_contact_email_primary'],
+	    						$lti['roles']
+	    				);
+    				}catch(xException $e){
+    					throw new xException('lti.cannotPutNewUser');
+    				}
     				if($d['put']['results'][0]['result']['xsuccess'] == 1){
     					$id = $d['put']['results'][0]['result']['insertid'];
     					$firstName = $lti['lis_person_name_given'];
@@ -92,20 +99,32 @@ class HomeController extends xWebController {
     					$email = $lti['lis_person_contact_email_primary'];
     					$moodle_id = $lti['user_id'];
     					$moodle_language = $lti['launch_presentation_locale'];
+    					$roles = $lti['roles'];
     				}else{
     					throw new xException(_("exception-lti-cannotInsertInDB"), 401);
     				}
     				
     			}else{
+    				
     				$id = $user[0]['id'];
     				$firstName = $user[0]['firstname'];
     				$lastName = $user[0]['lastname'];
     				$email = $user[0]['email'];
     				$moodle_id = $user[0]['lms_id'];
     				$moodle_language = $lti['launch_presentation_locale'];
+    				
+    				/*
+    				 * roles
+    				*/
+    				$rolesModel = xController::load('role')->getRolesFromUser($id);
+    				foreach($rolesModel as $role){
+    					$roles[] = $role['role'];
+    				}
+    				$roles = implode(',', $roles);
+    				////////////////
     			}
     			
-    			xAuth::set($email,$lti['roles'],array(
+    			xAuth::set($email,$roles,array(
     					'id' => $id,
     					'firstName' => $firstName,
     					'lastName' => $lastName,
@@ -118,7 +137,6 @@ class HomeController extends xWebController {
     			xController::load('utils')->changeLanguage($moodle_language);
     			//xContext::$front->setup_i18n($moodle_language);
     		//}
-    		return xView::load('home/home')->render();
     		
     	}else{
     		//appeler une page d'erreur
