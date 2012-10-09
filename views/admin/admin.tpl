@@ -103,5 +103,3 @@ foreach($d['listeAdmin'] as $user){
 ?>
 </tbody>
 </table>
-<h1>$d</h1>
-<?php xUtil::pre($d) ?>
