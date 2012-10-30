@@ -17,7 +17,10 @@ class UserModel extends xModelMysql {
 			'questionnary' => 'JOIN Questionnary ON (Questionnary.author_id = User.id)'
 			
 	);
-
+	
+	public $wheres = array(
+		'fullname-search' => 'models/admin/fullname-search'
+	);
 
 	public $join = array('questionnary');
 }

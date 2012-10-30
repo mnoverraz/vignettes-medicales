@@ -24,7 +24,8 @@ class AdminController extends xWebController {
 	}
 	
 	function adminAction(){
-		$d['listeAdmin'] = $this->get();
+
+		$d['listeAdmin'] = $this->getAdmin();
 		
 		return xView::load('admin/admin', $d)->render();
 	}
@@ -57,40 +58,54 @@ class AdminController extends xWebController {
 		return $delete['xsuccess'];
 	}
 	
-	function get(){
-		$params = array(
-				'role_role' => 'Administrator',
-				'xjoin' => 'role-user, role',
-				'xreturn' => 'id, lms_id, firstname, lastname, email'
-		);
+	function get($params=null){
 		$model = xModel::load('user', $params)->get();
 		return $model;
 	}
 	
 	function getNonAdmin(){
 		$params = array(
-				'role_role' => array('Student', 'Learner', 'Instructor'),
+				'role_role' => 'Administrator',
+				'xjoin' => 'role-user, role',
+				'xreturn' => 'id'
+		);
+		$admin = $this->get($params);
+		
+		
+		$model = xModel::load('user', array(
+			'id' => $admin,
+			'id_comparator' => 'NOT IN',
+			'role_role' => array('Student', 'Learner', 'Instructor'),
+			'xjoin' => 'role-user, role',
+			//'xreturn' => 'id, lms_id, firstname, lastname, email',
+			'xreturn' => 'id'
+		))->get();
+		
+		return $model;
+	}
+	
+	function getAdmin(){
+		$params = array(
+				'role_role' => 'Administrator',
 				'xjoin' => 'role-user, role',
 				'xreturn' => 'id, lms_id, firstname, lastname, email'
 		);
-		$model = xModel::load('user', $params)->get();
-		return $model;
+	
+		return $this->get($params);
 	}
 	
 	function searchNonAdmin($search){
+		
+				
 		$params = array(
 				'role_role' => array('Student', 'Learner', 'Instructor'),
-				'firstname' => "%".$search."%",
-				'firstname_comparator' => 'LIKE',
+				'search' => $search,
+				'id' => $this->getNonAdmin(),
 				'xjoin' => 'role-user, role',
-				//'xwhere' => "{firstname} = 'mathieu'",
-				'xreturn' => 'id, lms_id, firstname, lastname, email'
-				//'xreturn' => array('*', "concat(firstname, ' ' , lastname) AS field")
+				'xwhere' => 'fullname-search',
+				'xreturn' => 'DISTINCT User.id, lms_id, firstname, lastname, email'
 		);
 		$model = xModel::load('user', $params)->get();
 		return $model;
 	}
-	
-	
-	
 }
