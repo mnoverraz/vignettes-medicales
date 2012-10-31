@@ -9,6 +9,10 @@ class DialogController extends xWebController {
 		
 	}
 	
+	/**
+	 * Get paramedical test in DB to give to the view
+	 * @return xView paramedical test dialog view
+	 */
 	function paramedicalTestAction(){
 		
 		$usedLang = xController::load('language')->getLanguageFromAbbr(xContext::$lang);
@@ -23,6 +27,10 @@ class DialogController extends xWebController {
 		return xView::load('create/dialog/paramedicalTest', $d);
 	}
 	
+	/**
+	 * Return view for picture loading form
+	 * @return xView Picture load view form
+	 */
 	function pictureAction(){
 	
 		$this->meta['layout']['template'] = 'layoutDialog.tpl';

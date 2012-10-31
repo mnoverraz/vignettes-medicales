@@ -4,7 +4,11 @@ class QuestionnaryController extends xWebController {
 	function defaultAction() {
 		return $this->indexAction();
 	}
-
+	
+	/**
+	 * Routes the user on the next form not fill yet
+	 * @return xView
+	 */
 	function indexAction(){
 		if(!isset($_SESSION['store']))
 			xUtil::redirect(xUtil::url('questionnary/settings/'));
@@ -21,6 +25,10 @@ class QuestionnaryController extends xWebController {
 			return xView::load('create/questionnary-validated-form')->render();;
 	}
 	
+	/**
+	 * Action to set the settings of the questionnary and save to the php session
+	 * @return xView
+	 */
 	function settingsAction(){
 		
 		if($this->params['lang']){
@@ -66,6 +74,10 @@ class QuestionnaryController extends xWebController {
 		return xView::load('create/questionnary-settings', $d)->render();
 	}
 	
+	/**
+	 * Action to set the headers of the questionnary (title, theme, anamnèse)
+	 * @return xView
+	 */
 	function headerAction(){
 		
 		if(isset($this->params['header'])){
@@ -89,6 +101,10 @@ class QuestionnaryController extends xWebController {
 		return xView::load('create/questionnary-header', $d)->render();
 	}
 	
+	/**
+	 * Action to show the question form
+	 * @return xView
+	 */
 	function questionAction(){
 		
 		
@@ -120,10 +136,9 @@ class QuestionnaryController extends xWebController {
 	
 
 	
-	/*
+	/**
 	 * Insert the form content of questionnary-settings in session
-	 * 
-	 * @return	Array Array inserted in session
+	 * @return	array Array inserted in session
 	 */
 	function putSessionSettings(){
 		//modules
@@ -144,10 +159,9 @@ class QuestionnaryController extends xWebController {
 		return $r;
 	}
 	
-	/*
-	 * Insert the form content of questionnary-header in session
-	*
-	* @return	Array Array inserted in session
+	/**
+	* Insert the form content of questionnary-header in session
+	* @return	array Array inserted in session
 	*/
 	function putSessionHeader(){
 	
@@ -161,8 +175,10 @@ class QuestionnaryController extends xWebController {
 		return $r;
 	}
 	
-	
-	
+	/**
+	 * Insert the form content of the questionns in session
+	 * @return array Array inserted in session
+	 */
 	function putSessionQuestion(){
 		$r['paramedicalTest'] = $this->params['paramedicalTest'];
 		$r['complementaryTest'] = $this->params['complementaryTest'];
@@ -171,7 +187,10 @@ class QuestionnaryController extends xWebController {
 		return $r;
 	}
 	
-	
+	/**
+	 * Insert the form content of the feedback in session
+	 * @return array Array inserted in session
+	 */
 	function putSessionFeedback(){
 		
 		$r = $this->params['feedback'];
@@ -180,6 +199,10 @@ class QuestionnaryController extends xWebController {
 		return $r;
 	}
 	
+	/**
+	 * Save the content of the questionnary from session to DB
+	 * @return xTransaction The result of the transaction
+	 */
 	function save(){
 		$s = $_SESSION;
 		$settings = $_SESSION['store']['settings'];
@@ -327,15 +350,28 @@ class QuestionnaryController extends xWebController {
 		return $t;
 	}
 	
+	/**
+	 * Show the session content. (this method is just for developpers)
+	 * @return xView
+	 */
 	function sessionAction(){
 		return xView::load('create/session')->render();
 	}
 	
+	/**
+	 * Clear the questionnary session and redirect to the settings of a new questionnary
+	 * @return xView
+	 */
 	function clearQuestionnarySessionAction(){
 		unset($_SESSION['store']);
 		return xView::load('create/questionnary-settings')->render();
 	}
 	
+	/**
+	 * Get questionnary infos
+	 * @param integer $id
+	 * @return array Array of data of the questionnary
+	 */
 	function getQuestionnary($id){
 		$params = array(
 				'id' => $id,
@@ -344,6 +380,12 @@ class QuestionnaryController extends xWebController {
 		return $this->get($params);
 	}
 	
+	/**
+	 * Main method to get questionnary infos from params
+	 * @param $params
+	 * @see xRestElement::get()
+	 * @return array Array of questionnary infos
+	 */
 	function get($params = null){
 		return xModel::load('questionnary', $params)->get();
 	}

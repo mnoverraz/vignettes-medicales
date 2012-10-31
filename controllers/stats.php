@@ -8,7 +8,10 @@ class StatsController extends xWebController {
 	function indexAction(){	
 	}
 	
-	
+	/**
+	 * Action to get stats view
+	 * @return xView Stats view
+	 */
 	function statsAction(){
 		$d['questionnary'] = $_SESSION['questionnary'];
 		$questionnary_id = $d['questionnary']['questionnary']['questionnary']['id'];
@@ -50,14 +53,16 @@ class StatsController extends xWebController {
 		return xView::load('stats/stats', $d)->render();
 	}
 	
+	/**
+	 * Load a questionnary in session
+	 */
 	function loadingAction(){
 		xController::load('vignette')->loading($this->params['id']);
 		xUtil::redirect(xUtil::url('stats/stats'));
 	}
 	
-	/*
+	/**
 	 * Get nbr of hits for one test
-	 * 
 	 * @param int $question_id
 	 * @param int $question_type
 	 * @param int $answer_type_id

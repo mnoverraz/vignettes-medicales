@@ -9,7 +9,11 @@ class PictureTestController extends xWebController {
 		
 	}
 	
-	
+	/**
+	 * Get picture test from a question
+	 * @param integer $question_id
+	 * @return array Array of a picture test
+	 */
 	function getTestsFromQuestion($question_id){
 		$params = array(
 				'question_id' => $question_id,
@@ -24,6 +28,12 @@ class PictureTestController extends xWebController {
 		return $this->get($params);
 	}
 	
+	/**
+	 * Main method to get a picture test
+	 * @param array $params Array for the query
+	 * @see xRestElement::get()
+	 * @return array Array of picture test infos
+	 */
 	function get($params = null){
 		return xModel::load('ans-picture', $params)->get();
 	}

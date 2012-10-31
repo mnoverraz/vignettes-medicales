@@ -4,37 +4,37 @@ class VignetteController extends xWebController {
 	function defaultAction() {
 		return $this->indexAction();
 	}
-
+	
+	/**
+	 * Load a vignette in session
+	 */
 	function indexAction(){
-		/*
-		$questionnary_id = $this->params('id');
-		
-		if(isset($questionnary_id)){*/
-			if(isset($_SESSION['vignette'])){
-				if($_SESSION['vignette']['questionnary']['id'] != $questionnary_id){
-					unset($_SESSION['vignette']);
-					$this->loading($questionnary_id);
-				}
-			}else{
+		if(isset($_SESSION['vignette'])){
+			if($_SESSION['vignette']['questionnary']['id'] != $questionnary_id){
+				unset($_SESSION['vignette']);
 				$this->loading($questionnary_id);
 			}
-			
-			xUtil::redirect(xUtil::url('vignette/anamnese/'));
-			
-		/*	
-		}elseif(!isset($_SESSION['vignette'])){
-			throw new xException(_("exception-vignette-doesntExist"), 412);
+		}else{
+			$this->loading($questionnary_id);
 		}
-		*/
 		
+		xUtil::redirect(xUtil::url('vignette/anamnese/'));
 	}
 	
+	/**
+	 * Get anamnese view
+	 * @return xView Anamnese view
+	 */
 	function anamneseAction(){
 	
 		$d = $_SESSION['questionnary'];
 		return xView::load('vignette/anamnese', $d)->render();
 	}
 	
+	/**
+	 * Get questionnary View
+	 * @return xView questionnary view
+	 */
 	function questionnaryAction(){
 
 		//Setting in session
@@ -56,6 +56,10 @@ class VignetteController extends xWebController {
 		return xView::load('vignette/questionnary', $d)->render();
 	}
 	
+	/**
+	 * Get the bilan view
+	 * @return xView the bilan view
+	 */
 	function bilanAction(){
 		
 		//Setting in session
@@ -72,24 +76,39 @@ class VignetteController extends xWebController {
 		return xView::load('vignette/bilan', $d)->render();
 	}
 	
+	/**
+	 * Get the feedback view
+	 * @return xView the feedback view
+	 */
 	function feedbackAction(){
 		$d = $_SESSION['questionnary'];
 	
 		return xView::load('vignette/feedback', $d)->render();
 	}
-	
+	/**
+	 * Get the feedback HTML for pdf generation
+	 * @return xView the feedback HTML view
+	 */
 	function feedbackHTMLAction(){
 		$d = $_SESSION['questionnary'];
 	
 		return xView::load('vignette/feedbackHTML', $d)->render();
 	}
 	
-	
+	/**
+	 * Action to load a vignette in session
+	 */
 	function loadingAction(){
 		$this->loading($this->params['id']);
 		xUtil::redirect(xUtil::url('vignette/anamnese'));
 	}
 	
+	/**
+	 * Load a vignette in session
+	 * @param integer $questionnary_id
+	 * @throws xException
+	 * 
+	 */
 	function loading($questionnary_id){
 		//QUESTIONNARY
 		$model['questionnary'] = xController::load('questionnary')->getQuestionnary($questionnary_id);
@@ -138,6 +157,11 @@ class VignetteController extends xWebController {
 		$_SESSION['questionnary'] = $d;
 	}
 	
+	/**
+	 * Save answers of a vignette in DB (if it's the first time)
+	 * @param array $answers
+	 * @throws xException
+	 */
 	function saveAnswers($answers){
 		$questionnary_id = $_SESSION['questionnary']['questionnary']['questionnary']['id'];
 		$question_paramedical_id = $_SESSION['questionnary']['questions']['questionParamedicalTest'][0]['question']['id'];
@@ -180,7 +204,10 @@ class VignetteController extends xWebController {
 		}
 	}
 	
-	
+	/**
+	 * Delete a vignette
+	 * @throws xException
+	 */
 	function deleteAction(){
 		if(xContext::$auth->is_role('Instructor')){
 			$questionnary_id = $this->params['id'];
@@ -199,6 +226,12 @@ class VignetteController extends xWebController {
 		}
 	}
 	
+	/**
+	 * Get if the user is owner of the vignette
+	 * @param integer $questionnary_id
+	 * @param integer $user_id
+	 * @return boolean
+	 */
 	function isOwner($questionnary_id, $user_id){
 		$params = array(
 				'id' => $questionnary_id,

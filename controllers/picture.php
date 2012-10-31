@@ -5,50 +5,10 @@ class PictureController extends xWebController {
 		return $this->uploadFileAction();
 	}
 	
-	/*function uploadFileAction(){
-		$allowedExts = array("jpg", "jpeg", "gif", "png");
-		$extension = end(explode(".", (string) $_FILES["images"]["name"]));
-		$d = Array();
-		$img = $_FILES["images"];
-		$d['img_src'] = $img;
-		$d['test'] = $img['type'][0];
-		if ((($img["type"] == "image/gif")
-				|| ($img["type"] == "image/jpeg")
-				|| ($img["type"] == "image/png")
-				|| ($img["type"] == "image/pjpeg"))
-				&& ($img["size"] < 20000)
-				&& in_array($extension, $allowedExts))
-		{
-			if ($img["error"] > 0)
-			{
-				$d['error'] = "Return Code: " . $img["error"] . "<br />";
-			}
-			else
-			{
-				$d['return'] =  "Upload: " . $img["name"] . "<br />";
-				$d['return'] .= "Type: " . $img["type"] . "<br />";
-				$d['return'] .= "Size: " . ($img["size"] / 1024) . " Kb<br />";
-				$d['return'] .= "Temp file: " . $img["tmp_name"] . "<br />";
-		
-				if (file_exists("/Applications/MAMP/htdocs/vignette/upload/" . $_FILES["file"]["name"]))
-				{
-					$d['return'] .= $img["name"] . " already exists. ";
-				}
-				else
-				{
-					move_uploaded_file($img["tmp_name"],
-					"/Applications/MAMP/htdocs/vignette/upload/" . $img["name"]);
-					$d['return'] .= "Stored in: " . "/Applications/MAMP/htdocs/vignette/upload//" . $img["name"];
-				}
-			}
-		}
-		else
-		{
-			$d['return'] = "Invalid file";
-		}
-		return xView::load('create/upload', $d);
-	}*/
-	
+	/**
+	 * Recieve the image post and process it to save in the final placement
+	 * @return array $image The array info image.
+	 */
 	function test(){
 		$allowedExts = array('jpg', 'jpeg', 'gif', 'png');
 		$allowedType = array('image/jpg', 'image/pjpg', 'image/gif', 'image/png', 'image/jpeg');

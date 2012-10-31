@@ -2,6 +2,10 @@
 
 class HomeController extends xWebController {
 
+	/**
+	 * Process the authentification
+	 * @return xView ListAction view
+	 */
     function defaultAction() {
     	try{
     		$this->ltiProcessing();
@@ -13,8 +17,10 @@ class HomeController extends xWebController {
         return $this->listAction();
     }
     
-    /*
+    /**
+     * Action to list all questionnaries
      * @TODO: put quesitonnary_publication to 1 (true)
+     * @return xView
      */
     function listAction(){
     	$d['model'] = $this->get();
@@ -22,6 +28,11 @@ class HomeController extends xWebController {
     	return xView::load('home/home', $d)->render();
     }
     
+    /**
+     * Get all data form a questionnary
+     * @see xRestElement::get()
+     * return array
+     */
     function get(){
     	$params = array(
     			'language_common_abbr' => xContext::$lang,
@@ -31,6 +42,11 @@ class HomeController extends xWebController {
     	return xModel::load('questionnary-traduct', $params)->get();
     }
     
+    /**
+     * Put user role from LTI
+     * @see xRestElement::put()
+     * return xTransaction Transaction
+     */
     public function put($lms_id, $firstname, $lastname, $email, $role){
     	try{
 	    	$t = new xTransaction();
@@ -66,14 +82,15 @@ class HomeController extends xWebController {
     	return $t;
     }
 
-    
+    /**
+     * Get info from moodle and authentificate the user
+     * @throws xException
+     */
     function ltiProcessing(){
     	
     	$lti = $_SESSION['_basic_lti_context'];
     	if(isset($lti)){
-    		
-    		//if(empty(xAuth::info('moodle_id'))){
-    			
+    		 			
     			//check if the user is in DB
     			$params = array(
     					'lms_id' => $lti['user_id']
@@ -134,10 +151,7 @@ class HomeController extends xWebController {
     				)
     			);
     			//set language
-    			xController::load('utils')->changeLanguage($moodle_language);
-    			//xContext::$front->setup_i18n($moodle_language);
-    		//}
-    		
+    			xController::load('utils')->changeLanguage($moodle_language);    		
     	}else{
     		//appeler une page d'erreur
     		throw new xException(_("exception-moodle-noConnected"), 401);

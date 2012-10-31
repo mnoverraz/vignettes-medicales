@@ -9,10 +9,21 @@ class RoleController extends xWebController {
 		
 	}
 	
+	/**
+	 * Get if the role is administrator
+	 * @todo finish this method
+	 * @param string $role
+	 * @return bloolean
+	 */
 	function isAdmin($role){
 		return $role;
 	}
 	
+	/**
+	 * Get roles from users
+	 * @param integer $userId
+	 * @return array Roles of the user
+	 */
 	function getRolesFromUser($userId){
 		$params = array(
 				'user_id' => $userId,
@@ -24,6 +35,11 @@ class RoleController extends xWebController {
 		return $roles;
 	}
 	
+	/**
+	 * Get role id
+	 * @param string $roleName
+	 * @return integer Role id
+	 */
 	function getRoleId($roleName){
 		$params = array(
 				'role' => $roleName,

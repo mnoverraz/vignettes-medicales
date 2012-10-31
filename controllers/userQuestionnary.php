@@ -9,6 +9,11 @@ class userQuestionnaryController extends xWebController {
 		
 	}
 	
+	/**
+	 * Get boolean to say if the questionnary was already filled
+	 * @param integer $questionnary_id
+	 * @return boolean true if filled, false else
+	 */
 	function alreadyFillQuestionnary($questionnary_id){
 		$params = array(
 				'questionnary_id' => $questionnary_id,
@@ -29,6 +34,10 @@ class userQuestionnaryController extends xWebController {
 		}
 	}
 	
+	/**
+	 * Main method to get infos about user-questionnary
+	 * @see xRestElement::get()
+	 */
 	function get($params = null){
 		return xModel::load('user-questionnary', $params)->get();
 	}

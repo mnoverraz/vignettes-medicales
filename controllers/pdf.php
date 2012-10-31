@@ -11,18 +11,31 @@ class PdfController extends xWebController {
 		
 	}
 	
+	/**
+	 * Return html format from a template (just the specify template not the entire webpage)
+	 * @return string Html from the template stats
+	 */
 	protected function printStatsAction() {
 		xController::load('vignette')->loading($_SESSION['questionnary']['questionnary']['questionnary']['id']);
 		$html = xController::load('stats')->statsAction();
 		return $this->_print($html);
 	}
 	
+	/**
+	 * Return html format from a template (just the specify template not the entire webpage)
+	 * @return string Html from the template vignette/feedbackHTML
+	 */
 	protected function printFeedbackAction() {
 		$d = $_SESSION['questionnary'];
 		$html = xView::load('vignette/feedbackHTML', $d)->render();
 		return $this->_print($html);
 	}
 
+	/**
+	 * Generate the pdf with the dompdf lib
+	 * @param string $html
+	 * @return stream Return a stream (pdf)
+	 */
 	function _print($html) {
 		// PDF formatting parameters
 		$orientation = @$this->params['xorientation'];

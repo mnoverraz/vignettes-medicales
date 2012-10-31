@@ -8,6 +8,11 @@ class QuestionController extends xWebController {
 	function indexAction(){
 	}
 	
+	/**
+	 * Get questions from a questionnary
+	 * @param integer $questionnaryId
+	 * @return array Array of question info
+	 */
 	function getQuestionsFromQuestionnary($questionnaryId){
 		$params = array(
     			'questionnary_id' => $questionnaryId,
@@ -17,6 +22,12 @@ class QuestionController extends xWebController {
 		return $this->get($params);
 	}
 	
+	/**
+	 * Main method to get questions
+	 * @param integer $params Parameters for the query
+	 * @see xRestElement::get()
+	 * @return array Array with questions infos
+	 */
 	function get($params = null){
 		return xModel::load('question', $params)->get();
 	}
